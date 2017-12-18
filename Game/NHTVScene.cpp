@@ -51,7 +51,7 @@ void NHTVScene::platformSpawn(Vector2 position)
 	platform->texturePath = "assets/cobblestone.png";
 	platform2->texturePath = "assets/cobblestone.png";
 
-	platform->size = Vector2(50, 50);
+	platform->size = Vector2(100, 100);
 	platform2->size = Vector2(100, 100);
 
 	platform->pos = position;
