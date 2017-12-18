@@ -159,28 +159,18 @@
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="demo1.cpp" />
-    <ClCompile Include="demo2.cpp" />
-    <ClCompile Include="demo3.cpp" />
-    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyGun.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="exampleScene.cpp" />
     <ClCompile Include="NHTVPlayer.cpp" />
     <ClCompile Include="NHTVScene.cpp" />
-    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="demo1.h" />
-    <ClInclude Include="demo2.h" />
-    <ClInclude Include="demo3.h" />
-    <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyGun.h" />
-    <ClInclude Include="exampleScene.h" />
     <ClInclude Include="NHTVPlayer.h" />
     <ClInclude Include="NHTVScene.h" />
-    <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,8 +2,6 @@
 
 #include "../MXP3/include/scene.h"
 
-#include "enemy.h"
-#include "player.h"
 #include "grid.h"
 #include "NHTVPlayer.h"
 #include "bullet.h"

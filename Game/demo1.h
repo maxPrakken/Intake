@@ -2,8 +2,6 @@
 
 #include "../MXP3/include/scene.h"
 
-#include "enemy.h"
-#include "player.h"
 #include "grid.h"
 
 class Demo1 : public Scene{
@@ -18,7 +16,6 @@ public:
 
 private:
 
-	Player* player;
 
 	Entity* hearts;
 
@@ -55,6 +52,5 @@ private:
 	Entity* wallTop;
 	Entity* wallDown;
 
-	std::vector<Enemy*>enemyList;
 	std::vector<Entity*>wallVector;
 };

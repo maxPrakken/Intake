@@ -21,21 +21,6 @@
     <ClCompile Include="demo1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exampleScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NHTVScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,21 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="demo1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exampleScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="demo2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="demo3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NHTVScene.h">
