@@ -158,7 +158,6 @@
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="grid.cpp" />
-    <ClCompile Include="demo1.cpp" />
     <ClCompile Include="enemyGun.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NHTVPlayer.cpp" />
@@ -167,7 +166,6 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="grid.h" />
-    <ClInclude Include="demo1.h" />
     <ClInclude Include="enemyGun.h" />
     <ClInclude Include="NHTVPlayer.h" />
     <ClInclude Include="NHTVScene.h" />
