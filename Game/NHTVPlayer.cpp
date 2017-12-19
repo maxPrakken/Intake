@@ -8,8 +8,10 @@ NHTVPlayer::NHTVPlayer()
 
 	speed = 100;
 
+	hasShot = false;
+
 	velocity = Vector2(0, 0);
-	gravity = Vector2(0, 100);
+	gravity = Vector2(0, 200);
 }
 
 NHTVPlayer::~NHTVPlayer()
@@ -21,7 +23,7 @@ void NHTVPlayer::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
-	//std::cout << pos.angleRelTo(Input::getInstance()->getMouseToScreen()) << std::endl;
+	//std::cout << Input::getInstance()->getMouseToScreen().x << " " << Input::getInstance()->getMouseToScreen().y << std::endl;
 
 	movement(deltatime);
 	//bulletRotDir();	
@@ -45,31 +47,19 @@ void NHTVPlayer::movement(double deltatime)
 		velocity = Vector2(0, -500);
 	}
 
+	if (Input::getInstance()->getMouseButtonDown(1)) {
+		hasShot = true;
+		std::cout << "jk" << std::endl;
+	}
+
 	if (velocity.y != 0) {
 		grounded = false;
 	}
 
-	std::cout << velocity.y << std::endl;
-
 	pos += velocity * deltatime;
-}
-
-void NHTVPlayer::shoot()
-{
-	Bullet* bullet = new Bullet();
-	bullet->texturePath = "asssets/INA.png";
-	//direction and rotations stuff here
-
-	bullets.push_back(bullet);
-	//addchild bullets to scene through bullets vector
 }
 
 void NHTVPlayer::deflect()
 {
 
-}
-
-void NHTVPlayer::bulletRotDir(Bullet* bullet)
-{
-	//do bullet rotation and direction here
 }

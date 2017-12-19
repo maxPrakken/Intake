@@ -23,8 +23,6 @@ public:
 	//deflect function, deflects bullets of the enemies
 	void deflect();
 
-	void bulletRotDir(Bullet* bullet);
-
 	Vector2 getVelocity() { return velocity; }
 
 	Vector2 getGravity() { return gravity; }
@@ -38,11 +36,15 @@ public:
 
 	bool grounded;
 
+	bool hasShot;
+
 	Vector2 velocity;
 
 	std::vector<Bullet*> getBullets() { return bullets; }
 
 private:
+
+	
 
 	float speed;
 

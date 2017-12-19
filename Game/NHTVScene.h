@@ -24,6 +24,8 @@ private:
 
 	void addBulletsToScene();
 
+	void playerShoot();
+
 	std::vector<Entity*>platformVector;
 
 	Grid* background;

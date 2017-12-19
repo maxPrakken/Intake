@@ -8,6 +8,7 @@ NHTVScene::NHTVScene() : Scene()
 	addchild(background);
 
 	platformSpawn(Vector2(100, 400));
+	platformSpawn(Vector2(350, 400));
 
 	player = new NHTVPlayer();
 	player->size = Vector2(100, 100);
@@ -23,7 +24,9 @@ void NHTVScene::update(double deltatime)
 {
 	Scene::update(deltatime);
 
-	//std::cout << player->velocity.y << std::endl;
+	if (player->hasShot) {
+		playerShoot();
+	}
 
 	EntitiesGrounded();
 	addBulletsToScene();
@@ -31,14 +34,18 @@ void NHTVScene::update(double deltatime)
 
 void NHTVScene::EntitiesGrounded()
 {
+	
 	std::vector<Entity*>::iterator it = platformVector.begin();
 	while (it != platformVector.end()) {
 		if (player->isColliding((*it)) && player->pos.y < (*it)->pos.y - 90 && player->velocity.y >= 0) {
 			player->velocity = Vector2(0, 0);
 			player->grounded = true;
+			break;
 		}
-		else
-		player->grounded = false;
+		else if (!player->isColliding((*it))) {
+			player->grounded = false;
+		}
+
 		it++;
 	}
 }
@@ -55,13 +62,13 @@ void NHTVScene::platformSpawn(Vector2 position)
 	platform2->size = Vector2(100, 100);
 
 	platform->pos = position;
-	platform2->pos = Vector2(platform->pos.x + platform->size.x, platform->pos.y);
+	platform2->pos = Vector2(platform->pos.x + platform->size.x + 50, platform->pos.y);
 
 	platformVector.push_back(platform);
-	//platformVector.push_back(platform2);
+	platformVector.push_back(platform2);
 
 	addchild(platform);
-	//addchild(platform2);
+	addchild(platform2);
 }
 
 void NHTVScene::addBulletsToScene()
@@ -72,8 +79,27 @@ void NHTVScene::addBulletsToScene()
 		if(&(*it)->getParent() == NULL) {
 			addchild((*it));
 		}
-		player->bulletRotDir((*it));
 
 		it++;
 	}
+}
+
+void NHTVScene::playerShoot()
+{
+	//bullets shoot in the wrong direction, and are not normalised yet.
+
+	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
+
+	Bullet* bullet = new Bullet();
+	bullet->texturePath = "assets/INA.png";
+	bullet->pos = player->pos;
+	Vector2 dir = player->pos - Input::getInstance()->getMouseToScreen();
+	
+	bullet->direction = dir;
+
+	bulletVectorCopy.push_back(bullet);
+
+	addchild(bullet);
+
+	player->hasShot = false;
 }
