@@ -49,7 +49,6 @@ void NHTVPlayer::movement(double deltatime)
 
 	if (Input::getInstance()->getMouseButtonDown(1)) {
 		hasShot = true;
-		std::cout << "jk" << std::endl;
 	}
 
 	if (velocity.y != 0) {

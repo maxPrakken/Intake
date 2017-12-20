@@ -95,6 +95,8 @@ void NHTVScene::playerShoot()
 	bullet->pos = player->pos;
 	Vector2 dir = player->pos - Input::getInstance()->getMouseToScreen();
 	
+	dir.normalize();
+
 	bullet->direction = dir * -1.0f;
 
 	bulletVectorCopy.push_back(bullet);
