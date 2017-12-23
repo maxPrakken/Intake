@@ -93,11 +93,12 @@ void NHTVScene::playerShoot()
 	Bullet* bullet = new Bullet();
 	bullet->texturePath = "assets/INA.png";
 	bullet->pos = player->pos;
-	Vector2 dir = player->pos - Input::getInstance()->getMouseToScreen();
-	
-	dir.normalize();
 
+	Vector2 dir = player->pos - Input::getInstance()->getMouseToScreen();
+	dir.normalize();
 	bullet->direction = dir * -1.0f;
+
+	bullet->rot = player->pos.angleRelTo(Input::getInstance()->getMouseToScreen());
 
 	bulletVectorCopy.push_back(bullet);
 
