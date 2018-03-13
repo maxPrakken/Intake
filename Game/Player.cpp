@@ -1,6 +1,6 @@
-#include "NHTVPlayer.h"
+#include "Player.h"
 
-NHTVPlayer::NHTVPlayer()
+Player::Player()
 {
 	texturePath = "assets/INA.png";
 
@@ -14,12 +14,12 @@ NHTVPlayer::NHTVPlayer()
 	gravity = Vector2(0, 200);
 }
 
-NHTVPlayer::~NHTVPlayer()
+Player::~Player()
 {
 
 }
 
-void NHTVPlayer::update(double deltatime)
+void Player::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
@@ -29,7 +29,7 @@ void NHTVPlayer::update(double deltatime)
 	//bulletRotDir();	
 }
 
-void NHTVPlayer::movement(double deltatime)
+void Player::movement(double deltatime)
 {
 	if (velocity.y < 500 && !grounded) {
 		velocity += gravity * deltatime;
@@ -58,7 +58,7 @@ void NHTVPlayer::movement(double deltatime)
 	pos += velocity * deltatime;
 }
 
-void NHTVPlayer::deflect()
+void Player::deflect()
 {
 
 }

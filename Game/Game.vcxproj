@@ -160,15 +160,15 @@
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="enemyGun.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NHTVPlayer.cpp" />
-    <ClCompile Include="NHTVScene.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="MyScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="enemyGun.h" />
-    <ClInclude Include="NHTVPlayer.h" />
-    <ClInclude Include="NHTVScene.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="MyScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

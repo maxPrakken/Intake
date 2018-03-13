@@ -2,7 +2,7 @@
 #include <texture.h>
 #include <SDL2\SDL.h>
 #include <input.h>
-#include "NHTVScene.h"
+#include "MyScene.h"
 
 #include "../MXP3/include/entity.h"
 #include <sceneManager.h>
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	Audio::getInstance();
 
 	//the first scene that gets added is the startup scene.
-	SceneManager::getInstance()->addScene("NHTVScene", new NHTVScene());
+	SceneManager::getInstance()->addScene("MyScene", new MyScene());
 
 	while (!Input::getInstance()->getMustQuit())
 	{
@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 			curscene--;
 		}
 
-		if (curscene == 0 && SceneManager::getInstance()->currentScene != SceneManager::getInstance()->getScene("NHTVScene")) {
-			SceneManager::getInstance()->setCurrentScene("NHTVScene");
+		if (curscene == 0 && SceneManager::getInstance()->currentScene != SceneManager::getInstance()->getScene("MyScene")) {
+			SceneManager::getInstance()->setCurrentScene("MyScene");
 		}
 
 		Renderer::getInstance()->update();

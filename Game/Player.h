@@ -4,15 +4,15 @@
 #include <input.h>
 #include "bullet.h"
 
-class NHTVScene;
+class Scene;
 
-class NHTVPlayer : public Entity {
+class Player : public Entity {
 public:
 
 	//default constructor
-	NHTVPlayer();
+	Player();
 	//default deconstructor
-	virtual ~NHTVPlayer();
+	virtual ~Player();
 	//update function
 	virtual void update(double deltatime);
 

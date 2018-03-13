@@ -3,16 +3,16 @@
 #include "../MXP3/include/scene.h"
 
 #include "grid.h"
-#include "NHTVPlayer.h"
+#include "Player.h"
 #include "bullet.h"
 
-class NHTVScene : public Scene {
+class MyScene : public Scene {
 public:
 
 	//constuctor
-	NHTVScene();
+	MyScene();
 	//deconstructor
-	virtual ~NHTVScene();
+	virtual ~MyScene();
 	//update function
 	virtual void update(double deltatime);
 
@@ -29,5 +29,5 @@ private:
 	std::vector<Entity*>platformVector;
 
 	Grid* background;
-	NHTVPlayer* player;
+	Player* player;
 };

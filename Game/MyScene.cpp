@@ -1,8 +1,7 @@
-#include "NHTVScene.h"
+#include "MyScene.h"
 
-NHTVScene::NHTVScene() : Scene()
+MyScene::MyScene() : Scene()
 {
-	
 	background = new Grid(Vector2(12, 8), "assets/test.png", Vector2(100, 100));
 	background->pos = Vector2(-100, 0);
 	addchild(background);
@@ -10,17 +9,17 @@ NHTVScene::NHTVScene() : Scene()
 	platformSpawn(Vector2(100, 400));
 	platformSpawn(Vector2(350, 400));
 
-	player = new NHTVPlayer();
+	player = new Player();
 	player->size = Vector2(100, 100);
 	addchild(player);
 }
 
-NHTVScene::~NHTVScene()
+MyScene::~MyScene()
 {
 
 }
 
-void NHTVScene::update(double deltatime)
+void MyScene::update(double deltatime)
 {
 	Scene::update(deltatime);
 
@@ -32,7 +31,7 @@ void NHTVScene::update(double deltatime)
 	addBulletsToScene();
 }
 
-void NHTVScene::EntitiesGrounded()
+void MyScene::EntitiesGrounded()
 {
 	
 	std::vector<Entity*>::iterator it = platformVector.begin();
@@ -50,7 +49,7 @@ void NHTVScene::EntitiesGrounded()
 	}
 }
 
-void NHTVScene::platformSpawn(Vector2 position)
+void MyScene::platformSpawn(Vector2 position)
 {
 	Entity* platform = new Entity();
 	Entity* platform2 = new Entity();
@@ -71,7 +70,7 @@ void NHTVScene::platformSpawn(Vector2 position)
 	addchild(platform2);
 }
 
-void NHTVScene::addBulletsToScene()
+void MyScene::addBulletsToScene()
 {
 	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
 	std::vector<Bullet*>::iterator it = bulletVectorCopy.begin();
@@ -84,7 +83,7 @@ void NHTVScene::addBulletsToScene()
 	}
 }
 
-void NHTVScene::playerShoot()
+void MyScene::playerShoot()
 {
 	//bullets shoot in the wrong direction, and are not normalised yet.
 
