@@ -2,15 +2,12 @@
 
 MyScene::MyScene() : Scene()
 {
-	background = new Grid(Vector2(12, 8), "assets/test.png", Vector2(100, 100));
+	background = new Grid(Vector2(6, 8), "assets/background_space_concept.png", Vector2(100, 100));
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
-	platformSpawn(Vector2(100, 400));
-	platformSpawn(Vector2(350, 400));
-
 	player = new Player();
-	player->size = Vector2(100, 100);
+	player->size = Vector2(50, 50);
 	addchild(player);
 }
 
@@ -27,47 +24,7 @@ void MyScene::update(double deltatime)
 		playerShoot();
 	}
 
-	EntitiesGrounded();
 	addBulletsToScene();
-}
-
-void MyScene::EntitiesGrounded()
-{
-	
-	std::vector<Entity*>::iterator it = platformVector.begin();
-	while (it != platformVector.end()) {
-		if (player->isColliding((*it)) && player->pos.y < (*it)->pos.y - 90 && player->velocity.y >= 0) {
-			player->velocity = Vector2(0, 0);
-			player->grounded = true;
-			break;
-		}
-		else if (!player->isColliding((*it))) {
-			player->grounded = false;
-		}
-
-		it++;
-	}
-}
-
-void MyScene::platformSpawn(Vector2 position)
-{
-	Entity* platform = new Entity();
-	Entity* platform2 = new Entity();
-
-	platform->texturePath = "assets/cobblestone.png";
-	platform2->texturePath = "assets/cobblestone.png";
-
-	platform->size = Vector2(100, 100);
-	platform2->size = Vector2(100, 100);
-
-	platform->pos = position;
-	platform2->pos = Vector2(platform->pos.x + platform->size.x + 50, platform->pos.y);
-
-	platformVector.push_back(platform);
-	platformVector.push_back(platform2);
-
-	addchild(platform);
-	addchild(platform2);
 }
 
 void MyScene::addBulletsToScene()
@@ -89,19 +46,27 @@ void MyScene::playerShoot()
 
 	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
 
-	Bullet* bullet = new Bullet();
-	bullet->texturePath = "assets/INA.png";
+	Bullet* bullet = new Bullet(); 
 	bullet->pos = player->pos;
+	bullet->pos.y = player->pos.y - player->size.y / 2 + 30;
 
-	Vector2 dir = player->pos - Input::getInstance()->getMouseToScreen();
-	dir.normalize();
-	bullet->direction = dir * -1.0f;
+	Bullet* bullet2 = new Bullet();
+	bullet2->pos = player->pos;
+	bullet2->pos.y = player->pos.y - player->size.y / 2 + 30;
+	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
-	bullet->rot = player->pos.angleRelTo(Input::getInstance()->getMouseToScreen());
+	//TODO: make a bulletspeed function
+	bullet->direction = Vector2(0, player->getBulletSpeed());
+	bullet->rot = 90;
+
+	bullet2->direction = Vector2(0, -10);
+	bullet2->rot = 90;
 
 	bulletVectorCopy.push_back(bullet);
+	bulletVectorCopy.push_back(bullet2);
 
 	addchild(bullet);
+	addchild(bullet2);
 
 	player->hasShot = false;
 }

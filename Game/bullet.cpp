@@ -2,8 +2,8 @@
 
 Bullet::Bullet() 
 {
-	texturePath = "assets/INA.png";
-	size = Vector2(50, 25);
+	texturePath = "assets/bullet_concept.png";
+	size = Vector2(10, 4);
 	speed = 100;
 
 	direction = Vector2(0, 0);

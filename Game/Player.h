@@ -4,8 +4,6 @@
 #include <input.h>
 #include "bullet.h"
 
-class Scene;
-
 class Player : public Entity {
 public:
 
@@ -18,16 +16,11 @@ public:
 
 	//movement function
 	void movement(double deltatime);
-	//shoot function, fires a bullet
-	void shoot();
-	//deflect function, deflects bullets of the enemies
-	void deflect();
 
 	Vector2 getVelocity() { return velocity; }
 
-	Vector2 getGravity() { return gravity; }
-
-	int health;
+	int getHealth();
+	float getBulletSpeed();
 
 	bool canUp;
 	bool canDown;
@@ -44,11 +37,9 @@ public:
 
 private:
 
-	
-
 	float speed;
-
-	Vector2 gravity;
+	float bulletSpeed;
+	int health;
 
 	std::vector<Bullet*>bullets;
 };

@@ -2,16 +2,16 @@
 
 Player::Player()
 {
-	texturePath = "assets/INA.png";
+	texturePath = "assets/player_concept2.png";
 
 	grounded = false;
 
-	speed = 100;
+	speed = 200;
+	bulletSpeed = -10;
 
 	hasShot = false;
 
 	velocity = Vector2(0, 0);
-	gravity = Vector2(0, 200);
 }
 
 Player::~Player()
@@ -23,42 +23,39 @@ void Player::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
-	//std::cout << Input::getInstance()->getMouseToScreen().x << " " << Input::getInstance()->getMouseToScreen().y << std::endl;
-
 	movement(deltatime);
-	//bulletRotDir();	
 }
 
 void Player::movement(double deltatime)
 {
-	if (velocity.y < 500 && !grounded) {
-		velocity += gravity * deltatime;
+	if (Input::getInstance()->getKey(SDLK_w)) {
+		pos -= Vector2(0, speed) * deltatime;
 	}
 
 	if (Input::getInstance()->getKey(SDLK_a)) {
 		pos -= Vector2(speed, 0) * deltatime;
 	}
 
+	if (Input::getInstance()->getKey(SDLK_s)) {
+		pos += Vector2(0, speed) * deltatime;
+	}
+
 	if (Input::getInstance()->getKey(SDLK_d)) {
 		pos += Vector2(speed, 0) * deltatime;
 	}
 
-	if (Input::getInstance()->getKeyDown(SDLK_SPACE) && grounded) {
-		velocity = Vector2(0, -500);
-	}
-
-	if (Input::getInstance()->getMouseButtonDown(1)) {
+	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
 		hasShot = true;
-	}
-
-	if (velocity.y != 0) {
-		grounded = false;
 	}
 
 	pos += velocity * deltatime;
 }
 
-void Player::deflect()
-{
+int Player::getHealth(){
+	return health;
+}
 
+float Player::getBulletSpeed()
+{
+	return bulletSpeed;
 }

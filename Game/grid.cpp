@@ -10,7 +10,7 @@ Grid::Grid() : Entity()
 
 	firstTile = true;
 
-	tileTexture = "assets/cobblestone.png";
+	tileTexture = "assets/INA.png";
 
 	buildgrid();
 }
@@ -27,6 +27,20 @@ Grid::Grid(Vector2 gridSize, std::string tiletexture)
 	tileTexture = tiletexture;
 
 	buildgrid();
+}
+
+Grid::Grid(Vector2 gridSize, Vector2 tilesize)
+{
+	grid = gridSize;
+	spawnPos2 = Vector2(0, 0);
+	pos = spawnPos2;
+	startX2 = spawnPos2.x;
+
+	firstTile = true;
+
+	tileTexture = "assets/INA.png";
+
+	buildgrid(tilesize);
 }
 
 Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)

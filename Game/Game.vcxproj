@@ -158,7 +158,7 @@
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="grid.cpp" />
-    <ClCompile Include="enemyGun.cpp" />
+    <ClCompile Include="enemyBasic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MyScene.cpp" />
@@ -166,7 +166,8 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="grid.h" />
-    <ClInclude Include="enemyGun.h" />
+    <ClInclude Include="enemyBasic.h" />
+    <ClInclude Include="IEnemy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="MyScene.h" />
   </ItemGroup>
