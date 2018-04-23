@@ -15,7 +15,7 @@ void EnemyBasic::update(double deltatime)
 	Entity::update(deltatime);
 }
 
-void IEnemy::shoot()
+void EnemyBasic::shoot()
 {
 	//virtual overloader
 }

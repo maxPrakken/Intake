@@ -1,21 +1,22 @@
-#include "EnemyBasic.h"
+#include "EnemyBasic2.h"
 
-EnemyBasic::EnemyBasic()
+EnemyBasic2::EnemyBasic2()
 {
 	
 }
 
-EnemyBasic::~EnemyBasic()
+EnemyBasic2::~EnemyBasic2()
 {
 
 }
 
-void EnemyBasic::update(double deltatime)
+void EnemyBasic2::update(double deltatime)
 {
 	Entity::update(deltatime);
+
 }
 
-void IEnemy::shoot()
+void EnemyBasic2::shoot()
 {
 	//virtual overloader
 }

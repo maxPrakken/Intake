@@ -7,7 +7,7 @@ public:
 	Grid();
 	Grid(Vector2 gridSize, std::string tiletexture);
 	Grid(Vector2 gridSize, Vector2 tilesize);
-	Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize);
+	Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize, bool isRandom = false, Vector2 rowAmound = Vector2(-1, -1));
 	virtual ~Grid();
 	virtual void update(double deltatime);
 
@@ -23,9 +23,9 @@ public:
 
 private:
 	void buildgrid();
-	void buildgrid(Vector2 tilesize);
+	void buildgrid(Vector2 tilesize, bool isRandom = false, Vector2 rows = Vector2(-1, -1));
 	void spawnTile();
-	void spawnTile(Vector2 tilesize);
+	void spawnTile(Vector2 tilesize, bool isRandom = false, Vector2 rows = Vector2(-1, -1));
 
 	int startX;
 	int startX2;

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "IEnemy.h"
+#include "EnemyBasic.h"
 
-class EnemyBasic : public Entity {
+class EnemyBasic2 : public EnemyBasic {
 
 public:
 
 	//default constructor
-	EnemyBasic();
+	EnemyBasic2();
 	//default deconstructor
-	virtual ~EnemyBasic();
+	virtual ~EnemyBasic2();
 	//update function
 	virtual void update(double deltatime);
 

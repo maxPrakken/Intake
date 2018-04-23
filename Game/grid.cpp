@@ -43,7 +43,7 @@ Grid::Grid(Vector2 gridSize, Vector2 tilesize)
 	buildgrid(tilesize);
 }
 
-Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)
+Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize, bool isRandom, Vector2 rowAmound)
 {
 	grid = gridSize;
 	spawnPos2 = Vector2(0, 0);
@@ -54,7 +54,10 @@ Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)
 
 	tileTexture = tiletexture;
 
-	buildgrid(tilesize);
+	if (!isRandom)
+		buildgrid(tilesize);
+	else
+		buildgrid(tilesize, isRandom, rowAmound);
 }
 
 Grid::~Grid()
@@ -69,7 +72,6 @@ Grid::~Grid()
 void Grid::update(double deltatime)
 {
 	Entity::update(deltatime);
-
 }
 
 void Grid::buildgrid()
@@ -79,10 +81,13 @@ void Grid::buildgrid()
 	}
 }
 
-void Grid::buildgrid(Vector2 tilesize)
+void Grid::buildgrid(Vector2 tilesize, bool isRandom, Vector2 rows)
 {
 	for (int i = 0; i < grid.x * grid.y; i++) {
-		spawnTile(tilesize);
+		if (!isRandom)
+			spawnTile(tilesize);
+		else
+			spawnTile(tilesize, isRandom, rows);
 	}
 }
 
@@ -106,19 +111,32 @@ void Grid::spawnTile()
 	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
 }
 
-void Grid::spawnTile(Vector2 tilesize)
+void Grid::spawnTile(Vector2 tilesize, bool isRandom, Vector2 rows)
 {
 	Entity* tile = new Entity();
-	tile->texturePath = tileTexture;
+	if (isRandom && rows.x > 0)
+	{
+		int tilesAmount = rows.x * rows.y;
+		
+		int randomInt = rand() % tilesAmount;
+		tile->spitesheetPath = tileTexture;
+		tile->animator.rows = rows;
+		tile->animator.paused = true;
+		tile->animator.switchAfter = 1;
+		tile->animator.cur = randomInt;
+	}
+	else
+	{
+		tile->texturePath = tileTexture;
+	}
 	tile->size = tilesize;
-	
 	addchild(tile);
 	tileVector.push_back(tile);
 
 	if (spawnPos2.x < grid.x * tile->size.x) {
 		spawnPos2 += Vector2(tile->size.x, 0);
 	}
-	
+
 	tile->pos = spawnPos2;
 
 	if (spawnPos2.x >= grid.x * tile->size.x) {
@@ -126,5 +144,4 @@ void Grid::spawnTile(Vector2 tilesize)
 		spawnPos2.y += tile->size.y;
 	}
 	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
-
 }

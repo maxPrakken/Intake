@@ -18,7 +18,7 @@ Animator::Animator()
 
 Animator::Animator(Vector2 rows)
 {
-	this->rows;
+	this->rows = rows;
 }
 
 Animator::~Animator()
