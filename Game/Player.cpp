@@ -47,6 +47,7 @@ void Player::movement(double deltatime)
 	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
 		hasShot = true;
 		Audio::getInstance()->playAudio("pewSound.wav", 0, 1);
+
 	}
 
 	pos += velocity * deltatime;
