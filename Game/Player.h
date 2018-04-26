@@ -32,7 +32,7 @@ public:
 
 	Vector2 velocity;
 
-	std::vector<Bullet*> getBullets() { return bullets; }
+	double setRPM(double value) { defaultRPM = value; }
 
 private:
 
@@ -40,5 +40,7 @@ private:
 	float bulletSpeed;
 	int maxHealth;
 
-	std::vector<Bullet*>bullets;
+	double RPM;
+	double defaultRPM;
+	double RPMTimer;
 };

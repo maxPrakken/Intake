@@ -11,21 +11,23 @@ Player::Player()
 	health = 3;
 	maxHealth = health;
 	velocity = Vector2(0, 0);
+
+	defaultRPM = 250;
+	RPM = defaultRPM;
+	RPMTimer = 0;
 }
 
 Player::~Player()
 {
-	for (unsigned int i = 0; i < bullets.size(); i++) {
-		removechild(bullets[i]);
-		delete bullets[i];
-	}
-	bullets.clear();
+
 }
 
 void Player::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
+	RPMTimer += deltatime; 
+	
 	movement(deltatime);
 }
 
@@ -47,9 +49,17 @@ void Player::movement(double deltatime)
 		pos += Vector2(speed, 0) * deltatime;
 	}
 
-	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
-		hasShot = true;
-		Audio::getInstance()->playAudio("pewSound.wav", 0, 1);
+	if (Input::getInstance()->getKey(SDLK_SPACE)) {
+		//go from seconds to RPM(rounds per minute)
+		double xValue = RPM / 60;
+		double fireTime = 1 / xValue;
+		if (RPMTimer > fireTime) {
+
+			hasShot = true;
+			RPMTimer = 0;
+			i++;
+			Audio::getInstance()->playAudio("pewSound.wav", 0, 1);
+		}
 	}
 
 	pos += velocity * deltatime;
