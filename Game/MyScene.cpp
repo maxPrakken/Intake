@@ -39,9 +39,8 @@ void MyScene::update(double deltatime)
 
 void MyScene::addBulletsToScene()
 {
-	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
-	std::vector<Bullet*>::iterator it = bulletVectorCopy.begin();
-	while (it != bulletVectorCopy.end()) {
+	std::vector<Bullet*>::iterator it = bulletVector.begin();
+	while (it != bulletVector.end()) {
 		if(&(*it)->getParent() == NULL) {
 			addchild((*it));
 		}
@@ -53,8 +52,6 @@ void MyScene::addBulletsToScene()
 void MyScene::playerShoot()
 {
 	//bullets shoot in the wrong direction, and are not normalised yet.
-
-	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
 
 	Bullet* bullet = new Bullet(); 
 	bullet->pos = player->pos;
@@ -72,8 +69,8 @@ void MyScene::playerShoot()
 	bullet2->direction = Vector2(0, -10);
 	bullet2->rot = 90;
 
-	bulletVectorCopy.push_back(bullet);
-	bulletVectorCopy.push_back(bullet2);
+	bulletVector.push_back(bullet);
+	bulletVector.push_back(bullet2);
 
 	addchild(bullet);
 	addchild(bullet2);
@@ -141,3 +138,8 @@ void MyScene::grabUpgrade()
 		}
 	}
 }
+
+void MyScene::deleteBullets() {
+
+}
+

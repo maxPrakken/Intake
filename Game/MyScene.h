@@ -34,8 +34,10 @@ private:
 
 	void addUpgrade(Upgrades upgrade, Vector2 position);
 	void grabUpgrade();
+	void deleteBullets();
 
 	std::vector<Upgrade_Base*>upgradeVector;
+	std::vector<Bullet*>bulletVector;
 	
 	Grid* background;
 	Player* player;
