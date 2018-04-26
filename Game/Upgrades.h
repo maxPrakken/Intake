@@ -16,6 +16,8 @@ public:
 	virtual void update(double deltatime){ Entity::update(deltatime); }
 
 	virtual void use(void* pointer) { return; }
+
+	bool used = false;
 };
 
 class Health_Upgrade : public Upgrade_Base {
@@ -45,12 +47,16 @@ public:
 	virtual ~RPM_Upgrade() { return; };
 
 	//update function
-	virtual void update(double deltatime) { return; };
+	virtual void update(double deltatime);
 
 	virtual void use(void* pointer);
 
 private:
+	bool timerStart;
+	double timer = 0;
+	double timeToWork = 5;
 
+	Player* player;
 };
 
 class DoubleShot_Upgrade : public Upgrade_Base {
@@ -62,10 +68,14 @@ public:
 	virtual ~DoubleShot_Upgrade() { return; };
 
 	//update function
-	virtual void update(double deltatime) { return; };
+	virtual void update(double deltatime);
 
 	virtual void use(void* pointer);
 
 private:
+	bool timerStart;
+	double timer = 0;
+	double timeToWork = 5;
 
+	Player* player;
 };

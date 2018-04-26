@@ -14,11 +14,27 @@ Upgrade_Base::Upgrade_Base() {
 //rpm upgrade functions
 RPM_Upgrade::RPM_Upgrade() {
 	texturePath = "assets/upgrade_RPM.png";
+	timerStart = false;
+}
+
+void RPM_Upgrade::update(double deltatime)
+{
+	std::cout << timerStart << std::endl;
+	if (timerStart) {
+		timer += deltatime;
+		
+		if (timer > timeToWork) {
+			player->setRPM(player->getDefaultRPM());
+			timerStart = false;
+		}
+	}
 }
 
 void RPM_Upgrade::use(void* pointer) {
+	timerStart = true;
 	Player* p = (Player*)pointer;
-	//do something with player here
+	player = p;
+	p->setRPM(p->getDefaultRPM() * 2);
 }
 
 /*
@@ -45,9 +61,24 @@ void Health_Upgrade::use(void* pointer) {
 //double shot upgrade functions
 DoubleShot_Upgrade::DoubleShot_Upgrade() {
 	texturePath = "assets/upgrade_DoubleShot.png";
+	timerStart = false;
+}
+
+void DoubleShot_Upgrade::update(double deltatime)
+{
+	if (timerStart) {
+		timer += deltatime;
+
+		if (timer > timeToWork) {
+			player->doubleShot = false;
+			timerStart = false;
+		}
+	}
 }
 
 void DoubleShot_Upgrade::use(void* pointer) {
+	timerStart = true;
 	Player* p = (Player*)pointer;
-	//do something with player here
+	player = p;
+	p->doubleShot = true;
 }

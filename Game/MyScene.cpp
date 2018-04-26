@@ -6,7 +6,8 @@ MyScene::MyScene() : Scene()
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
-	addUpgrade(HEALTH, Vector2(100, 100));
+	addUpgrade(DOUBLESHOT, Vector2(100, 100));
+	addUpgrade(RPM, Vector2(100, 100));
 
 	player = new Player();
 	player->size = Vector2(50, 50);
@@ -60,6 +61,30 @@ void MyScene::playerShoot()
 	addchild(bullet);
 	addchild(bullet2);
 
+	if (player->doubleShot) {
+		Bullet* bullet3 = new Bullet();
+		bullet3->pos = player->pos;
+		bullet3->pos.x = player->pos.x + 10;
+		bullet3->pos.y = player->pos.y - player->size.y / 2 + 30;
+
+		Bullet* bullet4 = new Bullet();
+		bullet4->pos = player->pos;
+		bullet4->pos.y = player->pos.y - player->size.y / 2 + 30;
+		bullet4->pos.x = player->pos.x + player->size.x - 22;
+
+		bullet3->direction = Vector2(0, player->getBulletSpeed());
+		bullet3->rot = 90;
+
+		bullet4->direction = Vector2(0, -10);
+		bullet4->rot = 90;
+
+		bulletVector.push_back(bullet3);
+		bulletVector.push_back(bullet4);
+
+		addchild(bullet3);
+		addchild(bullet4);
+	}
+
 	player->hasShot = false;
 }
 
@@ -106,11 +131,14 @@ void MyScene::grabUpgrade()
 		if (player->isColliding((*it))) {
 			//using the upgrade
 			(*it)->use(player);
-			
+			(*it)->pos = Vector2(-100, -100);
+
 			//removing the upgrade after being used
-			Upgrade_Base* u = (*it);
-			it = upgradeVector.erase(it);
-			this->removechild(u);
+			if ((*it)->used) {
+				Upgrade_Base* u = (*it);
+				it = upgradeVector.erase(it);
+				this->removechild(u);
+			}
 		}
 		else {
 			it++;

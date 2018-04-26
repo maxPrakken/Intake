@@ -29,10 +29,12 @@ public:
 	bool canLeft;
 
 	bool hasShot;
+	bool doubleShot = false;
 
 	Vector2 velocity;
 
-	double setRPM(double value) { defaultRPM = value; }
+	void setRPM(double value) { RPM = value; }
+	double getDefaultRPM() { return defaultRPM; }
 
 private:
 
