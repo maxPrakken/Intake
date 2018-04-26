@@ -6,6 +6,8 @@ MyScene::MyScene() : Scene()
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
+	addUpgrade(HEALTH, Vector2(100, 100));
+
 	player = new Player();
 	player->size = Vector2(50, 50);
 	addchild(player);
@@ -13,7 +15,14 @@ MyScene::MyScene() : Scene()
 
 MyScene::~MyScene()
 {
+	for (unsigned int i = 0; i < upgradeVector.size(); i++) {
+		removechild(upgradeVector[i]);
+		delete upgradeVector[i];
+	}
+	upgradeVector.clear();
 
+	delete background;
+	delete player;
 }
 
 void MyScene::update(double deltatime)
@@ -25,6 +34,7 @@ void MyScene::update(double deltatime)
 	}
 
 	addBulletsToScene();
+	grabUpgrade();
 }
 
 void MyScene::addBulletsToScene()
@@ -69,4 +79,65 @@ void MyScene::playerShoot()
 	addchild(bullet2);
 
 	player->hasShot = false;
+}
+
+void MyScene::addUpgrade(Upgrades upgrade, Vector2 position)
+{
+	switch(upgrade) 
+	{
+		case HEALTH:
+		{
+			Health_Upgrade * healthupgrade = new Health_Upgrade();
+			healthupgrade->pos = position;
+			addchild(healthupgrade);
+			upgradeVector.push_back(healthupgrade);
+			break;
+		}
+		case RPM:
+		{
+			RPM_Upgrade * rpmupgrade = new RPM_Upgrade();
+			rpmupgrade->pos = position;
+			addchild(rpmupgrade);
+			upgradeVector.push_back(rpmupgrade);
+			break;
+		}
+		case DOUBLESHOT:
+		{
+			DoubleShot_Upgrade* doubleshot = new DoubleShot_Upgrade();
+			doubleshot->pos = position;
+			addchild(doubleshot);
+			upgradeVector.push_back(doubleshot);
+			break;
+		}
+		default:
+		{
+			std::cout << "the enum you entered is not a valid upgrade enum value" << std::endl;
+			break;
+		}
+	}
+}
+
+void MyScene::grabUpgrade()
+{
+	std::vector<Upgrade_Base*>::iterator it = upgradeVector.begin();
+	while (it != upgradeVector.end()) {
+		if (player->isColliding((*it))) {
+
+			std::cout << player->health << std::endl;
+
+			//using the upgrade
+			(*it)->use(player);
+			
+			//removing the upgrade after being used
+			Upgrade_Base* u = (*it);
+			it = upgradeVector.erase(it);
+			this->removechild(u);
+
+			std::cout << player->health << std::endl;
+
+		}
+		else {
+			it++;
+		}
+	}
 }

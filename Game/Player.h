@@ -19,15 +19,14 @@ public:
 
 	Vector2 getVelocity() { return velocity; }
 
-	int getHealth();
+	int health;
+
 	float getBulletSpeed();
 
 	bool canUp;
 	bool canDown;
 	bool canRight;
 	bool canLeft;
-
-	bool grounded;
 
 	bool hasShot;
 
@@ -39,7 +38,7 @@ private:
 
 	float speed;
 	float bulletSpeed;
-	int health;
+	int maxHealth;
 
 	std::vector<Bullet*>bullets;
 };
