@@ -57,7 +57,6 @@ void Player::movement(double deltatime)
 
 			hasShot = true;
 			RPMTimer = 0;
-			i++;
 			Audio::getInstance()->playAudio("pewSound.wav", 0, 1);
 		}
 	}
