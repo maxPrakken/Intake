@@ -28,8 +28,6 @@ public:
 
 private:
 
-	void addBulletsToScene();
-
 	void playerShoot();
 
 	void addUpgrade(Upgrades upgrade, Vector2 position);

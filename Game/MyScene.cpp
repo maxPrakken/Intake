@@ -33,26 +33,12 @@ void MyScene::update(double deltatime)
 		playerShoot();
 	}
 
-	addBulletsToScene();
 	grabUpgrade();
-}
-
-void MyScene::addBulletsToScene()
-{
-	std::vector<Bullet*>::iterator it = bulletVector.begin();
-	while (it != bulletVector.end()) {
-		if(&(*it)->getParent() == NULL) {
-			addchild((*it));
-		}
-
-		it++;
-	}
+	deleteBullets();
 }
 
 void MyScene::playerShoot()
 {
-	//bullets shoot in the wrong direction, and are not normalised yet.
-
 	Bullet* bullet = new Bullet(); 
 	bullet->pos = player->pos;
 	bullet->pos.y = player->pos.y - player->size.y / 2 + 30;
@@ -62,7 +48,6 @@ void MyScene::playerShoot()
 	bullet2->pos.y = player->pos.y - player->size.y / 2 + 30;
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
-	//TODO: make a bulletspeed function
 	bullet->direction = Vector2(0, player->getBulletSpeed());
 	bullet->rot = 90;
 
@@ -119,9 +104,6 @@ void MyScene::grabUpgrade()
 	std::vector<Upgrade_Base*>::iterator it = upgradeVector.begin();
 	while (it != upgradeVector.end()) {
 		if (player->isColliding((*it))) {
-
-			std::cout << player->health << std::endl;
-
 			//using the upgrade
 			(*it)->use(player);
 			
@@ -129,9 +111,6 @@ void MyScene::grabUpgrade()
 			Upgrade_Base* u = (*it);
 			it = upgradeVector.erase(it);
 			this->removechild(u);
-
-			std::cout << player->health << std::endl;
-
 		}
 		else {
 			it++;
@@ -140,6 +119,18 @@ void MyScene::grabUpgrade()
 }
 
 void MyScene::deleteBullets() {
+	
+	std::vector<Bullet*>::iterator it = bulletVector.begin();
+	while (it != bulletVector.end()) {
+		if ((*it)->pos.y < -50) {
 
+			Bullet* u = (*it);
+			it = bulletVector.erase(it);
+			this->removechild(u);
+		}
+		else {
+			it++;
+		}
+	}
 }
 
