@@ -23,11 +23,18 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	void buttonClickCheck();
+
+	void playerShoot();
+
 private:
 	Button* playButton;
 	Button* optionsButton;
 	Button* highscoresButton;
 	Button* quitButton;
 
+	Player* player;
+
+	std::vector<Bullet*>bulletVector;
 	std::vector<Button*>buttonVector;
 };

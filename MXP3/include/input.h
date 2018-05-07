@@ -30,6 +30,9 @@ public:
 	//checks if the application is set to quit
 	bool getMustQuit() { return mustquit; };
 
+	//lets you quit the application if set to true
+	void setMustQuit(bool truefalse) { mustquit = truefalse; }
+
 	//mouseposition relative to the window
 	Vector2 getMouseToScreen();
 	
