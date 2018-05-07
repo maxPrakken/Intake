@@ -2,7 +2,7 @@
 
 EnemyBasic::EnemyBasic()
 {
-
+	this->texturePath = "assets/INA.png";
 }
 
 EnemyBasic::~EnemyBasic()

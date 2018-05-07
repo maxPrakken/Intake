@@ -100,3 +100,16 @@ bool Entity::isColliding(Entity* other) {
 	return false;	
 }
 
+bool Entity::isColliding(Vector2 other)
+{
+	Vector2 pos = getParentPosition();
+
+	if (other.x > pos.x && other.x < pos.x + this->size.x &&
+		other.y > pos.y && other.y < pos.y + this->size.y)
+	{
+		return true;
+	}
+
+	return false;
+}
+

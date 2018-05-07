@@ -48,6 +48,9 @@ public:
 	//checks if the entity is colliding with another entity
 	bool isColliding(Entity* other);
 
+	//checks if the entity is colliding with a vector2 point
+	bool isColliding(Vector2 other);
+
 	//gets parent of the entity
 	Entity getParent() { return (*_parent); }
 

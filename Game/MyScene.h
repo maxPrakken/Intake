@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "bullet.h"
 #include "Upgrades.h"
+#include "IEnemy.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -39,4 +40,5 @@ private:
 	
 	Grid* background;
 	Player* player;
+
 };

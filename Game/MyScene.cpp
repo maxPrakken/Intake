@@ -6,11 +6,10 @@ MyScene::MyScene() : Scene()
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
-	addUpgrade(DOUBLESHOT, Vector2(100, 100));
-	addUpgrade(RPM, Vector2(100, 100));
+	addUpgrade(DOUBLESHOT, Vector2(100, 200));
+	addUpgrade(RPM, Vector2(200, 200));
 
 	player = new Player();
-	player->size = Vector2(50, 50);
 	addchild(player);
 }
 

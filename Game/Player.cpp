@@ -3,6 +3,7 @@
 Player::Player()
 {
 	texturePath = "assets/player_concept2.png";
+	size = Vector2(50, 50);
 
 	speed = 200;
 	bulletSpeed = -10;

@@ -19,7 +19,6 @@ RPM_Upgrade::RPM_Upgrade() {
 
 void RPM_Upgrade::update(double deltatime)
 {
-	std::cout << timerStart << std::endl;
 	if (timerStart) {
 		timer += deltatime;
 		
