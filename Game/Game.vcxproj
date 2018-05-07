@@ -157,20 +157,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="enemyBasic2.cpp" />
     <ClCompile Include="enemyBasic.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MyScene.cpp" />
     <ClCompile Include="Upgrades.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="enemyBasic2.h" />
     <ClInclude Include="enemyBasic.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="IEnemy.h" />
+    <ClInclude Include="MenuScene.h" />
     <ClInclude Include="Upgrades.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="MyScene.h" />

@@ -11,6 +11,9 @@ MyScene::MyScene() : Scene()
 
 	player = new Player();
 	addchild(player);
+
+	button = new Button();
+	addchild(button);
 }
 
 MyScene::~MyScene()

@@ -20,11 +20,11 @@ public:
 	//looks if key goes down
 	bool getKeyDown(int keyCode);
 
-	//looks if mousebutton is pressed
+	//looks if mouseButton is pressed
 	bool getMouseButton(int number);
-	//looks if mousebutton goes down
+	//looks if mouseButton goes down
 	bool getMouseButtonDown(int number);
-	//looks if mousebutton goes up
+	//looks if mouseButton goes up
 	bool getMouseButtonUp(int number);
 
 	//checks if the application is set to quit
