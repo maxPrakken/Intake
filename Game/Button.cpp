@@ -21,7 +21,6 @@ bool Button::isClicked()
 {
 	if (Input::getInstance()->getMouseButtonDown(1) && this->isColliding(Input::getInstance()->getMouseToScreen()))
 	{
-		std::cout << "hello world" << std::endl;
 		return true;
 	}
 	return false;

@@ -2,9 +2,12 @@
 
 #include "../MXP3/include/scene.h"
 
+#include <sceneManager.h>
+
 #include "grid.h"
 #include "Player.h"
 #include "bullet.h"
+#include "Button.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -21,5 +24,10 @@ public:
 	virtual void update(double deltatime);
 
 private:
-	//std::vector<>
+	Button* playButton;
+	Button* optionsButton;
+	Button* highscoresButton;
+	Button* quitButton;
+
+	std::vector<Button*>buttonVector;
 };

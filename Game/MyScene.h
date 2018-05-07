@@ -1,8 +1,8 @@
 #pragma once 
 
 #include "../MXP3/include/scene.h"
-#include "Button.h"
 
+#include "Button.h"
 #include "grid.h"
 #include "Player.h"
 #include "bullet.h"
