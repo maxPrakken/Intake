@@ -6,6 +6,11 @@ Button::Button()
 	size = Vector2(200, 100);
 }
 
+Button::Button(buttonType type)
+{
+	this->type = type;
+}
+
 Button::~Button()
 {
 }

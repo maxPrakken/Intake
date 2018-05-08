@@ -30,6 +30,4 @@ private:
 	//default constuctor
 	SceneManager();
 	virtual ~SceneManager();
-
-
 };

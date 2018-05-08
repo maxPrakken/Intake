@@ -53,6 +53,16 @@ void Audio::resumeAudio(int channel)
 	Mix_Resume(channel);
 }
 
+void Audio::volumeAudio(int volume)
+{
+	Mix_Volume(-1, volume);
+}
+
+void Audio::volumeAudio(int channel, int volume)
+{
+	Mix_Volume(channel, volume);
+}
+
 Mix_Chunk * Audio::getChunk(std::string filename)
 {
 	std::string fullpath = SDL_GetBasePath();

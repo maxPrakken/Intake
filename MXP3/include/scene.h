@@ -19,6 +19,9 @@ public:
 	//places entity in the absolute middle of the window
 	Vector2 placeCenter(Entity* entity);
 
+	//a string that represents the scene that was on screen before this one
+	std::string lastScene = "";
+
 private:
 	//update the children of the scene
 	void updateChildren(float deltatime);

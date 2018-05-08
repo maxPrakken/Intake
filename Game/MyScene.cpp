@@ -27,9 +27,17 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	if(!paused)
-	Scene::update(deltatime);
-	
+	if (!paused) {
+		Scene::update(deltatime);
+		if (pausedMenuUp)
+			destroyPauseMenu();
+			pausedMenuUp = false;
+	}
+	else {
+		buildPauseMenu();
+		updatePauseMenu();
+	}
+
 	//pauses the entire scene, nothing gets updated
 	if (Input::getInstance()->getKeyDown(SDLK_ESCAPE)) {
 		if (paused) {
@@ -164,6 +172,73 @@ void MyScene::deleteBullets() {
 			Bullet* u = (*it);
 			it = bulletVector.erase(it);
 			this->removechild(u);
+		}
+		else {
+			it++;
+		}
+	}
+}
+
+void MyScene::buildPauseMenu()
+{
+	Button* play = new Button(Button::buttonType::PLAY);
+	play->pos = Vector2(200, 50);
+	play->size = Vector2(200, 50);
+	play->texturePath = "assets/buttons/playButton.png";
+	pauseMenuVector.push_back(play);
+	addchild(play);
+
+	Button* options = new Button(Button::buttonType::OPTIONS);
+	options->pos = Vector2(200, 150);
+	options->size = Vector2(200, 50);
+	options->texturePath = "assets/buttons/optionsButton.png";
+	pauseMenuVector.push_back(options);
+	addchild(options);
+	
+	Button* quit = new Button(Button::buttonType::QUIT);
+	quit->pos = Vector2(200, 250);
+	quit->size = Vector2(200, 50);
+	quit->texturePath = "assets/buttons/quitButton.png";
+	pauseMenuVector.push_back(quit);
+	addchild(quit);
+
+	pausedMenuUp = true;
+}
+
+void MyScene::destroyPauseMenu()
+{
+	std::vector<Entity*>::iterator it = pauseMenuVector.begin();
+	while (it != pauseMenuVector.end()) {
+		Entity* u = (*it);
+		it = pauseMenuVector.erase(it);
+		this->removechild(u);
+	}
+
+	pauseMenuVector.clear();
+}
+
+void MyScene::updatePauseMenu()
+{
+	std::vector<Entity*>::iterator it = pauseMenuVector.begin();
+	while (it != pauseMenuVector.end()) {
+		Button* button = (Button*)(*it);
+		if (button->isClicked()) {
+			std::cout << button->getType() << std::endl;
+			if (button->getType() == Button::buttonType::PLAY) {
+				paused = false;
+			}
+
+			if (button->getType() == Button::buttonType::OPTIONS) {
+				SceneManager::getInstance()->setCurrentScene("OptionsScene");
+				SceneManager::getInstance()->sceneVector["OptionsScene"]->lastScene = "MyScene";
+			}
+
+			if (button->getType() == Button::buttonType::QUIT) {
+				SceneManager::getInstance()->setCurrentScene("MenuScene");
+				//TODO: do something with a reset here, because it doesnt stop
+				//the scene just switches
+			}
+			break;
 		}
 		else {
 			it++;

@@ -29,6 +29,7 @@ private:
 	Button* backButton;
 	Button* muteButton;
 
+	bool muteClicked = false;
 
 	std::vector<Button*>buttonVector;
 };

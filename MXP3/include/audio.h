@@ -12,7 +12,6 @@ public:
 
 	virtual void update();
 
-
 	//standard playaudio. plays a WAV file ones on default values
 	void playAudio(std::string filename);
 	//playaudio function,
@@ -30,6 +29,10 @@ public:
 	void resumeAudio();
 	//resumes audio. channel is the channel you resume
 	void resumeAudio(int channel);
+	//changes the volume of all channels
+	void volumeAudio(int volume);
+	//changes the volume of the given channel
+	void volumeAudio(int channel, int volume);
 
 	Mix_Chunk * getChunk(std::string filename);
 

@@ -31,6 +31,16 @@ void optionsMenu::update(double deltatime)
 void optionsMenu::buttonClickCheck()
 {
 	if (backButton->isClicked()) {
-		SceneManager::getInstance()->setCurrentScene("MenuScene");
+		SceneManager::getInstance()->setCurrentScene(SceneManager::getInstance()->sceneVector["OptionsScene"]->lastScene);
+	}
+
+	if (muteButton->isClicked()) {
+		if (muteClicked) {
+			Audio::getInstance()->volumeAudio(128);
+			muteClicked = false;
+			return;
+		}
+		Audio::getInstance()->volumeAudio(0);
+		muteClicked = true;
 	}
 }

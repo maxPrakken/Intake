@@ -2,6 +2,8 @@
 
 #include "../MXP3/include/scene.h"
 
+#include <sceneManager.h>
+
 #include "Button.h"
 #include "grid.h"
 #include "Player.h"
@@ -35,9 +37,15 @@ private:
 	void addUpgrade(Upgrades upgrade, Vector2 position);
 	void grabUpgrade();
 	void deleteBullets();
+	void buildPauseMenu();
+	void destroyPauseMenu();
+	void updatePauseMenu();
 
+
+	bool pausedMenuUp = false;
 	bool paused = false;
 
+	std::vector<Entity*>pauseMenuVector;
 	std::vector<Upgrade_Base*>upgradeVector;
 	std::vector<Bullet*>bulletVector;
 	

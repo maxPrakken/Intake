@@ -65,6 +65,7 @@ void MenuScene::buttonClickCheck()
 
 	if (optionsButton->isClicked()) {
 		SceneManager::getInstance()->setCurrentScene("OptionsScene");
+		SceneManager::getInstance()->sceneVector["OptionsScene"]->lastScene = "MenuScene";
 	}
 
 	if (quitButton->isClicked()) {
