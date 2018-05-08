@@ -4,6 +4,7 @@
 #include <input.h>
 #include "MyScene.h"
 #include "MenuScene.h"
+#include "optionsMenu.h"
 
 #include "../MXP3/include/entity.h"
 #include <sceneManager.h>
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
 
 	//the first scene that gets added is the startup scene.
 	SceneManager::getInstance()->addScene("MenuScene", new MenuScene());
+
+	//options menu scene initiation
+	SceneManager::getInstance()->addScene("OptionsScene", new optionsMenu());
 
 	//game scene
 	SceneManager::getInstance()->addScene("MyScene", new MyScene());

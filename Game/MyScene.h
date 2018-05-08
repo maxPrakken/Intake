@@ -36,6 +36,8 @@ private:
 	void grabUpgrade();
 	void deleteBullets();
 
+	bool paused = false;
+
 	std::vector<Upgrade_Base*>upgradeVector;
 	std::vector<Bullet*>bulletVector;
 	

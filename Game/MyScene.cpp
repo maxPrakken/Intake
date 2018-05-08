@@ -27,7 +27,17 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
+	if(!paused)
 	Scene::update(deltatime);
+	
+	//pauses the entire scene, nothing gets updated
+	if (Input::getInstance()->getKeyDown(SDLK_ESCAPE)) {
+		if (paused) {
+			paused = false;
+			return;
+		}
+		paused = true;
+	}
 
 	if (player->hasShot) {
 		playerShoot();

@@ -5,28 +5,28 @@ MenuScene::MenuScene()
 	playButton = new Button();
 	playButton->pos = Vector2(200, 50);
 	playButton->size = Vector2(200, 50);
-	playButton->texturePath = "assets/INA.png";
+	playButton->texturePath = "assets/buttons/playButton.png";
 	buttonVector.push_back(playButton);
 	addchild(playButton);
 
 	optionsButton = new Button();
 	optionsButton->pos = Vector2(200, 150);
 	optionsButton->size = Vector2(200, 50);
-	optionsButton->texturePath = "assets/INA.png";
+	optionsButton->texturePath = "assets/buttons/optionsButton.png";
 	buttonVector.push_back(optionsButton);
 	addchild(optionsButton);
 
 	highscoresButton = new Button();
 	highscoresButton->pos = Vector2(200, 250);
 	highscoresButton->size = Vector2(200, 50);
-	highscoresButton->texturePath = "assets/INA.png";
+	highscoresButton->texturePath = "assets/buttons/highscoresButton.png";
 	buttonVector.push_back(highscoresButton);
 	addchild(highscoresButton);
 
 	quitButton = new Button();
 	quitButton->pos = Vector2(200, 350);
 	quitButton->size = Vector2(200, 50);
-	quitButton->texturePath = "assets/INA.png";
+	quitButton->texturePath = "assets/buttons/quitButton.png";
 	buttonVector.push_back(quitButton);
 	addchild(quitButton);
 
@@ -61,6 +61,10 @@ void MenuScene::buttonClickCheck()
 	if (playButton->isClicked())
 	{
 		SceneManager::getInstance()->setCurrentScene("MyScene");
+	}
+
+	if (optionsButton->isClicked()) {
+		SceneManager::getInstance()->setCurrentScene("OptionsScene");
 	}
 
 	if (quitButton->isClicked()) {
