@@ -61,6 +61,8 @@ void MenuScene::buttonClickCheck()
 	if (playButton->isClicked())
 	{
 		SceneManager::getInstance()->setCurrentScene("MyScene");
+		MyScene* scene = (MyScene*)SceneManager::getInstance()->currentScene;
+		scene->resetWorld();
 	}
 
 	if (optionsButton->isClicked()) {

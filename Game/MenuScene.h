@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "bullet.h"
 #include "Button.h"
+#include "MyScene.h"
 
 #include <typeinfo>
 #include <iostream>

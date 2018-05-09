@@ -62,11 +62,12 @@ Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize, bool isR
 
 Grid::~Grid()
 {
-	for (unsigned int i = 0; i < tileVector.size(); i++) {
-		removechild(tileVector[i]);
-		delete tileVector[i];
+	std::vector<Entity*>::iterator it = tileVector.begin();
+	while (it != tileVector.end()) {
+		Entity* e = (*it);
+		it = tileVector.erase(it);
+		delete e;
 	}
-	tileVector.clear();
 }
 
 void Grid::update(double deltatime)
@@ -103,7 +104,7 @@ void Grid::spawnTile()
 	if (spawnPos.x <= grid.x * tile->size.x) {
 		spawnPos += Vector2(tile->size.x, 0);
 	}
-	else if(spawnPos.x > grid.x * tile->size.x) {
+	else if (spawnPos.x > grid.x * tile->size.x) {
 		spawnPos.x = startX;
 		spawnPos.y += tile->size.y;
 	}
@@ -117,7 +118,7 @@ void Grid::spawnTile(Vector2 tilesize, bool isRandom, Vector2 rows)
 	if (isRandom && rows.x > 0)
 	{
 		int tilesAmount = rows.x * rows.y;
-		
+
 		int randomInt = rand() % tilesAmount;
 		tile->spitesheetPath = tileTexture;
 		tile->animator.rows = rows;

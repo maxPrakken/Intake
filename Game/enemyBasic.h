@@ -2,7 +2,7 @@
 
 #include "IEnemy.h"
 
-class EnemyBasic : public Entity {
+class EnemyBasic : public IEnemy {
 
 public:
 

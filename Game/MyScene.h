@@ -30,6 +30,8 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	void resetWorld();
+
 private:
 
 	void playerShoot();
@@ -41,13 +43,16 @@ private:
 	void destroyPauseMenu();
 	void updatePauseMenu();
 
+	bool pausedMenuUp;
+	bool paused;
 
-	bool pausedMenuUp = false;
-	bool paused = false;
+	int wave;
+	int score;
 
 	std::vector<Entity*>pauseMenuVector;
 	std::vector<Upgrade_Base*>upgradeVector;
 	std::vector<Bullet*>bulletVector;
+	std::vector<IEnemy*>enemyVector;
 	
 	Grid* background;
 	Player* player;

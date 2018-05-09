@@ -11,27 +11,68 @@ MyScene::MyScene() : Scene()
 
 	player = new Player();
 	addchild(player);
+
+	paused = false;
+	pausedMenuUp = false;
+
+	wave = 0;
+	score = 0;
 }
 
 MyScene::~MyScene()
 {
-	for (unsigned int i = 0; i < upgradeVector.size(); i++) {
-		removechild(upgradeVector[i]);
-		delete upgradeVector[i];
+	std::vector<Upgrade_Base*>::iterator it = upgradeVector.begin();
+	while (it != upgradeVector.end()) {
+		Upgrade_Base* u = (*it);
+		it = upgradeVector.erase(it);
+		this->removechild(u);
 	}
 	upgradeVector.clear();
 
-	delete background;
-	delete player;
+	std::vector<Entity*>::iterator that = pauseMenuVector.begin();
+	while (that != pauseMenuVector.end()) {
+		Entity* u = (*that);
+		that = pauseMenuVector.erase(that);
+		this->removechild(u);
+	}
+	pauseMenuVector.clear();
+
+	std::vector<Bullet*>::iterator those = bulletVector.begin();
+	while (those != bulletVector.end()) {
+		Bullet* u = (*those);
+		those = bulletVector.erase(those);
+		this->removechild(u);
+	}
+	bulletVector.clear();
+
+	std::vector<IEnemy*>::iterator those2 = enemyVector.begin();
+	while (those2 != enemyVector.end()) {
+		IEnemy* u = (*those2);
+		those2 = enemyVector.erase(those2);
+		this->removechild(u);
+	}
+	enemyVector.clear();
+
+	if (background != NULL) {
+		delete background;
+		background = NULL;
+	}
+
+	if (player != NULL) {
+		delete player;
+		player = NULL;
+	}
 }
 
 void MyScene::update(double deltatime)
 {
 	if (!paused) {
 		Scene::update(deltatime);
+
 		if (pausedMenuUp)
 			destroyPauseMenu();
-			pausedMenuUp = false;
+
+		pausedMenuUp = false;
 	}
 	else {
 		buildPauseMenu();
@@ -55,9 +96,26 @@ void MyScene::update(double deltatime)
 	deleteBullets();
 }
 
+void MyScene::resetWorld()
+{
+	std::vector<IEnemy*>::iterator those2 = enemyVector.begin();
+	while (those2 != enemyVector.end()) {
+		IEnemy* u = (*those2);
+		those2 = enemyVector.erase(those2);
+		this->removechild(u);
+	}
+	enemyVector.clear();
+
+	paused = false;
+	pausedMenuUp = true;
+
+	wave = 0;
+	score = 0;
+}
+
 void MyScene::playerShoot()
 {
-	Bullet* bullet = new Bullet(); 
+	Bullet* bullet = new Bullet();
 	bullet->pos = player->pos;
 	bullet->pos.y = player->pos.y - player->size.y / 2 + 30;
 
@@ -107,37 +165,37 @@ void MyScene::playerShoot()
 
 void MyScene::addUpgrade(Upgrades upgrade, Vector2 position)
 {
-	switch(upgrade) 
+	switch (upgrade)
 	{
-		case HEALTH:
-		{
-			Health_Upgrade * healthupgrade = new Health_Upgrade();
-			healthupgrade->pos = position;
-			addchild(healthupgrade);
-			upgradeVector.push_back(healthupgrade);
-			break;
-		}
-		case RPM:
-		{
-			RPM_Upgrade * rpmupgrade = new RPM_Upgrade();
-			rpmupgrade->pos = position;
-			addchild(rpmupgrade);
-			upgradeVector.push_back(rpmupgrade);
-			break;
-		}
-		case DOUBLESHOT:
-		{
-			DoubleShot_Upgrade* doubleshot = new DoubleShot_Upgrade();
-			doubleshot->pos = position;
-			addchild(doubleshot);
-			upgradeVector.push_back(doubleshot);
-			break;
-		}
-		default:
-		{
-			std::cout << "the enum you entered is not a valid upgrade enum value" << std::endl;
-			break;
-		}
+	case HEALTH:
+	{
+		Health_Upgrade * healthupgrade = new Health_Upgrade();
+		healthupgrade->pos = position;
+		addchild(healthupgrade);
+		upgradeVector.push_back(healthupgrade);
+		break;
+	}
+	case RPM:
+	{
+		RPM_Upgrade * rpmupgrade = new RPM_Upgrade();
+		rpmupgrade->pos = position;
+		addchild(rpmupgrade);
+		upgradeVector.push_back(rpmupgrade);
+		break;
+	}
+	case DOUBLESHOT:
+	{
+		DoubleShot_Upgrade* doubleshot = new DoubleShot_Upgrade();
+		doubleshot->pos = position;
+		addchild(doubleshot);
+		upgradeVector.push_back(doubleshot);
+		break;
+	}
+	default:
+	{
+		std::cout << "the enum you entered is not a valid upgrade enum value" << std::endl;
+		break;
+	}
 	}
 }
 
@@ -164,7 +222,7 @@ void MyScene::grabUpgrade()
 }
 
 void MyScene::deleteBullets() {
-	
+
 	std::vector<Bullet*>::iterator it = bulletVector.begin();
 	while (it != bulletVector.end()) {
 		if ((*it)->pos.y < -50) {
@@ -194,7 +252,7 @@ void MyScene::buildPauseMenu()
 	options->texturePath = "assets/buttons/optionsButton.png";
 	pauseMenuVector.push_back(options);
 	addchild(options);
-	
+
 	Button* quit = new Button(Button::buttonType::QUIT);
 	quit->pos = Vector2(200, 250);
 	quit->size = Vector2(200, 50);
