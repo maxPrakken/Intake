@@ -31,6 +31,9 @@ public:
 	Vector2 operator*=(const float &oth);
 	Vector2 operator*(const double &oth);
 
+	bool operator==(const Vector2 &oth);
+	bool operator!=(const Vector2 &oth);
+
 	void operator*=(const Vector2 &oth);
 
 	Vector2 operator/(const Vector2 &oth);

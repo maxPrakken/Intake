@@ -55,6 +55,22 @@ Vector2 Vector2::operator*(const double & oth)
 	return Vector2(x * oth, y * oth);
 }
 
+bool Vector2::operator==(const Vector2 & oth)
+{
+	if (x == oth.x && y == oth.y) {
+		return true;
+	}
+	return false;
+}
+
+bool Vector2::operator!=(const Vector2 & oth)
+{
+	if (x == oth.x && y == oth.y) {
+		return false;
+	}
+	return true;
+}
+
 void Vector2::operator*=(const Vector2 & oth)
 {
 	this->x *= oth.x;
