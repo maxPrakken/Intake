@@ -2,7 +2,8 @@
 
 EnemyBasic::EnemyBasic()
 {
-	this->texturePath = "assets/INA.png";
+	texturePath = "assets/enemy_concept.png";
+	size = Vector2(50, 50);
 }
 
 EnemyBasic::~EnemyBasic()

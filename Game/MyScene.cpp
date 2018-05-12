@@ -9,6 +9,8 @@ MyScene::MyScene() : Scene()
 	addUpgrade(DOUBLESHOT, Vector2(100, 200));
 	addUpgrade(RPM, Vector2(200, 200));
 
+	addStartEnemies();
+
 	player = new Player();
 	addchild(player);
 
@@ -106,6 +108,8 @@ void MyScene::resetWorld()
 	}
 	enemyVector.clear();
 
+	addStartEnemies();
+	
 	paused = false;
 	pausedMenuUp = true;
 
@@ -167,36 +171,75 @@ void MyScene::addUpgrade(Upgrades upgrade, Vector2 position)
 {
 	switch (upgrade)
 	{
-	case HEALTH:
+		case HEALTH:
+		{
+			Health_Upgrade * healthupgrade = new Health_Upgrade();
+			healthupgrade->pos = position;
+			addchild(healthupgrade);
+			upgradeVector.push_back(healthupgrade);
+			break;
+		}
+		case RPM:
+		{
+			RPM_Upgrade * rpmupgrade = new RPM_Upgrade();
+			rpmupgrade->pos = position;
+			addchild(rpmupgrade);
+			upgradeVector.push_back(rpmupgrade);
+			break;
+		}
+		case DOUBLESHOT:
+		{
+			DoubleShot_Upgrade* doubleshot = new DoubleShot_Upgrade();
+			doubleshot->pos = position;
+			addchild(doubleshot);
+			upgradeVector.push_back(doubleshot);
+			break;
+		}
+		default:
+		{
+			std::cout << "the enum you entered is not a valid upgrade enum value" << std::endl;
+			break;
+		}
+	}
+}
+
+void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
+{
+	switch (type)
 	{
-		Health_Upgrade * healthupgrade = new Health_Upgrade();
-		healthupgrade->pos = position;
-		addchild(healthupgrade);
-		upgradeVector.push_back(healthupgrade);
-		break;
+		case IEnemy::BASIC:
+		{
+			EnemyBasic* enemy = new EnemyBasic();
+			enemy->pos = position;
+			addchild(enemy);
+			enemyVector.push_back(enemy);
+			break;
+		}
+
+		case IEnemy::BASIC2:
+		{
+			EnemyBasic2* enemy = new EnemyBasic2();
+			enemy->pos = position;
+			enemyVector.push_back(enemy);
+			addchild(enemy);
+			break;
+		}
+
+		case IEnemy::BOSS:
+		{
+			break;
+		}
+
+		default:
+		{
+			break;
+		}
 	}
-	case RPM:
-	{
-		RPM_Upgrade * rpmupgrade = new RPM_Upgrade();
-		rpmupgrade->pos = position;
-		addchild(rpmupgrade);
-		upgradeVector.push_back(rpmupgrade);
-		break;
-	}
-	case DOUBLESHOT:
-	{
-		DoubleShot_Upgrade* doubleshot = new DoubleShot_Upgrade();
-		doubleshot->pos = position;
-		addchild(doubleshot);
-		upgradeVector.push_back(doubleshot);
-		break;
-	}
-	default:
-	{
-		std::cout << "the enum you entered is not a valid upgrade enum value" << std::endl;
-		break;
-	}
-	}
+}
+
+void MyScene::addStartEnemies()
+{
+	addEnemy(IEnemy::BASIC, Vector2(100, 100));
 }
 
 void MyScene::grabUpgrade()
