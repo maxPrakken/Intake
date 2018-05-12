@@ -14,7 +14,7 @@ public:
 	virtual void update(double deltatime);
 
 	virtual void shoot();
-
+	//std::vector<Vector2>vector2Vector;
 private:
 	
 };

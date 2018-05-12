@@ -161,6 +161,7 @@
     <ClCompile Include="enemyBasic2.cpp" />
     <ClCompile Include="enemyBasic.cpp" />
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="IEnemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="optionsMenu.cpp" />

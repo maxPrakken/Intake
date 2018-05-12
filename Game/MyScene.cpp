@@ -239,7 +239,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	addEnemy(IEnemy::BASIC, Vector2(100, 100));
+	addEnemy(IEnemy::BASIC, Vector2(50, 50));
 }
 
 void MyScene::grabUpgrade()

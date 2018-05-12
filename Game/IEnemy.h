@@ -13,15 +13,24 @@ public:
 
 	IEnemy() {}
 	virtual ~IEnemy() {}
-	virtual void update(double deltatime) { Entity::update(deltatime); }
+	virtual void update(double deltatime);
 
 	int getHealth() { return health; }
 
 	virtual void shoot() { }
 	Vector2 direction;
 
+	std::vector<Vector2> pointVector;
+
 private:
+	void goTo(double deltatime);
+	void checkPoint();
+
 	int health;
+
+	int index = 0;
+	int vectorIndex = 0;
+	Vector2 point;
 
 	std::vector<Entity*>bullets;
 };
