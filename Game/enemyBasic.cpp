@@ -4,6 +4,7 @@ EnemyBasic::EnemyBasic()
 {
 	texturePath = "assets/enemy_concept.png";
 	size = Vector2(50, 50);
+	setHealth(2);
 }
 
 EnemyBasic::EnemyBasic(Vector2 position)

@@ -16,6 +16,7 @@ public:
 	virtual void update(double deltatime);
 
 	int getHealth() { return health; }
+	void setHealth(int health) { this->health = health; }
 
 	virtual void shoot() { }
 	Vector2 direction;

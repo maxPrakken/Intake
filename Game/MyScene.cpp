@@ -95,6 +95,7 @@ void MyScene::update(double deltatime)
 	grabUpgrade();
 	deleteBullets();
 	enemyShoot();
+	bulletHits();
 }
 
 void MyScene::resetWorld()
@@ -379,5 +380,41 @@ void MyScene::enemyShoot() {
 			addchild(bullet);
 		}
 		it++;
+	}
+}
+
+void MyScene::bulletHits()
+{
+	//player bullet hits enemy
+	std::vector<Bullet*>::iterator it = bulletVector.begin();
+	std::vector<IEnemy*>::iterator enemy = enemyVector.begin();
+	while (it != bulletVector.end()) {
+		while (enemy != enemyVector.end()) {
+			if ((*it)->isColliding((*enemy))) {
+				Bullet* u = (*it);
+				it = bulletVector.erase(it);
+				this->removechild(u);
+
+    			(*enemy)->setHealth((*enemy)->getHealth() - 1);
+			}
+			enemy++;			
+		}
+		it++;
+	}
+	
+	//enemy bullet hits player
+	std::vector<Bullet*>::iterator Eit = enemyBulletVector.begin();
+	while (Eit != enemyBulletVector.end()) {
+		if ((*Eit)->isColliding(player)) {
+			Bullet* u = (*Eit);
+			Eit = enemyBulletVector.erase(Eit);
+			this->removechild(u);
+			std::cout << player->health << std::endl;
+			player->health--;
+			std::cout << player->health << std::endl;
+		}
+		else {
+			Eit++;
+		}
 	}
 }
