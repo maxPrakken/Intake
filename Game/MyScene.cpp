@@ -265,16 +265,29 @@ void MyScene::grabUpgrade()
 
 void MyScene::deleteBullets() {
 
+	//delete player bullets
 	std::vector<Bullet*>::iterator it = bulletVector.begin();
 	while (it != bulletVector.end()) {
 		if ((*it)->pos.y < -50) {
-
 			Bullet* u = (*it);
 			it = bulletVector.erase(it);
 			this->removechild(u);
 		}
 		else {
 			it++;
+		}
+	}
+	
+	//delete enemy bullets
+	std::vector<Bullet*>::iterator Eit = enemyBulletVector.begin();
+	while (Eit != enemyBulletVector.end()) {
+		if ((*Eit)->pos.y > Renderer::getInstance()->getResolution().y + 10) {
+			Bullet* u = (*Eit);
+			Eit = enemyBulletVector.erase(Eit);
+			this->removechild(u);
+		}
+		else {
+			Eit++;
 		}
 	}
 }

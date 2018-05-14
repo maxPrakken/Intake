@@ -28,6 +28,7 @@ public:
 private:
 	void goTo(double deltatime);
 	void checkPoint();
+	Vector2 startPosition;
 
 	int health;
 

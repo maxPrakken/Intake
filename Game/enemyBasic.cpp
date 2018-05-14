@@ -18,7 +18,6 @@ EnemyBasic::EnemyBasic()
 	pointVector.push_back(pos3);
 
 	pointVector.push_back(sacraficialpos);
-	
 }
 
 EnemyBasic::~EnemyBasic()
