@@ -14,7 +14,7 @@ void IEnemy::goTo(double deltatime)
 {
 	direction = point - this->pos;
 	direction.normalize();
-	direction *= 100.0f * deltatime;
+	direction *= speed * deltatime;
 	this->pos += direction;
 }
 
@@ -30,7 +30,6 @@ void IEnemy::checkPoint()
 		}
 	}
 
-	//std::cout << point.x << "" << point.y << std::endl;
 	//set index to 0 if higher or equal to vector size
 	if (index >= vectorIndex - 1) {
 		index = 0;

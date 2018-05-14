@@ -208,8 +208,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 	{
 		case IEnemy::BASIC:
 		{
-			EnemyBasic* enemy = new EnemyBasic();
-			enemy->pos = position;
+			EnemyBasic* enemy = new EnemyBasic(position);
 			addchild(enemy);
 			enemyVector.push_back(enemy);
 			break;
@@ -238,7 +237,10 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	addEnemy(IEnemy::BASIC, Vector2(50, 50));
+	addEnemy(IEnemy::BASIC, Vector2(200, 50));
+	//addEnemy(IEnemy::BASIC, Vector2(280, 50));
+	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
+	addEnemy(IEnemy::BASIC, Vector2(440, 50));
 }
 
 void MyScene::grabUpgrade()

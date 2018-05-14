@@ -23,14 +23,16 @@ public:
 	//boolean canshoot
 	bool canShoot;
 
+	Vector2 startPosition;
+
 	std::vector<Vector2> pointVector;
 
 private:
 	void goTo(double deltatime);
 	void checkPoint();
-	Vector2 startPosition;
 
 	int health;
+	float speed = 70;
 
 	int index = 0;
 	int vectorIndex = 0;

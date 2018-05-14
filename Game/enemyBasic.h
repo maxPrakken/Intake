@@ -8,6 +8,9 @@ public:
 
 	//default constructor
 	EnemyBasic();
+	//constructor with position build in, use this if you want to 
+	//use the move functionality of the enemy
+	EnemyBasic(Vector2 position);
 	//default deconstructor
 	virtual ~EnemyBasic();
 	//update function
