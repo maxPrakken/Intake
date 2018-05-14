@@ -18,5 +18,11 @@ void Bullet::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	pos += direction * speed * deltatime;
+	if (playerBullet) {
+		pos += direction * speed * deltatime;
+	}
+	else {
+		pos -= direction * speed * deltatime;
+
+	}
 }

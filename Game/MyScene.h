@@ -46,6 +46,7 @@ private:
 	void buildPauseMenu();
 	void destroyPauseMenu();
 	void updatePauseMenu();
+	void enemyShoot();
 
 	bool pausedMenuUp;
 	bool paused;
@@ -57,6 +58,7 @@ private:
 	std::vector<Upgrade_Base*>upgradeVector;
 	std::vector<Bullet*>bulletVector;
 	std::vector<IEnemy*>enemyVector;
+	std::vector<Bullet*>enemyBulletVector;
 	
 	Grid* background;
 	Player* player;

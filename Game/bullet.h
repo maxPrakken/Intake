@@ -11,6 +11,8 @@ public:
 
 	Vector2 direction;
 
+	bool playerBullet = true;
+
 private:
 
 	float speed;

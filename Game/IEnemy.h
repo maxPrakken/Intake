@@ -20,6 +20,9 @@ public:
 	virtual void shoot() { }
 	Vector2 direction;
 
+	//boolean canshoot
+	bool canShoot;
+
 	std::vector<Vector2> pointVector;
 
 private:

@@ -9,8 +9,6 @@ MyScene::MyScene() : Scene()
 	addUpgrade(DOUBLESHOT, Vector2(100, 200));
 	addUpgrade(RPM, Vector2(200, 200));
 
-	addStartEnemies();
-
 	player = new Player();
 	addchild(player);
 
@@ -96,6 +94,7 @@ void MyScene::update(double deltatime)
 
 	grabUpgrade();
 	deleteBullets();
+	enemyShoot();
 }
 
 void MyScene::resetWorld()
@@ -347,3 +346,23 @@ void MyScene::updatePauseMenu()
 	}
 }
 
+void MyScene::enemyShoot() {
+	std::vector<IEnemy*>::iterator it = enemyVector.begin();
+	while (it != enemyVector.end()) {
+		if ((*it)->canShoot) {
+			(*it)->canShoot = false;
+			Bullet* bullet = new Bullet();
+			bullet->playerBullet = false;
+			bullet->pos = (*it)->pos;
+			bullet->pos.y = (*it)->pos.y + (*it)->size.y / 2 + 30;
+			bullet->pos.x = (*it)->pos.x + (*it)->size.y / 2 - 5;
+
+			bullet->direction = Vector2(0, player->getBulletSpeed());
+			bullet->rot = 90;
+
+			enemyBulletVector.push_back(bullet);
+			addchild(bullet);
+		}
+		it++;
+	}
+}

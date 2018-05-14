@@ -13,8 +13,10 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//shoot function
 	virtual void shoot();
-	//std::vector<Vector2>vector2Vector;
+
 private:
-	
+	float shootTimer = 0;
+	int randomMaxTimer = 1;
 };

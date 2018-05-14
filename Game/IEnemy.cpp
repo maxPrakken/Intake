@@ -20,7 +20,6 @@ void IEnemy::goTo(double deltatime)
 
 void IEnemy::checkPoint()
 {
-	std::cout << index << std::endl;
 	//dirty way to get index, cant do it differently because vector2 doesnt work
 	//with pointers. :(
 	if (vectorIndex == 0) {
