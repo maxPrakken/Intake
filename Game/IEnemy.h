@@ -7,7 +7,7 @@ class IEnemy : public Entity {
 public:
 	enum enemyTypes {
 		BASIC,
-		BASIC2,
+		FAST,
 		BOSS
 	};
 
@@ -23,6 +23,9 @@ public:
 
 	//boolean canshoot
 	bool canShoot;
+	float shootTimer = 0;
+	//start int, after first loop it gets randomized
+	int randomMaxTimer = 1;
 
 	Vector2 startPosition;
 

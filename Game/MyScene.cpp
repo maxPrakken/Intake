@@ -8,6 +8,7 @@ MyScene::MyScene() : Scene()
 
 	addUpgrade(DOUBLESHOT, Vector2(100, 200));
 	addUpgrade(RPM, Vector2(200, 200));
+	addUpgrade(HEALTH, Vector2(300, 200));
 
 	player = new Player();
 	addchild(player);
@@ -21,6 +22,7 @@ MyScene::MyScene() : Scene()
 
 MyScene::~MyScene()
 {
+	//clears upgradeVector
 	std::vector<Upgrade_Base*>::iterator it = upgradeVector.begin();
 	while (it != upgradeVector.end()) {
 		Upgrade_Base* u = (*it);
@@ -29,6 +31,7 @@ MyScene::~MyScene()
 	}
 	upgradeVector.clear();
 
+	//clears pauseMenuVector
 	std::vector<Entity*>::iterator that = pauseMenuVector.begin();
 	while (that != pauseMenuVector.end()) {
 		Entity* u = (*that);
@@ -37,6 +40,7 @@ MyScene::~MyScene()
 	}
 	pauseMenuVector.clear();
 
+	//clears bulletVector
 	std::vector<Bullet*>::iterator those = bulletVector.begin();
 	while (those != bulletVector.end()) {
 		Bullet* u = (*those);
@@ -45,6 +49,7 @@ MyScene::~MyScene()
 	}
 	bulletVector.clear();
 
+	//clears enemyVector
 	std::vector<IEnemy*>::iterator those2 = enemyVector.begin();
 	while (those2 != enemyVector.end()) {
 		IEnemy* u = (*those2);
@@ -52,6 +57,15 @@ MyScene::~MyScene()
 		this->removechild(u);
 	}
 	enemyVector.clear();
+
+	//clears enemyBulletVector
+	std::vector<Bullet*>::iterator those3 = enemyBulletVector.begin();
+	while (those3 != enemyBulletVector.end()) {
+		Bullet* u = (*those3);
+		those3 = enemyBulletVector.erase(those3);
+		this->removechild(u);
+	}
+	enemyBulletVector.clear();
 
 	if (background != NULL) {
 		delete background;
@@ -209,16 +223,15 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 	{
 		case IEnemy::BASIC:
 		{
-			EnemyBasic* enemy = new EnemyBasic(position);
+			EnemyBasic* enemy = new EnemyBasic(position, IEnemy::BASIC);
 			addchild(enemy);
 			enemyVector.push_back(enemy);
 			break;
 		}
 
-		case IEnemy::BASIC2:
+		case IEnemy::FAST:
 		{
-			EnemyBasic2* enemy = new EnemyBasic2();
-			enemy->pos = position;
+			EnemyBasic* enemy = new EnemyBasic(position, IEnemy::FAST);
 			enemyVector.push_back(enemy);
 			addchild(enemy);
 			break;
@@ -241,7 +254,7 @@ void MyScene::addStartEnemies()
 	addEnemy(IEnemy::BASIC, Vector2(200, 50));
 	//addEnemy(IEnemy::BASIC, Vector2(280, 50));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
-	addEnemy(IEnemy::BASIC, Vector2(440, 50));
+	addEnemy(IEnemy::FAST, Vector2(440, 50));
 }
 
 void MyScene::grabUpgrade()
@@ -409,9 +422,8 @@ void MyScene::bulletHits()
 			Bullet* u = (*Eit);
 			Eit = enemyBulletVector.erase(Eit);
 			this->removechild(u);
-			std::cout << player->health << std::endl;
+
 			player->health--;
-			std::cout << player->health << std::endl;
 		}
 		else {
 			Eit++;

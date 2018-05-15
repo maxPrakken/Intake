@@ -2,7 +2,13 @@
 
 EnemyBasic2::EnemyBasic2()
 {
-	
+	texturePath = "assets/enemy_concept.png";
+	size = Vector2(50, 50);
+	setHealth(2);
+}
+
+EnemyBasic2::EnemyBasic2(Vector2 position)
+{
 }
 
 EnemyBasic2::~EnemyBasic2()

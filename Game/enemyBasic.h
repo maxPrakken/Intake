@@ -10,7 +10,7 @@ public:
 	EnemyBasic();
 	//constructor with position build in, use this if you want to 
 	//use the move functionality of the enemy
-	EnemyBasic(Vector2 position);
+	EnemyBasic(Vector2 position, IEnemy::enemyTypes type);
 	//default deconstructor
 	virtual ~EnemyBasic();
 	//update function
@@ -20,6 +20,4 @@ public:
 	virtual void shoot();
 
 private:
-	float shootTimer = 0;
-	int randomMaxTimer = 1;
 };

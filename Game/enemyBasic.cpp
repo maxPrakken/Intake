@@ -7,9 +7,14 @@ EnemyBasic::EnemyBasic()
 	setHealth(2);
 }
 
-EnemyBasic::EnemyBasic(Vector2 position)
+EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 {
-	texturePath = "assets/enemy_concept.png";
+	if (type == IEnemy::enemyTypes::BASIC) {
+		texturePath = "assets/enemy_concept.png";
+	}
+	else if (type == IEnemy::enemyTypes::FAST) {
+		texturePath = "assets/enemy_2_concept.png";
+	}
 	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
