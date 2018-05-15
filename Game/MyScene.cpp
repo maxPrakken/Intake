@@ -9,7 +9,6 @@ MyScene::MyScene() : Scene()
 	addUpgrade(DOUBLESHOT, Vector2(100, 200));
 	addUpgrade(RPM, Vector2(200, 200));
 	addUpgrade(HEALTH, Vector2(300, 200));
-
 	player = new Player();
 	addchild(player);
 

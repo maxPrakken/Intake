@@ -30,9 +30,6 @@
     <ClCompile Include="enemyBasic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="enemyBasic2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Upgrades.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IEnemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="enemyBasic2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Upgrades.h">

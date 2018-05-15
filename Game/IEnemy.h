@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../MXP3/include/entity.h"
+#include "../MXP3/include/renderer.h"
 
 class IEnemy : public Entity {
 
@@ -17,6 +18,9 @@ public:
 
 	int getHealth() { return health; }
 	void setHealth(int health) { this->health = health; }
+
+	float getSpeed() { return speed; }
+	void setSpeed(float speed) { this->speed = speed; }
 
 	virtual void shoot() { }
 	Vector2 direction;

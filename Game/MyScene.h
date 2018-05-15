@@ -11,7 +11,6 @@
 #include "Upgrades.h"
 #include "IEnemy.h"
 #include "enemyBasic.h"
-#include "enemyBasic2.h"
 
 #include <typeinfo>
 #include <iostream>
