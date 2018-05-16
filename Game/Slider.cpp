@@ -28,7 +28,7 @@ Slider::~Slider()
 void Slider::update(double deltatime)
 {
 	Entity::update(deltatime);
-	std::cout << precentageFilled << std::endl;
+
 	moveSlider();
 	calcPrecentageFilled();
 	setAudio();
@@ -51,7 +51,7 @@ void Slider::moveSlider()
 void Slider::calcPrecentageFilled()
 {
 	int relativePosX = selectButton->pos.x - sliderBody->pos.x;
-	precentageFilled = (relativePosX / (sliderBody->size.x - 50)) * 100;
+	precentageFilled = (relativePosX / (sliderBody->size.x - selectButton->size.x)) * 100;
 }
 
 void Slider::setAudio()
