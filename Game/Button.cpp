@@ -30,3 +30,23 @@ bool Button::isClicked()
 	}
 	return false;
 }
+
+bool Button::isHold()
+{
+	if (Input::getInstance()->getMouseButton(1) && this->isColliding(Input::getInstance()->getMouseToScreen()))
+	{
+		isHolding = true;
+		return true;
+	}
+
+	else if (Input::getInstance()->getMouseButtonUp(1) && isHolding) {
+		isHolding = false;
+		return false;
+	}
+
+	if (Input::getInstance()->getMouseButton(1) && isHolding) {
+		return true;
+	}
+	
+	return false;
+}

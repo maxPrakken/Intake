@@ -166,6 +166,7 @@
     <ClCompile Include="optionsMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MyScene.cpp" />
+    <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Upgrades.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="IEnemy.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="optionsMenu.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="Upgrades.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="MyScene.h" />

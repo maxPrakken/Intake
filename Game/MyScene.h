@@ -11,6 +11,7 @@
 #include "Upgrades.h"
 #include "IEnemy.h"
 #include "enemyBasic.h"
+#include "Slider.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -66,4 +67,6 @@ private:
 	Button* button;
 
 	EnemyBasic* enemy;
+
+	Slider* slider;
 };

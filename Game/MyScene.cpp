@@ -9,6 +9,7 @@ MyScene::MyScene() : Scene()
 	addUpgrade(DOUBLESHOT, Vector2(100, 200));
 	addUpgrade(RPM, Vector2(200, 200));
 	addUpgrade(HEALTH, Vector2(300, 200));
+
 	player = new Player();
 	addchild(player);
 
@@ -17,6 +18,9 @@ MyScene::MyScene() : Scene()
 
 	wave = 0;
 	score = 0;
+
+	slider = new Slider();
+	addchild(slider);
 }
 
 MyScene::~MyScene()
@@ -363,8 +367,6 @@ void MyScene::updatePauseMenu()
 
 			if (button->getType() == Button::buttonType::QUIT) {
 				SceneManager::getInstance()->setCurrentScene("MenuScene");
-				//TODO: do something with a reset here, because it doesnt stop
-				//the scene just switches
 			}
 			break;
 		}

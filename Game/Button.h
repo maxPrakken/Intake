@@ -29,6 +29,7 @@ public:
 	virtual void update(double deltatime);
 
 	bool isClicked();
+	bool isHold();
 
 	int getType() { return type; }
 
@@ -38,4 +39,6 @@ private:
 	//see constructor override and the BuildPauseMenu
 	//function in MyScene.cpp for more information
 	int type = -1;
+
+	bool isHolding = false;
 };
