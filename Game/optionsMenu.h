@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "bullet.h"
 #include "Button.h"
+#include "Slider.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -28,6 +29,7 @@ public:
 private:
 	Button* backButton;
 	Button* muteButton;
+	Slider* audioSlider;
 
 	bool muteClicked = false;
 

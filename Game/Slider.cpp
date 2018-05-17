@@ -16,6 +16,23 @@ Slider::Slider()
 	this->addchild(selectButton);
 }
 
+Slider::Slider(Vector2 position) {
+	this->pos = Vector2(0, 0);
+
+	sliderBody = new Entity();
+	sliderBody->texturePath = "assets/slider/slider_body.png";
+	sliderBody->size = Vector2(350, 50);
+	sliderBody->pos = position;
+
+	selectButton = new Button();
+	selectButton->texturePath = "assets/slider/slider_Button.png";
+	selectButton->size = Vector2(50, 50);
+	selectButton->pos = position;
+
+	this->addchild(sliderBody);
+	this->addchild(selectButton);
+}
+
 Slider::~Slider()
 {
 	delete sliderBody;
@@ -36,6 +53,7 @@ void Slider::update(double deltatime)
 
 void Slider::moveSlider()
 {
+	std::cout << sliderBody->pos.x << std::endl;
 	if (selectButton->isHold()) {
 		selectButton->pos = Vector2(Input::getInstance()->getMouseToScreen().x - selectButton->size.x / 2, selectButton->pos.y);
 

@@ -9,6 +9,9 @@
 class Slider : public Entity {
 public:
 	Slider();
+	//use the position overloaded function if you want to put the slider
+	//on a different position than (0, 0)
+	Slider(Vector2 position);
 	virtual ~Slider();
 	virtual void update(double deltatime);
 

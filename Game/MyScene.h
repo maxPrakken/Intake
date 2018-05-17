@@ -67,6 +67,4 @@ private:
 	Button* button;
 
 	EnemyBasic* enemy;
-
-	Slider* slider;
 };

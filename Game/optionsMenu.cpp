@@ -15,10 +15,24 @@ optionsMenu::optionsMenu()
 	muteButton->texturePath = "assets/buttons/muteButton.png";
 	buttonVector.push_back(muteButton);
 	addchild(muteButton);
+
+	audioSlider = new Slider(Vector2(125, 200));
+	addchild(audioSlider);
+
 }
 
 optionsMenu::~optionsMenu()
 {
+	std::vector<Button*>::iterator it = buttonVector.begin();
+	while (it != buttonVector.end()) {
+		Button* u = (*it);
+		it = buttonVector.erase(it);
+		this->removechild(u);
+	}
+	buttonVector.clear();
+
+	delete audioSlider;
+	audioSlider = NULL;
 }
 
 void optionsMenu::update(double deltatime)

@@ -18,9 +18,6 @@ MyScene::MyScene() : Scene()
 
 	wave = 0;
 	score = 0;
-
-	slider = new Slider();
-	addchild(slider);
 }
 
 MyScene::~MyScene()
