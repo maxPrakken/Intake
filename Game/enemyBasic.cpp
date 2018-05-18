@@ -14,7 +14,13 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 	startPosition = pos;
 	
 	if (type == IEnemy::enemyTypes::BASIC) {
-		texturePath = "assets/enemy_concept.png";
+		spitesheetPath = "assets/spritesheets/enemy_concept_spritesheet.png";
+		animator.rows = Vector2(4, 1);
+		animator.paused = true;
+		animator.cur = 0;
+		animator.animateFromTo = Vector2(1, 3);
+		animator.switchAfter = 0.1f;
+
 		setHealth(2);
 
 		Vector2 pos1 = startPosition;
@@ -32,8 +38,14 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 	}
 
 	else if (type == IEnemy::enemyTypes::FAST) {
-		texturePath = "assets/enemy_2_concept.png";
+		spitesheetPath = "assets/spritesheets/enemy_2_concept_spritesheet.png";
+		animator.rows = Vector2(4, 1);
+		animator.paused = true;
+		animator.cur = 0;
 		setHealth(1);
+		animator.animateFromTo = Vector2(1, 3);
+		animator.switchAfter = 0.1f;
+
 		setSpeed(getSpeed() * 1.5);
 
 		Vector2 pos1 = Vector2(-50, position.y);
@@ -64,6 +76,14 @@ void EnemyBasic::update(double deltatime)
 
 	shootTimer += deltatime;
 	shoot();
+
+	if (getIsDead()) {
+		animator.paused = false;
+		if (animator.cur == animator.rows.x - 1) {
+			animator.paused = true;
+			setDelete(true);
+		}
+	}
 }
 
 void EnemyBasic::shoot()

@@ -434,7 +434,7 @@ void MyScene::deadEnemyCleanup()
 {
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
-		if ((*it)->getIsDead()) {
+		if ((*it)->getDelete()) {
 			IEnemy* u = (*it);
 			it = enemyVector.erase(it);
 			this->removechild(u);
