@@ -42,10 +42,10 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 		animator.rows = Vector2(4, 1);
 		animator.paused = true;
 		animator.cur = 0;
-		setHealth(1);
 		animator.animateFromTo = Vector2(1, 3);
 		animator.switchAfter = 0.1f;
 
+		setHealth(1);
 		setSpeed(getSpeed() * 1.5);
 
 		Vector2 pos1 = Vector2(-50, position.y);

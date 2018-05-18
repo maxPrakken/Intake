@@ -111,6 +111,7 @@ void MyScene::update(double deltatime)
 	enemyShoot();
 	bulletHits();
 	deadEnemyCleanup();
+	playerDie();
 }
 
 void MyScene::resetWorld()
@@ -124,6 +125,16 @@ void MyScene::resetWorld()
 	enemyVector.clear();
 
 	addStartEnemies();
+
+	if (player->health <= 0) {
+
+		player->setDelete(false);
+		player = new Player();
+		this->addchild(player);
+		player->health = player->getMaxHealth();
+		player->animator.paused = true;
+		player->animator.cur = 0;
+	}
 	
 	paused = false;
 	pausedMenuUp = true;
@@ -442,5 +453,14 @@ void MyScene::deadEnemyCleanup()
 		else {
 			it++;
 		}
+	}
+}
+
+void MyScene::playerDie()
+{
+	if (player->getDelete()) {
+		removechild(player);
+		paused = true;
+		player->setDelete(false);
 	}
 }

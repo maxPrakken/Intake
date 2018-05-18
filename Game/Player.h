@@ -33,14 +33,21 @@ public:
 
 	Vector2 velocity;
 
+	int getMaxHealth() { return maxHealth; }
+
 	void setRPM(double value) { RPM = value; }
 	double getDefaultRPM() { return defaultRPM; }
+
+	bool getDelete() { return deleteThis; }
+	void setDelete(bool value) { deleteThis = value; }
 
 private:
 
 	float speed;
 	float bulletSpeed;
 	int maxHealth;
+
+	bool deleteThis = false;
 
 	double RPM;
 	double defaultRPM;

@@ -49,6 +49,7 @@ private:
 	void enemyShoot();
 	void bulletHits();
 	void deadEnemyCleanup();
+	void playerDie();
 
 	bool pausedMenuUp;
 	bool paused;

@@ -2,7 +2,12 @@
 
 Player::Player()
 {
-	texturePath = "assets/player_concept2.png";
+	spitesheetPath = "assets/spritesheets/player_concept2_spritesheet.png";
+	animator.rows = Vector2(4, 1);
+	animator.paused = true;
+	animator.cur = 0;
+	animator.animateFromTo = Vector2(1, 3);
+	animator.switchAfter = 0.1f;
 	size = Vector2(50, 50);
 
 	speed = 200;
@@ -30,6 +35,14 @@ void Player::update(double deltatime)
 	RPMTimer += deltatime; 
 	
 	movement(deltatime);
+
+	if (health <= 0) {
+		animator.paused = false;
+		if (animator.cur == animator.rows.x - 1) {
+			animator.paused = true;
+			deleteThis = true;
+		}
+	}
 }
 
 void Player::movement(double deltatime)
