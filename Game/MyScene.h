@@ -41,6 +41,7 @@ private:
 	void addUpgrade(Upgrades upgrade, Vector2 position);
 	void addEnemy(IEnemy::enemyTypes type, Vector2 position);
 	void addStartEnemies();
+	void addRandomUpgrades(double deltatime);
 	void grabUpgrade();
 	void deleteBullets();
 	void buildPauseMenu();
@@ -56,6 +57,9 @@ private:
 
 	int wave;
 	int score;
+
+	float upgradeTimer = 0;
+	float randomUpgradeTime = rand() % 20 + 10;
 
 	std::vector<Entity*>pauseMenuVector;
 	std::vector<Upgrade_Base*>upgradeVector;

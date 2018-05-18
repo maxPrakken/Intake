@@ -6,10 +6,6 @@ MyScene::MyScene() : Scene()
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
-	addUpgrade(DOUBLESHOT, Vector2(100, 200));
-	addUpgrade(RPM, Vector2(200, 200));
-	addUpgrade(HEALTH, Vector2(300, 200));
-
 	player = new Player();
 	addchild(player);
 
@@ -112,6 +108,7 @@ void MyScene::update(double deltatime)
 	bulletHits();
 	deadEnemyCleanup();
 	playerDie();
+	addRandomUpgrades(deltatime);
 }
 
 void MyScene::resetWorld()
@@ -123,6 +120,15 @@ void MyScene::resetWorld()
 		this->removechild(u);
 	}
 	enemyVector.clear();
+
+	//clears upgradeVector
+	std::vector<Upgrade_Base*>::iterator it = upgradeVector.begin();
+	while (it != upgradeVector.end()) {
+		Upgrade_Base* u = (*it);
+		it = upgradeVector.erase(it);
+		this->removechild(u);
+	}
+	upgradeVector.clear();
 
 	addStartEnemies();
 
@@ -267,6 +273,19 @@ void MyScene::addStartEnemies()
 	//addEnemy(IEnemy::BASIC, Vector2(280, 50));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
 	addEnemy(IEnemy::FAST, Vector2(440, 50));
+}
+
+void MyScene::addRandomUpgrades(double deltatime)
+{
+	upgradeTimer += deltatime;
+	if (upgradeTimer > randomUpgradeTime) {
+		int randomType = rand() % 3;
+		Vector2 randomPos = Vector2(rand() % 550, rand() % 550 + 200);
+		addUpgrade(Upgrades(randomType), randomPos);
+
+		randomUpgradeTime = rand() % 20 + 10;
+		upgradeTimer = 0;
+	}
 }
 
 void MyScene::grabUpgrade()
