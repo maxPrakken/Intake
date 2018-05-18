@@ -86,7 +86,7 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	std::cout << player->health << std::endl;
+	std::cout << score << std::endl;
 	if (!paused) {
 		Scene::update(deltatime);
 
@@ -487,6 +487,8 @@ void MyScene::deadEnemyCleanup()
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
 		if ((*it)->getDelete()) {
+			score += (*it)->pointsWorth;
+
 			IEnemy* u = (*it);
 			it = enemyVector.erase(it);
 			this->removechild(u);

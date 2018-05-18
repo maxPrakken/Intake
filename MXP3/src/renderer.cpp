@@ -219,7 +219,7 @@ void Renderer::destroyTexture(std::string path)
 		delete texture;
 		return;
 	}
-	std::cout << "Image not found: its over anakin, i have the high ground" << std::endl;
+	std::cout << "Image not found: its over imagekin, i have the high ground" << std::endl;
 }
 
 void Renderer::calculateDeltatime()
