@@ -140,7 +140,7 @@ void MyScene::playerShoot()
 
 	Bullet* bullet2 = new Bullet();
 	bullet2->pos = player->pos;
-	bullet2->pos.y = player->pos.y - player->size.y / 2 + 30;
+	bullet2->pos.y = player->pos.y - player->size.y / 2 + 32;
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
 	bullet->direction = Vector2(0, player->getBulletSpeed());
@@ -159,11 +159,11 @@ void MyScene::playerShoot()
 		Bullet* bullet3 = new Bullet();
 		bullet3->pos = player->pos;
 		bullet3->pos.x = player->pos.x + 10;
-		bullet3->pos.y = player->pos.y - player->size.y / 2 + 30;
+		bullet3->pos.y = player->pos.y - player->size.y / 2 + 31;
 
 		Bullet* bullet4 = new Bullet();
 		bullet4->pos = player->pos;
-		bullet4->pos.y = player->pos.y - player->size.y / 2 + 30;
+		bullet4->pos.y = player->pos.y - player->size.y / 2 + 34;
 		bullet4->pos.x = player->pos.x + player->size.x - 22;
 
 		bullet3->direction = Vector2(0, player->getBulletSpeed());
