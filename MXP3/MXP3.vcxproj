@@ -143,7 +143,6 @@
     <ClCompile Include="src\animator.cpp" />
     <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\entity.cpp" />
-    <ClCompile Include="src\HUD.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\scene.cpp" />
@@ -155,7 +154,6 @@
     <ClInclude Include="include\animator.h" />
     <ClInclude Include="include\audio.h" />
     <ClInclude Include="include\entity.h" />
-    <ClInclude Include="include\HUD.h" />
     <ClInclude Include="include\input.h" />
     <ClInclude Include="include\renderer.h" />
     <ClInclude Include="include\scene.h" />

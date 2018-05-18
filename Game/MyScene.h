@@ -51,6 +51,7 @@ private:
 	void bulletHits();
 	void deadEnemyCleanup();
 	void playerDie();
+	void healthHeartController();
 
 	bool pausedMenuUp;
 	bool paused;
@@ -69,6 +70,7 @@ private:
 	
 	Grid* background;
 	Player* player;
+	Entity* healthHearts;
 
 	Button* button;
 
