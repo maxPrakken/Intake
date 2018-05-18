@@ -22,6 +22,8 @@ public:
 	float getSpeed() { return speed; }
 	void setSpeed(float speed) { this->speed = speed; }
 
+	bool getIsDead() { return isDead; }
+
 	virtual void shoot() { }
 	Vector2 direction;
 
@@ -45,6 +47,8 @@ private:
 	int index = 0;
 	int vectorIndex = 0;
 	Vector2 point;
+
+	bool isDead = false;
 
 	std::vector<Entity*>bullets;
 };

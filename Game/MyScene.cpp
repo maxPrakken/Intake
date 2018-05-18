@@ -110,6 +110,7 @@ void MyScene::update(double deltatime)
 	deleteBullets();
 	enemyShoot();
 	bulletHits();
+	deadEnemyCleanup();
 }
 
 void MyScene::resetWorld()
@@ -425,6 +426,21 @@ void MyScene::bulletHits()
 		}
 		else {
 			Eit++;
+		}
+	}
+}
+
+void MyScene::deadEnemyCleanup()
+{
+	std::vector<IEnemy*>::iterator it = enemyVector.begin();
+	while (it != enemyVector.end()) {
+		if ((*it)->getIsDead()) {
+			IEnemy* u = (*it);
+			it = enemyVector.erase(it);
+			this->removechild(u);
+		}
+		else {
+			it++;
 		}
 	}
 }

@@ -8,6 +8,10 @@ void IEnemy::update(double deltatime)
 		checkPoint();
 		goTo(deltatime);
 	}
+
+	if (health <= 0) {
+		isDead = true;
+	}
 }
 
 void IEnemy::goTo(double deltatime)

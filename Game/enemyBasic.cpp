@@ -15,6 +15,7 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 	
 	if (type == IEnemy::enemyTypes::BASIC) {
 		texturePath = "assets/enemy_concept.png";
+		setHealth(2);
 
 		Vector2 pos1 = startPosition;
 		Vector2 pos2 = Vector2(startPosition.x - 50, startPosition.y + 50);
@@ -32,6 +33,7 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 
 	else if (type == IEnemy::enemyTypes::FAST) {
 		texturePath = "assets/enemy_2_concept.png";
+		setHealth(1);
 		setSpeed(getSpeed() * 1.5);
 
 		Vector2 pos1 = Vector2(-50, position.y);
