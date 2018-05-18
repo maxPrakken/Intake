@@ -9,6 +9,15 @@ Bullet::Bullet()
 	direction = Vector2(0, 0);
 }
 
+Bullet::Bullet(std::string texturepath)
+{
+	this->texturePath = texturepath;
+	size = Vector2(10, 4);
+	speed = 100;
+
+	direction = Vector2(0, 0);
+}
+
 Bullet::~Bullet()
 {
 

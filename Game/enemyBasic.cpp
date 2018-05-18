@@ -12,6 +12,7 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
+	this->type = type;
 	
 	if (type == IEnemy::enemyTypes::BASIC) {
 		spitesheetPath = "assets/spritesheets/enemy_concept_spritesheet.png";

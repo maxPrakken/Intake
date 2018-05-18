@@ -284,6 +284,7 @@ void MyScene::addRandomUpgrades(double deltatime)
 		addUpgrade(Upgrades(randomType), randomPos);
 
 		randomUpgradeTime = rand() % 20 + 10;
+	
 		upgradeTimer = 0;
 	}
 }
@@ -409,7 +410,16 @@ void MyScene::enemyShoot() {
 	while (it != enemyVector.end()) {
 		if ((*it)->canShoot) {
 			(*it)->canShoot = false;
-			Bullet* bullet = new Bullet();
+			Bullet* bullet;
+			if ((*it)->type == IEnemy::FAST) {
+				bullet = new Bullet("assets/bullet_concept2.png");
+				bullet->size = Vector2(25, 25);
+				bullet->setSpeed(25);
+			}
+			else {
+				bullet = new Bullet();
+			}
+
 			bullet->playerBullet = false;
 			bullet->pos = (*it)->pos;
 			bullet->pos.y = (*it)->pos.y + (*it)->size.y / 2 + 30;

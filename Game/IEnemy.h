@@ -35,6 +35,8 @@ public:
 	//start int, after first loop it gets randomized
 	int randomMaxTimer = 1;
 
+	int type;
+
 	Vector2 startPosition;
 
 	std::vector<Vector2> pointVector;
