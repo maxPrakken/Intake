@@ -22,6 +22,7 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 		animator.animateFromTo = Vector2(1, 3);
 		animator.switchAfter = 0.1f;
 
+		pointsWorth = 100;
 		setHealth(2);
 
 		Vector2 pos1 = startPosition;
@@ -46,6 +47,7 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 		animator.animateFromTo = Vector2(1, 3);
 		animator.switchAfter = 0.1f;
 
+		pointsWorth = 150;
 		setHealth(1);
 		setSpeed(getSpeed() * 1.5);
 
@@ -68,7 +70,12 @@ EnemyBasic::EnemyBasic(Vector2 position, IEnemy::enemyTypes type)
 
 EnemyBasic::~EnemyBasic()
 {
-
+	std::vector<Vector2>::iterator it = pointVector.begin();
+	while (it != pointVector.end()) {
+		Vector2 u = (*it);
+		it = pointVector.erase(it);
+	}
+	pointVector.clear();
 }
 
 void EnemyBasic::update(double deltatime)

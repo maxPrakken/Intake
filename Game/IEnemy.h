@@ -36,6 +36,7 @@ public:
 	int randomMaxTimer = 1;
 
 	int type;
+	int pointsWorth;
 
 	Vector2 startPosition;
 
