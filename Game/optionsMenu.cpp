@@ -18,7 +18,6 @@ optionsMenu::optionsMenu()
 
 	audioSlider = new Slider(Vector2(125, 200));
 	addchild(audioSlider);
-
 }
 
 optionsMenu::~optionsMenu()
@@ -38,6 +37,7 @@ optionsMenu::~optionsMenu()
 void optionsMenu::update(double deltatime)
 {
 	Scene::update(deltatime);
+	std::cout << Audio::getInstance()->volume << " " << audioSlider->audioMuted << std::endl;
 
 	buttonClickCheck();
 }
@@ -50,10 +50,12 @@ void optionsMenu::buttonClickCheck()
 
 	if (muteButton->isClicked()) {
 		if (muteClicked) {
+			audioSlider->audioMuted = false;
 			Audio::getInstance()->volumeAudio(128);
 			muteClicked = false;
 			return;
 		}
+		audioSlider->audioMuted = true;
 		Audio::getInstance()->volumeAudio(0);
 		muteClicked = true;
 	}

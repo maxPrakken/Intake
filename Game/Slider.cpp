@@ -27,7 +27,7 @@ Slider::Slider(Vector2 position) {
 	selectButton = new Button();
 	selectButton->texturePath = "assets/slider/slider_Button.png";
 	selectButton->size = Vector2(50, 50);
-	selectButton->pos = position;
+	selectButton->pos = position + Vector2(sliderBody->size.x / 2 - selectButton->size.x / 2, 0);
 
 	this->addchild(sliderBody);
 	this->addchild(selectButton);
@@ -45,9 +45,10 @@ Slider::~Slider()
 void Slider::update(double deltatime)
 {
 	Entity::update(deltatime);
-
+	
 	moveSlider();
 	calcPrecentageFilled();
+	if(!audioMuted)
 	setAudio();
 }
 

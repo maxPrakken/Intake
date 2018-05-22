@@ -17,6 +17,8 @@ public:
 
 	float getProcentage() { return precentageFilled; }
 
+	bool audioMuted = false;
+
 private:
 	void moveSlider();
 	void calcPrecentageFilled();

@@ -25,6 +25,7 @@ public:
 	virtual void update(double deltatime);
 
 	void buttonClickCheck();
+	Slider* getAudioSlider() { return audioSlider; }
 
 private:
 	Button* backButton;
