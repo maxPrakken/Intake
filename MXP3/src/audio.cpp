@@ -56,11 +56,13 @@ void Audio::resumeAudio(int channel)
 void Audio::volumeAudio(int volume)
 {
 	Mix_Volume(-1, volume);
+	this->volume = volume;
 }
 
 void Audio::volumeAudio(int channel, int volume)
 {
 	Mix_Volume(channel, volume);
+	this->volume = volume;
 }
 
 Mix_Chunk * Audio::getChunk(std::string filename)

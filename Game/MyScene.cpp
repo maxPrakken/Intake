@@ -86,7 +86,6 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	std::cout << score << std::endl;
 	if (!paused) {
 		Scene::update(deltatime);
 

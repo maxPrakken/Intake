@@ -53,7 +53,6 @@ void Slider::update(double deltatime)
 
 void Slider::moveSlider()
 {
-	std::cout << sliderBody->pos.x << std::endl;
 	if (selectButton->isHold()) {
 		selectButton->pos = Vector2(Input::getInstance()->getMouseToScreen().x - selectButton->size.x / 2, selectButton->pos.y);
 

@@ -34,6 +34,9 @@ public:
 	//changes the volume of the given channel
 	void volumeAudio(int channel, int volume);
 
+	//int volume equal to current volume level
+	int volume;
+
 	Mix_Chunk * getChunk(std::string filename);
 
 private:
