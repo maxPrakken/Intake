@@ -86,6 +86,10 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
+	if (Input::getInstance()->getKeyDown(SDLK_e)) {
+		addStartEnemies();
+	}
+
 	if (!paused) {
 		Scene::update(deltatime);
 
@@ -141,8 +145,6 @@ void MyScene::resetWorld()
 		this->removechild(u);
 	}
 	upgradeVector.clear();
-
-	addStartEnemies();
 
 	if (player->health <= 0) {
 		player->setDelete(false);
