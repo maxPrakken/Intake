@@ -2,17 +2,16 @@
 
 #include "IEnemy.h"
 
-class EnemyBasic : public IEnemy {
+class EnemyFast : public IEnemy {
 
 public:
-
 	//default constructor
-	EnemyBasic();
+	EnemyFast();
 	//constructor with position build in, use this if you want to 
 	//use the move functionality of the enemy
-	EnemyBasic(Vector2 position);
+	EnemyFast(Vector2 position);
 	//default deconstructor
-	virtual ~EnemyBasic();
+	virtual ~EnemyFast();
 	//update function
 	virtual void update(double deltatime);
 
@@ -20,4 +19,5 @@ public:
 	virtual void shoot();
 
 private:
+
 };

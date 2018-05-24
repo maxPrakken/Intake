@@ -156,27 +156,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="enemyBasic.cpp" />
-    <ClCompile Include="grid.cpp" />
+    <ClCompile Include="EnemyBasic.cpp" />
+    <ClCompile Include="EnemyFast.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="IEnemy.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="optionsMenu.cpp" />
+    <ClCompile Include="OptionsMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MyScene.cpp" />
     <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Upgrades.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bullet.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="enemyBasic.h" />
-    <ClInclude Include="grid.h" />
+    <ClInclude Include="EnemyBasic.h" />
+    <ClInclude Include="EnemyFast.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="IEnemy.h" />
     <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="optionsMenu.h" />
+    <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="Slider.h" />
     <ClInclude Include="Upgrades.h" />
     <ClInclude Include="Player.h" />

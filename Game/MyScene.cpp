@@ -6,6 +6,10 @@ MyScene::MyScene() : Scene()
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
+	player = new Player();
+	player->health = 5;
+	addchild(player);
+
 	healthHearts = new Entity();
 	healthHearts->pos = Vector2(0, 0);
 	healthHearts->size = Vector2(50, 100);
@@ -15,9 +19,7 @@ MyScene::MyScene() : Scene()
 	healthHearts->animator.cur = 0;
 	addchild(healthHearts);
 
-	player = new Player();
-	player->health = 5;
-	addchild(player);
+	
 
 	paused = false;
 	pausedMenuUp = false;
@@ -88,6 +90,15 @@ void MyScene::update(double deltatime)
 {
 	if (Input::getInstance()->getKeyDown(SDLK_e)) {
 		addStartEnemies();
+	}
+	if (Input::getInstance()->getKeyDown(SDLK_r)) {
+		addUpgrade(Upgrades::RPM, Vector2(300, 500));
+	}
+	if (Input::getInstance()->getKeyDown(SDLK_t)) {
+		addUpgrade(Upgrades::DOUBLESHOT, Vector2(300, 500));
+	}
+	if (Input::getInstance()->getKeyDown(SDLK_y)) {
+		addUpgrade(Upgrades::HEALTH, Vector2(300, 500));
 	}
 
 	if (!paused) {
@@ -254,7 +265,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 	{
 		case IEnemy::BASIC:
 		{
-			EnemyBasic* enemy = new EnemyBasic(position, IEnemy::BASIC);
+			EnemyBasic* enemy = new EnemyBasic(position);
 			addchild(enemy);
 			enemyVector.push_back(enemy);
 			break;
@@ -262,7 +273,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 		case IEnemy::FAST:
 		{
-			EnemyBasic* enemy = new EnemyBasic(position, IEnemy::FAST);
+			EnemyFast* enemy = new EnemyFast(position);
 			enemyVector.push_back(enemy);
 			addchild(enemy);
 			break;

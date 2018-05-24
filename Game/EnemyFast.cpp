@@ -1,35 +1,37 @@
-#include "EnemyBasic.h"
+#include "EnemyFast.h"
 
-EnemyBasic::EnemyBasic()
+EnemyFast::EnemyFast()
 {
-	texturePath = "assets/enemy_concept.png";
+	texturePath = "assets/enemy_2_Concept.png";
 	size = Vector2(50, 50);
-	setHealth(2);
-	type = IEnemy::BASIC;
+	setHealth(1);
+	type = IEnemy::FAST;
 }
 
-EnemyBasic::EnemyBasic(Vector2 position)
+EnemyFast::EnemyFast(Vector2 position)
 {
 	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
 	this->type = type;
 
-	type = IEnemy::BASIC;
-	
-	spitesheetPath = "assets/spritesheets/enemy_concept_spritesheet.png";
+	type = IEnemy::FAST;
+
+	spitesheetPath = "assets/spritesheets/enemy_2_Concept_spritesheet.png";
 	animator.rows = Vector2(4, 1);
 	animator.paused = true;
 	animator.cur = 0;
 	animator.animateFromTo = Vector2(1, 3);
 	animator.switchAfter = 0.1f;
 
-	pointsWorth = 100;
-	setHealth(2);
+	pointsWorth = 150;
+	setHealth(1);
+	setSpeed(getSpeed() * 1.5);
 
-	Vector2 pos1 = startPosition;
-	Vector2 pos2 = Vector2(startPosition.x - 50, startPosition.y + 50);
-	Vector2 pos3 = Vector2(pos2.x - 50, pos2.y - 50);
+	Vector2 pos1 = Vector2(-50, position.y);
+	Vector2 pos2 = Vector2(Renderer::getInstance()->getResolution().x, position.y);
+	Vector2 pos3 = Vector2(Renderer::getInstance()->getResolution().x, position.y + 200);
+	Vector2 pos4 = Vector2(-50, position.y + 200);
 
 	//sacraficial position, i dont know why but for some reason it doesn't go
 	//to the last pos in the list, so this is a simple and dirty fix
@@ -38,10 +40,11 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	pointVector.push_back(pos1);
 	pointVector.push_back(pos2);
 	pointVector.push_back(pos3);
+	pointVector.push_back(pos4);
 	pointVector.push_back(sacraficialpos);
 }
 
-EnemyBasic::~EnemyBasic()
+EnemyFast::~EnemyFast()
 {
 	std::vector<Vector2>::iterator it = pointVector.begin();
 	while (it != pointVector.end()) {
@@ -51,7 +54,7 @@ EnemyBasic::~EnemyBasic()
 	pointVector.clear();
 }
 
-void EnemyBasic::update(double deltatime)
+void EnemyFast::update(double deltatime)
 {
 	IEnemy::update(deltatime);
 
@@ -67,7 +70,7 @@ void EnemyBasic::update(double deltatime)
 	}
 }
 
-void EnemyBasic::shoot()
+void EnemyFast::shoot()
 {
 	if (shootTimer > randomMaxTimer) {
 		canShoot = true;

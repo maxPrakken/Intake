@@ -5,12 +5,13 @@
 #include <sceneManager.h>
 
 #include "Button.h"
-#include "grid.h"
+#include "Grid.h"
 #include "Player.h"
-#include "bullet.h"
+#include "Bullet.h"
 #include "Upgrades.h"
 #include "IEnemy.h"
-#include "enemyBasic.h"
+#include "EnemyBasic.h"
+#include "EnemyFast.h"
 #include "Slider.h"
 
 #include <typeinfo>

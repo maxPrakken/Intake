@@ -1,4 +1,4 @@
-#include "optionsMenu.h"
+#include "OptionsMenu.h"
 
 optionsMenu::optionsMenu()
 {
