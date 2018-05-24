@@ -13,16 +13,9 @@ EnemyFast::EnemyFast(Vector2 position)
 	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
-	this->type = type;
-
 	type = IEnemy::FAST;
 
-	spitesheetPath = "assets/spritesheets/enemy_2_Concept_spritesheet.png";
-	animator.rows = Vector2(4, 1);
-	animator.paused = true;
-	animator.cur = 0;
-	animator.animateFromTo = Vector2(1, 3);
-	animator.switchAfter = 0.1f;
+	texturePath = "assets/enemy_2_Concept.png";	animator.rows = Vector2(4, 1);
 
 	pointsWorth = 150;
 	setHealth(1);
@@ -60,14 +53,6 @@ void EnemyFast::update(double deltatime)
 
 	shootTimer += deltatime;
 	shoot();
-
-	if (getIsDead()) {
-		animator.paused = false;
-		if (animator.cur == animator.rows.x - 1) {
-			animator.paused = true;
-			setDelete(true);
-		}
-	}
 }
 
 void EnemyFast::shoot()

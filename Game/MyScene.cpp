@@ -19,8 +19,6 @@ MyScene::MyScene() : Scene()
 	healthHearts->animator.cur = 0;
 	addchild(healthHearts);
 
-	
-
 	paused = false;
 	pausedMenuUp = false;
 
@@ -44,6 +42,15 @@ MyScene::~MyScene()
 	while (that != pauseMenuVector.end()) {
 		Entity* u = (*that);
 		that = pauseMenuVector.erase(that);
+		this->removechild(u);
+	}
+	pauseMenuVector.clear();
+
+	//clears explosionVector
+	std::vector<Explosion*>::iterator that2 = explosionVector.begin();
+	while (that2 != explosionVector.end()) {
+		Explosion* u = (*that2);
+		that2 = explosionVector.erase(that2);
 		this->removechild(u);
 	}
 	pauseMenuVector.clear();
@@ -136,6 +143,7 @@ void MyScene::update(double deltatime)
 	deadEnemyCleanup();
 	healthHeartController();
 	playerDie();
+	deleteExplosions();
 }
 
 void MyScene::resetWorld()
@@ -364,6 +372,22 @@ void MyScene::deleteBullets() {
 	}
 }
 
+void MyScene::deleteExplosions()
+{
+	std::vector<Explosion*>::iterator it = explosionVector.begin();
+	while (it != explosionVector.end()) {
+		if ((*it)->getExplosionDone()) {
+			Explosion* u = (*it);
+			it = explosionVector.erase(it);
+			this->removechild(u);
+		}
+		else {
+			it++;
+		}
+	}
+	pauseMenuVector.clear();
+}
+
 void MyScene::buildPauseMenu()
 {
 	Button* play = new Button(Button::buttonType::PLAY);
@@ -498,8 +522,12 @@ void MyScene::deadEnemyCleanup()
 {
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
-		if ((*it)->getDelete()) {
+		if ((*it)->getIsDead()) {
 			score += (*it)->pointsWorth;
+
+			Explosion* expl = new Explosion((*it)->pos - (*it)->size, (*it)->size * 3.0f);
+			explosionVector.push_back(expl);
+			addchild(expl);
 
 			IEnemy* u = (*it);
 			it = enemyVector.erase(it);

@@ -13,6 +13,7 @@
 #include "EnemyBasic.h"
 #include "EnemyFast.h"
 #include "Slider.h"
+#include "Explosion.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -45,6 +46,7 @@ private:
 	void addRandomUpgrades(double deltatime);
 	void grabUpgrade();
 	void deleteBullets();
+	void deleteExplosions();
 	void buildPauseMenu();
 	void destroyPauseMenu();
 	void updatePauseMenu();
@@ -68,6 +70,7 @@ private:
 	std::vector<Bullet*>bulletVector;
 	std::vector<IEnemy*>enemyVector;
 	std::vector<Bullet*>enemyBulletVector;
+	std::vector<Explosion*>explosionVector;
 	
 	Grid* background;
 	Player* player;

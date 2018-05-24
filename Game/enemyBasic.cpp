@@ -13,16 +13,9 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
-	this->type = type;
-
 	type = IEnemy::BASIC;
 	
-	spitesheetPath = "assets/spritesheets/enemy_concept_spritesheet.png";
-	animator.rows = Vector2(4, 1);
-	animator.paused = true;
-	animator.cur = 0;
-	animator.animateFromTo = Vector2(1, 3);
-	animator.switchAfter = 0.1f;
+	texturePath = "assets/enemy_concept.png";
 
 	pointsWorth = 100;
 	setHealth(2);
@@ -57,14 +50,6 @@ void EnemyBasic::update(double deltatime)
 
 	shootTimer += deltatime;
 	shoot();
-
-	if (getIsDead()) {
-		animator.paused = false;
-		if (animator.cur == animator.rows.x - 1) {
-			animator.paused = true;
-			setDelete(true);
-		}
-	}
 }
 
 void EnemyBasic::shoot()

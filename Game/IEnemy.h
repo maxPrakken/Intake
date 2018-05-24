@@ -22,8 +22,6 @@ public:
 	float getSpeed() { return speed; }
 	void setSpeed(float speed) { this->speed = speed; }
 
-	bool getDelete() { return deleteThis; }
-	void setDelete(bool value) { deleteThis = value; }
 	bool getIsDead() { return isDead; }
 
 	virtual void shoot() { }
@@ -53,7 +51,6 @@ private:
 	int vectorIndex = 0;
 	Vector2 point;
 
-	bool deleteThis = false;
 	bool isDead = false;
 
 	std::vector<Entity*>bullets;
