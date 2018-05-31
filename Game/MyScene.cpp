@@ -104,11 +104,11 @@ void MyScene::update(double deltatime)
 	if (!paused) {
 		Scene::update(deltatime);
 
-		if (pausedMenuUp)
+		if (pausedMenuUp) {
 			destroyPauseMenu();
-
-		pausedMenuUp = false;
-
+			pausedMenuUp = false;
+		}
+		
 		addRandomUpgrades(deltatime);
 	}
 	else {
@@ -382,7 +382,7 @@ void MyScene::deleteExplosions()
 			it++;
 		}
 	}
-	pauseMenuVector.clear();
+	explosionVector.clear();
 }
 
 void MyScene::buildPauseMenu()
@@ -407,8 +407,6 @@ void MyScene::buildPauseMenu()
 	quit->texturePath = "assets/buttons/quitButton.png";
 	pauseMenuVector.push_back(quit);
 	addchild(quit);
-
-	pausedMenuUp = true;
 }
 
 void MyScene::destroyPauseMenu()
@@ -429,9 +427,9 @@ void MyScene::updatePauseMenu()
 	while (it != pauseMenuVector.end()) {
 		Button* button = (Button*)(*it);
 		if (button->isClicked()) {
-			std::cout << button->getType() << std::endl;
 			if (button->getType() == Button::buttonType::PLAY) {
 				paused = false;
+				pausedMenuUp = true;
 			}
 
 			if (button->getType() == Button::buttonType::OPTIONS) {
