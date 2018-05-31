@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../MXP3/include/entity.h"
+#include "../MXP3/include/agent.h"
 #include "../MXP3/include/renderer.h"
 
-class IEnemy : public Entity {
+class IEnemy : public Agent {
 
 public:
 	enum enemyTypes {
@@ -15,9 +15,6 @@ public:
 	IEnemy() {}
 	virtual ~IEnemy() {}
 	virtual void update(double deltatime);
-
-	int getHealth() { return health; }
-	void setHealth(int health) { this->health = health; }
 
 	float getSpeed() { return speed; }
 	void setSpeed(float speed) { this->speed = speed; }
@@ -44,7 +41,6 @@ private:
 	void goTo(double deltatime);
 	void checkPoint();
 
-	int health;
 	float speed = 70;
 
 	int index = 0;

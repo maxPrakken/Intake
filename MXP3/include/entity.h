@@ -54,6 +54,9 @@ public:
 	//gets parent of the entity
 	Entity getParent() { return (*_parent); }
 
+	//gets parent pointer of the entity
+	Entity* getParentPointer() { return _parent; }
+
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;
 

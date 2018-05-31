@@ -10,12 +10,11 @@ Player::Player()
 	animator.switchAfter = 0.1f;
 	size = Vector2(50, 50);
 
+	health = 5;
 	speed = 200;
 	bulletSpeed = -10;
 	hasShot = false;
 
-	health = 3;
-	maxHealth = health;
 	velocity = Vector2(0, 0);
 
 	defaultRPM = 250;

@@ -7,7 +7,6 @@ MyScene::MyScene() : Scene()
 	addchild(background);
 
 	player = new Player();
-	player->health = 5;
 	addchild(player);
 
 	healthHearts = new HealthHearts(player);
@@ -101,7 +100,7 @@ void MyScene::update(double deltatime)
 	if (Input::getInstance()->getKeyDown(SDLK_y)) {
 		addUpgrade(Upgrades::HEALTH, Vector2(300, 500));
 	}
-
+	
 	if (!paused) {
 		Scene::update(deltatime);
 
@@ -178,10 +177,12 @@ void MyScene::resetWorld()
 void MyScene::playerShoot()
 {
 	Bullet* bullet = new Bullet();
+	bullet->setOrigin(player);
 	bullet->pos = player->pos;
 	bullet->pos.y = player->pos.y - player->size.y / 2 + 30;
 
 	Bullet* bullet2 = new Bullet();
+	bullet2->setOrigin(player);
 	bullet2->pos = player->pos;
 	bullet2->pos.y = player->pos.y - player->size.y / 2 + 32;
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
@@ -200,11 +201,13 @@ void MyScene::playerShoot()
 
 	if (player->doubleShot) {
 		Bullet* bullet3 = new Bullet();
+		bullet3->setOrigin(player);
 		bullet3->pos = player->pos;
 		bullet3->pos.x = player->pos.x + 10;
 		bullet3->pos.y = player->pos.y - player->size.y / 2 + 31;
 
 		Bullet* bullet4 = new Bullet();
+		bullet4->setOrigin(player);
 		bullet4->pos = player->pos;
 		bullet4->pos.y = player->pos.y - player->size.y / 2 + 34;
 		bullet4->pos.x = player->pos.x + player->size.x - 22;
@@ -453,13 +456,16 @@ void MyScene::enemyShoot() {
 		if ((*it)->canShoot) {
 			(*it)->canShoot = false;
 			Bullet* bullet;
+
 			if ((*it)->type == IEnemy::FAST) {
 				bullet = new Bullet("assets/bullet_concept2.png");
+				bullet->setOrigin((*it));
 				bullet->size = Vector2(25, 25);
 				bullet->setSpeed(25);
 			}
 			else {
 				bullet = new Bullet();
+				bullet->setOrigin((*it));
 			}
 
 			bullet->playerBullet = false;
@@ -488,8 +494,6 @@ void MyScene::bulletHits()
 				Bullet* u = (*it);
 				it = bulletVector.erase(it);
 				this->removechild(u);
-
-    			(*enemy)->setHealth((*enemy)->getHealth() - 1);
 			}
 			enemy++;			
 		}
@@ -504,7 +508,7 @@ void MyScene::bulletHits()
 			Eit = enemyBulletVector.erase(Eit);
 			this->removechild(u);
 
-			player->health--;
+			//player->health--;
 		}
 		else {
 			Eit++;

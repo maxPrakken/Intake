@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../MXP3/include/entity.h"
+#include "../MXP3/include/agent.h"
 #include <input.h>
 #include "bullet.h"
 
-class Player : public Entity {
+class Player : public Agent {
 public:
 
 	//default constructor
@@ -18,8 +18,6 @@ public:
 	void movement(double deltatime);
 
 	Vector2 getVelocity() { return velocity; }
-
-	int health;
 
 	float getBulletSpeed();
 
@@ -40,7 +38,8 @@ private:
 
 	float speed;
 	float bulletSpeed;
-	int maxHealth;
+
+	int maxHealth = health;
 
 	bool deleteThis = false;
 

@@ -151,6 +151,7 @@
     <ClCompile Include="src\vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\agent.h" />
     <ClInclude Include="include\animator.h" />
     <ClInclude Include="include\audio.h" />
     <ClInclude Include="include\entity.h" />

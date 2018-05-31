@@ -4,7 +4,7 @@ EnemyFast::EnemyFast()
 {
 	texturePath = "assets/enemy_2_Concept.png";
 	size = Vector2(50, 50);
-	setHealth(1);
+	health = 1;
 	type = IEnemy::FAST;
 }
 
@@ -18,7 +18,7 @@ EnemyFast::EnemyFast(Vector2 position)
 	texturePath = "assets/enemy_2_Concept.png";	animator.rows = Vector2(4, 1);
 
 	pointsWorth = 150;
-	setHealth(1);
+	health = 1;
 	setSpeed(getSpeed() * 1.5);
 
 	Vector2 pos1 = Vector2(-50, position.y);
