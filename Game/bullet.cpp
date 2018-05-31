@@ -56,11 +56,10 @@ void Bullet::hit()
 {
 	for (int i = 0; i < getParentPointer()->childrenVec.size(); i++) {
 		try {
-			//try {
-			//if (std::is_base_of<typeid(getParentPointer()->childrenVec[i]), Agent>::value) {
-				//Agent* agent = (Agent*)getParentPointer()->childrenVec[i];
+				//checks if the entity we're gonna try to collide with is a agent
 				Agent* agent = dynamic_cast<Agent*> (getParentPointer()->childrenVec[i]);
-				if(agent != NULL) {
+
+				if(agent != NULL) { 
 					if (this->isColliding(agent) && agent != origin) {
 						agent->health -= damage;
 					}

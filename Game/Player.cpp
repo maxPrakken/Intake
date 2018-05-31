@@ -11,6 +11,8 @@ Player::Player()
 	size = Vector2(50, 50);
 
 	health = 5;
+	maxHealth = health;
+
 	speed = 200;
 	bulletSpeed = -10;
 	hasShot = false;
@@ -41,6 +43,9 @@ void Player::update(double deltatime)
 			animator.paused = true;
 			deleteThis = true;
 		}
+	}
+	if (health > maxHealth) {
+		health = maxHealth;
 	}
 }
 

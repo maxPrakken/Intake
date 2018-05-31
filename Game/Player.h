@@ -39,7 +39,7 @@ private:
 	float speed;
 	float bulletSpeed;
 
-	int maxHealth = health;
+	int maxHealth;
 
 	bool deleteThis = false;
 
