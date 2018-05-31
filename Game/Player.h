@@ -23,11 +23,6 @@ public:
 
 	float getBulletSpeed();
 
-	bool canUp;
-	bool canDown;
-	bool canRight;
-	bool canLeft;
-
 	bool hasShot;
 	bool doubleShot = false;
 

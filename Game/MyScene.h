@@ -14,6 +14,7 @@
 #include "EnemyFast.h"
 #include "Slider.h"
 #include "Explosion.h"
+#include "HealthHearts.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -35,6 +36,8 @@ public:
 	virtual void update(double deltatime);
 
 	void resetWorld();
+
+	HealthHearts* healthHearts;
 
 private:
 
@@ -74,7 +77,7 @@ private:
 	
 	Grid* background;
 	Player* player;
-	Entity* healthHearts;
+	
 
 	Button* button;
 

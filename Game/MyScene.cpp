@@ -10,13 +10,7 @@ MyScene::MyScene() : Scene()
 	player->health = 5;
 	addchild(player);
 
-	healthHearts = new Entity();
-	healthHearts->pos = Vector2(0, 0);
-	healthHearts->size = Vector2(50, 100);
-	healthHearts->spitesheetPath = "assets/hearts.png";
-	healthHearts->animator.rows = Vector2(6, 1);
-	healthHearts->animator.paused = true;
-	healthHearts->animator.cur = 0;
+	healthHearts = new HealthHearts(player);
 	addchild(healthHearts);
 
 	paused = false;
@@ -550,7 +544,7 @@ void MyScene::playerDie()
 
 void MyScene::healthHeartController()
 {
-	if (player->health == 5) {
+	/*if (player->health == 5) {
 		healthHearts->animator.cur = 0;
 	}
 	else if (player->health == 4) {
@@ -567,5 +561,5 @@ void MyScene::healthHeartController()
 	}
 	else if (player->health <= 0) {
 		healthHearts->animator.cur = 5;
-	}
+	}*/
 }
