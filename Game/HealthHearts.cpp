@@ -7,10 +7,12 @@ HealthHearts::HealthHearts()
 
 HealthHearts::HealthHearts(Player * p)
 {
-	player = p;
+	if (p != NULL) {
+		player = p;
 
-	for (int i = 0; i < player->health; i++) {
-		addHeart();
+		for (int i = 0; i < player->health; i++) {
+			addHeart();
+		}
 	}
 }
 

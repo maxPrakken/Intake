@@ -12,6 +12,8 @@ Entity::Entity()
 
 	flip = SDL_FLIP_NONE;
 
+	ZLayers.push_back(ZLayer_base);
+
 	animator = Animator();
 
 	pos = Vector2(0, 0);
@@ -27,10 +29,14 @@ Entity::~Entity()
 void Entity::update(double deltatime)
 {
 	animator.update(deltatime);
-	std::vector<Entity*>::iterator it = childrenVec.begin();
-	while (it != childrenVec.end())
+	std::vector<std::vector<Entity*>>::iterator it = ZLayers.begin();
+	while (it != ZLayers.end())
 	{
-		(*it)->update(deltatime);
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			(*at)->update(deltatime);
+			at++;
+		}
 		it++;
 	}
 }
@@ -39,20 +45,30 @@ void Entity::addchild(Entity* child)
 {
 	if (child->_parent != NULL) {
 		child->_parent->removechild(child);
-	} 
+	}
 	if (child->_parent == this) {
 		return;
 	}
 	child->_parent = this;
-	this->childrenVec.push_back(child);
+
+	if (ZLayer < ZLayers.size() && ZLayer >= 0) {
+		this->ZLayers[child->ZLayer].push_back(child);
+	}
+	else if (ZLayer >= ZLayers.size()) {
+		this->ZLayers[ZLayers.size() - 1].push_back(child);
+	}
+	else {
+		this->ZLayers[0].push_back(child);
+	}
+	
 }
 
 void Entity::removechild(Entity * child)
 {
-	std::vector< Entity* >::iterator it = childrenVec.begin();
-	while (it != childrenVec.end()) {
+	std::vector< Entity* >::iterator it = ZLayers[child->ZLayer].begin();
+	while (it != ZLayers[child->ZLayer].end()) {
 		if ((*it)->_guid == child->_guid) {
-			it = childrenVec.erase(it);
+			it = ZLayers[child->ZLayer].erase(it);
 			return;
 		}
 		else {
@@ -63,9 +79,12 @@ void Entity::removechild(Entity * child)
 
 Entity* Entity::getChildren()
 {
-	std::vector<Entity*>::iterator it = childrenVec.begin();
-	while (it != childrenVec.end()) {
-		return (*it);
+	std::vector<std::vector<Entity*>>::iterator it = ZLayers.begin();
+	while (it != ZLayers.end()) {
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			return (*at);
+		}
 	}
 	return NULL;
 }

@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	SceneManager::getInstance()->addScene("OptionsScene", new optionsMenu());
 
 	//game scene
-	SceneManager::getInstance()->addScene("MyScene", new MyScene());
+	SceneManager::getInstance()->addScene("MyScene", new MyScene(2));
 
 	//set start scene
 	SceneManager::getInstance()->setCurrentScene("MenuScene");

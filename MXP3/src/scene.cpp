@@ -23,11 +23,15 @@ Vector2 Scene::placeCenter(Entity* entity)
 
 void Scene::updateChildren(float deltatime)
 {
-	std::vector<Entity*>::iterator it = childrenVec.begin();
-	while (it != childrenVec.end())
+	std::vector<std::vector<Entity*>>::iterator it = ZLayers.begin();
+	while (it != ZLayers.end())
 	{
-		(*it)->update(deltatime);
-		(*it)->animator.update(deltatime);
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			(*at)->update(deltatime);
+			(*at)->animator.update(deltatime);
+			at++;
+		}
 		it++;
 	}
 }

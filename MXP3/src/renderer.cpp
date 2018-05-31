@@ -144,10 +144,15 @@ void Renderer::renderEntity(Entity* entity)
 		}
 		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip, entity); }
 	}
-	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
-	while (it != entity->childrenVec.end())
+	
+	std::vector<std::vector<Entity*>>::iterator it = entity->ZLayers.begin();
+	while (it != entity->ZLayers.end())
 	{
-		renderEntity((*it));
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			renderEntity((*at));
+			at++;
+		}
 		it++;
 	}
 }

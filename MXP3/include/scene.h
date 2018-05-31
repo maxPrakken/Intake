@@ -10,6 +10,7 @@ class __declspec(dllexport) Scene : public Entity {
 public:
 	//default constuctor
 	Scene();
+
 	//deconstructor
 	virtual ~Scene();
 

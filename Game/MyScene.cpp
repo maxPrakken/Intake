@@ -10,6 +10,30 @@ MyScene::MyScene() : Scene()
 	addchild(player);
 
 	healthHearts = new HealthHearts(player);
+	//healthHearts->setZLayer(1);
+	addchild(healthHearts);
+
+	paused = false;
+	pausedMenuUp = false;
+
+	wave = 0;
+	score = 0;
+}
+
+MyScene::MyScene(int ZLayer_amount)
+{
+	addZLayers(ZLayer_amount);	
+
+	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v6.png", Vector2(100, 100), true, Vector2(10, 1));
+	background->pos = Vector2(-100, 0);
+	addchild(background);
+
+	player = new Player();
+	player->setZLayer(1);
+	addchild(player);
+
+	healthHearts = new HealthHearts(player);
+	healthHearts->setZLayer(2);
 	addchild(healthHearts);
 
 	paused = false;
@@ -564,4 +588,14 @@ void MyScene::healthHeartController()
 	else if (player->health <= 0) {
 		healthHearts->animator.cur = 5;
 	}*/
+}
+
+void MyScene::addZLayers(int zlayerAmount)
+{
+	setZLayer(zlayerAmount);
+
+	for (int i = 0; i <= getZlayer() - 1; i++) {
+		std::vector<Entity*>zlayer;
+		ZLayers.push_back(zlayer);
+	}
 }

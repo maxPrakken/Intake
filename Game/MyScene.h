@@ -30,6 +30,8 @@ public:
 
 	//constuctor
 	MyScene();
+	//constructor with custom amount of zlayers
+	MyScene(int ZLayer_amount);
 	//deconstructor
 	virtual ~MyScene();
 	//update function
@@ -58,6 +60,7 @@ private:
 	void deadEnemyCleanup();
 	void playerDie();
 	void healthHeartController();
+	void addZLayers(int zlayerAmount);
 
 	bool pausedMenuUp;
 	bool paused;

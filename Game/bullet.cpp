@@ -54,10 +54,10 @@ void Bullet::update(double deltatime)
 
 void Bullet::hit()
 {
-	for (int i = 0; i < getParentPointer()->childrenVec.size(); i++) {
+	for (int i = 0; i < getParentPointer()->ZLayers[getParentPointer()->getZlayer()].size(); i++) {
 		try {
 				//checks if the entity we're gonna try to collide with is a agent
-				Agent* agent = dynamic_cast<Agent*> (getParentPointer()->childrenVec[i]);
+				Agent* agent = dynamic_cast<Agent*> (getParentPointer()->ZLayers[getParentPointer()->getZlayer()][i]);
 
 				if(agent != NULL) { 
 					if (this->isColliding(agent) && agent != origin) {
