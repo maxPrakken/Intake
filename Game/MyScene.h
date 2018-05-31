@@ -59,7 +59,6 @@ private:
 	void bulletHits();
 	void deadEnemyCleanup();
 	void playerDie();
-	void healthHeartController();
 	void addZLayers(int zlayerAmount);
 
 	bool pausedMenuUp;

@@ -158,7 +158,6 @@ void MyScene::update(double deltatime)
 	enemyShoot();
 	bulletHits();
 	deadEnemyCleanup();
-	healthHeartController();
 	playerDie();
 	deleteExplosions();
 }
@@ -566,28 +565,6 @@ void MyScene::playerDie()
 		paused = true;
 		player->setDelete(false);
 	}
-}
-
-void MyScene::healthHeartController()
-{
-	/*if (player->health == 5) {
-		healthHearts->animator.cur = 0;
-	}
-	else if (player->health == 4) {
-		healthHearts->animator.cur = 1;
-	}
-	else if (player->health == 3) {
-		healthHearts->animator.cur = 2;
-	}
-	else if (player->health == 2) {
-		healthHearts->animator.cur = 3;
-	}
-	else if (player->health <= 1) {
-		healthHearts->animator.cur = 4;
-	}
-	else if (player->health <= 0) {
-		healthHearts->animator.cur = 5;
-	}*/
 }
 
 void MyScene::addZLayers(int zlayerAmount)
