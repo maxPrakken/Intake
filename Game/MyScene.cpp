@@ -528,8 +528,6 @@ void MyScene::bulletHits()
 			Bullet* u = (*Eit);
 			Eit = enemyBulletVector.erase(Eit);
 			this->removechild(u);
-
-			//player->health--;
 		}
 		else {
 			Eit++;

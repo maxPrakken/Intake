@@ -54,22 +54,26 @@ void Bullet::update(double deltatime)
 
 void Bullet::hit()
 {
-	for (int i = 0; i < getParentPointer()->ZLayers[getParentPointer()->getZlayer()].size(); i++) {
-		try {
-				//checks if the entity we're gonna try to collide with is a agent
-				Agent* agent = dynamic_cast<Agent*> (getParentPointer()->ZLayers[getParentPointer()->getZlayer()][i]);
+	std::vector<std::vector<Entity*>>::iterator it = getParentPointer()->ZLayers.begin();
+	while (it != getParentPointer()->ZLayers.end())
+	{
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			Agent* agent = dynamic_cast<Agent*> (*at);
 
-				if(agent != NULL) { 
-					if (this->isColliding(agent) && agent != origin) {
-						agent->health -= damage;
-					}
-					else {
-						i++;
-					}
+			if (agent != NULL) {
+				if (this->isColliding(agent) && agent != origin) {
+					agent->health -= damage;
+					return;
 				}
+				else {
+					at++;
+				}
+			}
+			else {
+				at++;
+			}
 		}
-		catch (...) {
-			i++;
-		}
+		it++;
 	}
 }

@@ -37,12 +37,14 @@ void HealthHearts::update(double deltatime)
 
 void HealthHearts::manageHearts()
 {
-	if (player->health != heartVector.size()) {
-		if (player->health < heartVector.size()) {
-			removeLastHeart();
-		}
-		else {
-			addHeart();
+	if (player != NULL) {
+		if (player->health != heartVector.size()) {
+			if (player->health < heartVector.size()) {
+				removeLastHeart();
+			}
+			else {
+				addHeart();
+			}
 		}
 	}
 }
