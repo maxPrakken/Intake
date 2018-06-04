@@ -44,6 +44,9 @@ public:
 
 	void operator/(const float & oth);
 
+	Vector2 operator-(const float & oth);
+	Vector2 operator+(const float & oth);
+
 	void normalize();
 
 	int mag();

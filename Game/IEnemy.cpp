@@ -9,6 +9,10 @@ void IEnemy::update(double deltatime)
 		goTo(deltatime);
 	}
 
+	if (goCircles) {
+		goCircle(Vector2(200, 500), 50, 0.1);
+	}
+
 	if (health <= 0) {
 		isDead = true;
 	}
@@ -68,5 +72,20 @@ void IEnemy::checkPoint()
 	}
 
 	point = pointVector[index];
+}
+
+void IEnemy::goCircle(Vector2 startpoint, int radiusSize, float speed)
+{
+	if (radiusSize > 0) {
+		Vector2 v2 = startpoint - startpoint + radiusSize;
+		float r = v2.mag();
+
+		float posX = (cos(circleAngle) * r) + (startpoint.x - r);
+		float posY = (sin(circleAngle) * r) + startpoint.y;
+
+		this->pos = Vector2(posX, posY);
+
+		circleAngle += speed;
+	}
 }
 

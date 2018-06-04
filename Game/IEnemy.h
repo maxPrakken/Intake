@@ -33,6 +33,8 @@ public:
 	int type;
 	int pointsWorth;
 
+	bool goCircles = false;
+
 	Vector2 startPosition;
 
 	std::vector<Vector2> pointVector;
@@ -40,6 +42,9 @@ public:
 private:
 	void goTo(double deltatime);
 	void checkPoint();
+
+	void goCircle(Vector2 startpoint, int radiusSize, float speed);
+	float circleAngle = 0;
 
 	float speed = 70;
 

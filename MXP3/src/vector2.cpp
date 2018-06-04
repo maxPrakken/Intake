@@ -100,6 +100,17 @@ void Vector2::operator/(const float & oth)
 	this->y / oth;
 }
 
+Vector2 Vector2::operator-(const float & oth)
+{
+	return Vector2(this->x -= oth, this->y -= oth);
+}
+
+Vector2 Vector2::operator+(const float & oth)
+{
+	return Vector2(this->x += oth, this->y += oth);
+
+}
+
 void Vector2::normalize() {
 	int i = mag();
 	if (i != 0) {

@@ -14,6 +14,7 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	pos = position;
 	startPosition = pos;
 	type = IEnemy::BASIC;
+	goCircles = true;
 	
 	texturePath = "assets/enemy_concept.png";
 
@@ -28,10 +29,10 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	//to the last pos in the list, so this is a simple and dirty fix
 	Vector2 sacraficialpos = Vector2(0, 0);
 
-	pointVector.push_back(pos1);
-	pointVector.push_back(pos2);
-	pointVector.push_back(pos3);
-	pointVector.push_back(sacraficialpos);
+	//pointVector.push_back(pos1);
+	//pointVector.push_back(pos2);
+	//pointVector.push_back(pos3);
+	//pointVector.push_back(sacraficialpos);
 }
 
 EnemyBasic::~EnemyBasic()
