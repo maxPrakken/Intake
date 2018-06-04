@@ -396,6 +396,7 @@ void MyScene::deleteExplosions()
 {
 	std::vector<Explosion*>::iterator it = explosionVector.begin();
 	while (it != explosionVector.end()) {
+		std::cout << (*it)->getExplosionDone() << std::endl;
 		if ((*it)->getExplosionDone()) {
 			Explosion* u = (*it);
 			it = explosionVector.erase(it);
@@ -405,7 +406,6 @@ void MyScene::deleteExplosions()
 			it++;
 		}
 	}
-	explosionVector.clear();
 }
 
 void MyScene::buildPauseMenu()
