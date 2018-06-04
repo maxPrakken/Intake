@@ -182,12 +182,9 @@ void MyScene::resetWorld()
 	upgradeVector.clear();
 
 	if (player->health <= 0) {
-		player->setDelete(false);
 		player = new Player();
 		this->addchild(player);
 		player->health = player->getMaxHealth();
-		player->animator.paused = true;
-		player->animator.cur = 0;
 	}
 	
 	paused = false;
@@ -558,10 +555,13 @@ void MyScene::deadEnemyCleanup()
 
 void MyScene::playerDie()
 {
-	if (player->getDelete()) {
+	if (player->health <= 0) {
 		removechild(player);
 		paused = true;
-		player->setDelete(false);
+
+		Explosion* expl = new Explosion(player->pos, player->size);
+		addchild(expl);
+		explosionVector.push_back(expl);
 	}
 }
 

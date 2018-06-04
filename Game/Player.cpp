@@ -2,12 +2,7 @@
 
 Player::Player()
 {
-	spitesheetPath = "assets/spritesheets/player_concept2_spritesheet.png";
-	animator.rows = Vector2(4, 1);
-	animator.paused = true;
-	animator.cur = 0;
-	animator.animateFromTo = Vector2(1, 3);
-	animator.switchAfter = 0.1f;
+	texturePath = "assets/player_concept2.png";
 	size = Vector2(50, 50);
 
 	health = 5;
@@ -37,13 +32,6 @@ void Player::update(double deltatime)
 	
 	movement(deltatime);
 
-	if (health <= 0) {
-		animator.paused = false;
-		if (animator.cur == animator.rows.x - 1) {
-			animator.paused = true;
-			deleteThis = true;
-		}
-	}
 	if (health > maxHealth) {
 		health = maxHealth;
 	}
@@ -68,7 +56,6 @@ void Player::movement(double deltatime)
 	}
 
 	if (Input::getInstance()->getKey(SDLK_SPACE)) {
-		//go from seconds to RPM(rounds per minute)
 		double xValue = RPM / 60;
 		double fireTime = 1 / xValue;
 		if (RPMTimer > fireTime) {
