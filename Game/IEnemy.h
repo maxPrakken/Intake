@@ -22,6 +22,9 @@ public:
 	bool getIsDead() { return isDead; }
 
 	virtual void shoot() { }
+
+	void setGoCircles(bool yesno, int radiusSize, float speed);
+
 	Vector2 direction;
 
 	//boolean canshoot
@@ -33,8 +36,6 @@ public:
 	int type;
 	int pointsWorth;
 
-	bool goCircles = false;
-
 	Vector2 startPosition;
 
 	std::vector<Vector2> pointVector;
@@ -44,7 +45,11 @@ private:
 	void checkPoint();
 
 	void goCircle(Vector2 startpoint, int radiusSize, float speed);
+	Vector2 startPos;
 	float circleAngle = 0;
+	bool goCircles = false;
+	int radiusSize = 0;
+	float circleSpeed = 0;
 
 	float speed = 70;
 

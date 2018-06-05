@@ -318,7 +318,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	addEnemy(IEnemy::BASIC, Vector2(200, 50));
+	addEnemy(IEnemy::BASIC, Vector2(200, 150));
 	//addEnemy(IEnemy::BASIC, Vector2(280, 50));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
 	addEnemy(IEnemy::FAST, Vector2(440, 50));
