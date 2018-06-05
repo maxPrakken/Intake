@@ -18,6 +18,10 @@ MyScene::MyScene() : Scene()
 
 	wave = 0;
 	score = 0;
+
+	boss = new EnemyBoss();
+	addchild(boss);
+	enemyVector.push_back(boss);
 }
 
 MyScene::MyScene(int ZLayer_amount)
@@ -31,6 +35,10 @@ MyScene::MyScene(int ZLayer_amount)
 	player = new Player();
 	player->setZLayer(1);
 	addchild(player);
+
+	boss = new EnemyBoss();
+	enemyVector.push_back(boss);
+	addchild(boss);
 
 	healthHearts = new HealthHearts(player);
 	healthHearts->setZLayer(2);
@@ -131,12 +139,16 @@ void MyScene::update(double deltatime)
 		if (pausedMenuUp) {
 			destroyPauseMenu();
 			pausedMenuUp = false;
+			pausedMenuBuild = false;
 		}
 		
 		addRandomUpgrades(deltatime);
 	}
 	else {
-		buildPauseMenu();
+		if (!pausedMenuBuild) {
+			buildPauseMenu();
+			pausedMenuBuild = true;
+		}
 		updatePauseMenu();
 	}
 
@@ -144,6 +156,7 @@ void MyScene::update(double deltatime)
 	if (Input::getInstance()->getKeyDown(SDLK_ESCAPE)) {
 		if (paused) {
 			paused = false;
+			pausedMenuUp = true;
 			return;
 		}
 		paused = true;
@@ -306,6 +319,9 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 		case IEnemy::BOSS:
 		{
+			EnemyBoss* boss = new EnemyBoss();
+			enemyVector.push_back(boss);
+			addchild(boss);
 			break;
 		}
 
@@ -319,9 +335,9 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 void MyScene::addStartEnemies()
 {
 	addEnemy(IEnemy::BASIC, Vector2(200, 150));
-	//addEnemy(IEnemy::BASIC, Vector2(280, 50));
+	addEnemy(IEnemy::BOSS, Vector2(0, 0));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
-	addEnemy(IEnemy::FAST, Vector2(440, 50));
+	//addEnemy(IEnemy::FAST, Vector2(440, 50));
 }
 
 void MyScene::addRandomUpgrades(double deltatime)
@@ -393,7 +409,6 @@ void MyScene::deleteExplosions()
 {
 	std::vector<Explosion*>::iterator it = explosionVector.begin();
 	while (it != explosionVector.end()) {
-		std::cout << (*it)->getExplosionDone() << std::endl;
 		if ((*it)->getExplosionDone()) {
 			Explosion* u = (*it);
 			it = explosionVector.erase(it);

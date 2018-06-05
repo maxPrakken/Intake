@@ -14,7 +14,7 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	pos = position;
 	startPosition = pos;
 	type = IEnemy::BASIC;
-	setGoCircles(true, 50, 0.1);
+	setGoCircles(true, 50, 0.01);
 	
 	texturePath = "assets/enemy_concept.png";
 
