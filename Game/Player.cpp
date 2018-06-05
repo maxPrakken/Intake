@@ -39,19 +39,19 @@ void Player::update(double deltatime)
 
 void Player::movement(double deltatime)
 {
-	if (Input::getInstance()->getKey(SDLK_w)) {
+	if (Input::getInstance()->getKey(SDLK_w) && pos.y > 0) {
 		pos -= Vector2(0, speed) * deltatime;
 	}
 
-	if (Input::getInstance()->getKey(SDLK_a)) {
+	if (Input::getInstance()->getKey(SDLK_a) && pos.x > 0) {
 		pos -= Vector2(speed, 0) * deltatime;
 	}
 
-	if (Input::getInstance()->getKey(SDLK_s)) {
+	if (Input::getInstance()->getKey(SDLK_s) && pos.y < (canvasSize.y - size.y)) {
 		pos += Vector2(0, speed) * deltatime;
 	}
 
-	if (Input::getInstance()->getKey(SDLK_d)) {
+	if (Input::getInstance()->getKey(SDLK_d) && pos.x < (canvasSize.x - size.x)) {
 		pos += Vector2(speed, 0) * deltatime;
 	}
 

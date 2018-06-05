@@ -4,6 +4,8 @@
 #include <input.h>
 #include "bullet.h"
 
+#include <renderer.h>
+
 class Player : public Agent {
 public:
 
@@ -46,4 +48,6 @@ private:
 	double RPM;
 	double defaultRPM;
 	double RPMTimer;
+
+	Vector2 canvasSize = Renderer::getInstance()->getResolution();
 };

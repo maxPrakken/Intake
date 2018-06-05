@@ -11,6 +11,7 @@ void IEnemy::update(double deltatime)
 
 	if (goCircles) {
 		goCircle(startPos, radiusSize, circleSpeed);
+		startPos = Vector2(startPos.x + 1, startPos.y);
 	}
 
 	if (health <= 0) {
@@ -96,4 +97,3 @@ void IEnemy::goCircle(Vector2 startpoint, int radiusSize, float speed)
 		circleAngle += speed;
 	}
 }
-

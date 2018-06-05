@@ -45,6 +45,7 @@ private:
 	void checkPoint();
 
 	void goCircle(Vector2 startpoint, int radiusSize, float speed);
+
 	Vector2 startPos;
 	float circleAngle = 0;
 	bool goCircles = false;
