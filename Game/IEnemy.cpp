@@ -93,7 +93,6 @@ void IEnemy::goCircle(Vector2 startpoint, int radiusSize, float speed)
 		float posY = (sin(circleAngle) * r) + startpoint.y - r;
 
 		this->pos = Vector2(posX, posY);
-		std::cout << circleAngle << std::endl;
 		circleAngle += speed;
 	}
 }

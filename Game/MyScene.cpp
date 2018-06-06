@@ -217,7 +217,7 @@ void MyScene::playerShoot()
 	Bullet* bullet2 = new Bullet();
 	bullet2->setOrigin(player);
 	bullet2->pos = player->pos;
-	bullet2->pos.y = player->pos.y - player->size.y / 2 + 32;
+	bullet2->pos.y = player->pos.y - player->size.y / 2 + 40;
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
 	bullet->direction = Vector2(0, player->getBulletSpeed());
@@ -334,7 +334,7 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	addEnemy(IEnemy::BASIC, Vector2(200, 150));
+	//addEnemy(IEnemy::BASIC, Vector2(200, 150));
 	addEnemy(IEnemy::BOSS, Vector2(0, 0));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
 	//addEnemy(IEnemy::FAST, Vector2(440, 50));
@@ -527,9 +527,11 @@ void MyScene::bulletHits()
 				Bullet* u = (*it);
 				it = bulletVector.erase(it);
 				this->removechild(u);
+				return;
 			}
 			enemy++;			
 		}
+
 		it++;
 	}
 	
