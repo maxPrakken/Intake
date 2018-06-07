@@ -116,6 +116,8 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
+	player->health = 5;
+
 	if (Input::getInstance()->getKeyDown(SDLK_e)) {
 		addStartEnemies();
 	}
@@ -217,10 +219,8 @@ void MyScene::playerShoot()
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
 	bullet->direction = Vector2(0, player->getBulletSpeed());
-	bullet->rot = 90;
 
-	bullet2->direction = Vector2(0, -10);
-	bullet2->rot = 90;
+	bullet2->direction = Vector2(0, player->getBulletSpeed());
 
 	bulletVector.push_back(bullet);
 	bulletVector.push_back(bullet2);
@@ -242,10 +242,8 @@ void MyScene::playerShoot()
 		bullet4->pos.x = player->pos.x + player->size.x - 22;
 
 		bullet3->direction = Vector2(0, player->getBulletSpeed());
-		bullet3->rot = 90;
 
-		bullet4->direction = Vector2(0, -10);
-		bullet4->rot = 90;
+		bullet4->direction = Vector2(0, player->getBulletSpeed());
 
 		bulletVector.push_back(bullet3);
 		bulletVector.push_back(bullet4);
@@ -330,8 +328,8 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	addEnemy(IEnemy::BASIC, Vector2(200, 150));
-	//addEnemy(IEnemy::BOSS, Vector2(0, 0));
+	//addEnemy(IEnemy::BASIC, Vector2(200, 150));
+	addEnemy(IEnemy::BOSS, Vector2(0, 0));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
 	//addEnemy(IEnemy::FAST, Vector2(440, 50));
 }
@@ -487,8 +485,7 @@ void MyScene::enemyShoot() {
 			Bullet* bullet;
 
 			if ((*it)->type == IEnemy::FAST) {
-				bullet = new Bullet("assets/bullet_concept2.png");
-				bullet->setOrigin((*it));
+				bullet = new Bullet("assets/bullet_concept2.png", (*it));
 				bullet->size = Vector2(25, 25);
 				bullet->setSpeed(25);
 			}
@@ -503,7 +500,6 @@ void MyScene::enemyShoot() {
 			bullet->pos.x = (*it)->pos.x + (*it)->size.y / 2 - 5;
 
 			bullet->direction = Vector2(0, player->getBulletSpeed());
-			bullet->rot = 90;
 
 			enemyBulletVector.push_back(bullet);
 			addchild(bullet);
@@ -516,24 +512,21 @@ void MyScene::bulletHits()
 {
 	//player bullet hits enemy
 	std::vector<Bullet*>::iterator it = bulletVector.begin();
-	std::vector<IEnemy*>::iterator enemy = enemyVector.begin();
 	while (it != bulletVector.end()) {
-		while (enemy != enemyVector.end()) {
-			if ((*it)->isColliding((*enemy))) {
-				Bullet* u = (*it);
-				it = bulletVector.erase(it);
-				this->removechild(u);
-				return;
-			}
-			enemy++;			
+		if ((*it)->getIsDead()) {
+			Bullet* u = (*it);
+			it = bulletVector.erase(it);
+			this->removechild(u);
 		}
-		it++;
+		else {
+			it++;
+		}
 	}
 	
 	//enemy bullet hits player
 	std::vector<Bullet*>::iterator Eit = enemyBulletVector.begin();
 	while (Eit != enemyBulletVector.end()) {
-		if ((*Eit)->isColliding(player)) {
+		if ((*Eit)->getIsDead()) {
 			Bullet* u = (*Eit);
 			Eit = enemyBulletVector.erase(Eit);
 			this->removechild(u);

@@ -15,5 +15,4 @@ public:
 	virtual void shoot();
 
 private:
-	int test = 0;
 };

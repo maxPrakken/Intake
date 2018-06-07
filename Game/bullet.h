@@ -22,11 +22,15 @@ public:
 	void setSpeed(float speed) { this->speed = speed; }
 	void setOrigin(Entity* origin) { this->origin = origin; }
 
+	bool getIsDead() { return isDead; }
+
 private:
 	void hit();
 
 	//sets origin type, makes sure you dont hit your own
 	Entity* origin;
+
+	bool isDead = false;
 
 	float speed;
 	int damage;

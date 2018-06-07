@@ -3,7 +3,7 @@
 Bullet::Bullet() 
 {
 	texturePath = "assets/bullet_concept.png";
-	size = Vector2(10, 4);
+	size = Vector2(4, 10);
 	speed = 10;
 	damage = 1;
 
@@ -64,6 +64,8 @@ void Bullet::hit()
 			if (agent != NULL) {
 				if (agent->isColliding(this->pos) && agent != origin) {
 					agent->health -= damage;
+					damage = 0;
+					isDead = true;
 					return;
 				}
 				else {

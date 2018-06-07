@@ -18,10 +18,6 @@ void EnemyBoss::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	if (this->isColliding(Input::getInstance()->getMouseToScreen())) {
-		std::cout << test << std::endl;
-		test++;
-	}
 }
 
 void EnemyBoss::shoot()

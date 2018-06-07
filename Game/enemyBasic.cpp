@@ -10,16 +10,16 @@ EnemyBasic::EnemyBasic()
 
 EnemyBasic::EnemyBasic(Vector2 position)
 {
-	size = Vector2(100, 100);
+	size = Vector2(50, 50);
 	pos = position;
 	startPosition = pos;
 	type = IEnemy::BASIC;
-	//setGoCircles(true, 50, 0.1);
+	setGoCircles(true, 50, 0.1);
 	
 	texturePath = "assets/enemy_concept.png";
 
 	pointsWorth = 100;
-	health = 2;
+	health = 20;
 
 	Vector2 pos1 = startPosition;
 	Vector2 pos2 = Vector2(startPosition.x - 50, startPosition.y + 50);
@@ -48,7 +48,7 @@ EnemyBasic::~EnemyBasic()
 void EnemyBasic::update(double deltatime)
 {
 	IEnemy::update(deltatime);
-
+	std::cout << health << std::endl;
 	shootTimer += deltatime;
 	shoot();
 }
