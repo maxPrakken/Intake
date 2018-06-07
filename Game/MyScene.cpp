@@ -116,8 +116,6 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	player->health = 5;
-
 	if (Input::getInstance()->getKeyDown(SDLK_e)) {
 		addStartEnemies();
 	}
@@ -501,7 +499,7 @@ void MyScene::enemyShoot() {
 
 			bullet->direction = Vector2(0, player->getBulletSpeed());
 
-			enemyBulletVector.push_back(bullet);
+			bulletVector.push_back(bullet);
 			addchild(bullet);
 		}
 		it++;
@@ -520,19 +518,6 @@ void MyScene::bulletHits()
 		}
 		else {
 			it++;
-		}
-	}
-	
-	//enemy bullet hits player
-	std::vector<Bullet*>::iterator Eit = enemyBulletVector.begin();
-	while (Eit != enemyBulletVector.end()) {
-		if ((*Eit)->getIsDead()) {
-			Bullet* u = (*Eit);
-			Eit = enemyBulletVector.erase(Eit);
-			this->removechild(u);
-		}
-		else {
-			Eit++;
 		}
 	}
 }

@@ -4,7 +4,7 @@ Bullet::Bullet()
 {
 	texturePath = "assets/bullet_concept.png";
 	size = Vector2(4, 10);
-	speed = 10;
+	speed = 50;
 	damage = 1;
 
 	direction = Vector2(0, 0);
