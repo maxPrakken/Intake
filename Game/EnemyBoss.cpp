@@ -1,5 +1,5 @@
 #include "EnemyBoss.h"
-
+#include <input.h>
 EnemyBoss::EnemyBoss()
 {
 	texturePath = "assets/eindbaas_concept.png";
@@ -8,7 +8,6 @@ EnemyBoss::EnemyBoss()
 	health = 10;
 	type = IEnemy::BOSS;
 	pointsWorth = 1000;
-	setZLayer(0);
 }
 
 EnemyBoss::~EnemyBoss()
@@ -19,7 +18,10 @@ void EnemyBoss::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	//std::cout << health << std::endl;
+	if (this->isColliding(Input::getInstance()->getMouseToScreen())) {
+		std::cout << test << std::endl;
+		test++;
+	}
 }
 
 void EnemyBoss::shoot()

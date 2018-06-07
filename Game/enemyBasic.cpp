@@ -10,11 +10,11 @@ EnemyBasic::EnemyBasic()
 
 EnemyBasic::EnemyBasic(Vector2 position)
 {
-	size = Vector2(50, 50);
+	size = Vector2(100, 100);
 	pos = position;
 	startPosition = pos;
 	type = IEnemy::BASIC;
-	setGoCircles(true, 50, 0.01);
+	//setGoCircles(true, 50, 0.1);
 	
 	texturePath = "assets/enemy_concept.png";
 

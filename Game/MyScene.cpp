@@ -36,10 +36,6 @@ MyScene::MyScene(int ZLayer_amount)
 	player->setZLayer(1);
 	addchild(player);
 
-	boss = new EnemyBoss();
-	enemyVector.push_back(boss);
-	addchild(boss);
-
 	healthHearts = new HealthHearts(player);
 	healthHearts->setZLayer(2);
 	addchild(healthHearts);
@@ -334,8 +330,8 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 
 void MyScene::addStartEnemies()
 {
-	//addEnemy(IEnemy::BASIC, Vector2(200, 150));
-	addEnemy(IEnemy::BOSS, Vector2(0, 0));
+	addEnemy(IEnemy::BASIC, Vector2(200, 150));
+	//addEnemy(IEnemy::BOSS, Vector2(0, 0));
 	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
 	//addEnemy(IEnemy::FAST, Vector2(440, 50));
 }
@@ -531,7 +527,6 @@ void MyScene::bulletHits()
 			}
 			enemy++;			
 		}
-
 		it++;
 	}
 	

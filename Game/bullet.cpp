@@ -4,7 +4,7 @@ Bullet::Bullet()
 {
 	texturePath = "assets/bullet_concept.png";
 	size = Vector2(10, 4);
-	speed = 100;
+	speed = 10;
 	damage = 1;
 
 	direction = Vector2(0, 0);
@@ -14,7 +14,7 @@ Bullet::Bullet(std::string texturepath)
 {
 	this->texturePath = texturepath;
 	size = Vector2(10, 4);
-	speed = 100;
+	speed = 10;
 	damage = 1;
 
 	direction = Vector2(0, 0);
@@ -24,7 +24,7 @@ Bullet::Bullet(std::string texturepath, Entity* origin)
 {
 	this->texturePath = texturepath;
 	size = Vector2(10, 4);
-	speed = 100;
+	speed = 10;
 	damage = 1;
 	this->origin = origin;
 
@@ -62,7 +62,7 @@ void Bullet::hit()
 			Agent* agent = dynamic_cast<Agent*> (*at);
 
 			if (agent != NULL) {
-				if (this->isColliding(agent) && agent != origin) {
+				if (agent->isColliding(this->pos) && agent != origin) {
 					agent->health -= damage;
 					return;
 				}
