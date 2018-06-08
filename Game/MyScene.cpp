@@ -479,28 +479,53 @@ void MyScene::enemyShoot() {
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
 		if ((*it)->canShoot) {
-			(*it)->canShoot = false;
-			Bullet* bullet;
+			if ((*it)->type == IEnemy::FAST || (*it)->type == IEnemy::BASIC) {
+				(*it)->canShoot = false;
+				Bullet* bullet;
 
-			if ((*it)->type == IEnemy::FAST) {
-				bullet = new Bullet("assets/bullet_concept2.png", (*it));
-				bullet->size = Vector2(25, 25);
-				bullet->setSpeed(25);
+				if ((*it)->type == IEnemy::FAST) {
+					bullet = new Bullet("assets/bullet_concept2.png", (*it));
+					bullet->size = Vector2(25, 25);
+					bullet->setSpeed(25);
+				}
+				else if ((*it)->type == IEnemy::BASIC) {
+					bullet = new Bullet();
+					bullet->setOrigin((*it));
+				}
+
+				bullet->playerBullet = false;
+				bullet->pos = (*it)->pos;
+				bullet->pos.y = (*it)->pos.y + (*it)->size.y / 2 + 30;
+				bullet->pos.x = (*it)->pos.x + (*it)->size.y / 2 - 5;
+
+				bullet->direction = Vector2(0, player->getBulletSpeed());
+
+				bulletVector.push_back(bullet);
+				addchild(bullet);
 			}
-			else {
-				bullet = new Bullet();
-				bullet->setOrigin((*it));
+			else if ((*it)->type == IEnemy::BOSS) {
+				(*it)->canShoot = false;
+
+				EnemyBoss* boss = dynamic_cast<EnemyBoss*> (*it);
+
+				if (boss != NULL) {
+					std::vector<Vector2> dirV = boss->getBulletDirection(8);
+					std::vector<Vector2>::iterator at = dirV.begin();
+					while (at != dirV.end()) {
+
+						Bullet* bullet = new Bullet("assets/bullet_concept2.png", (boss));
+						bullet->size = Vector2(25, 25);
+						bullet->setSpeed(25);
+						bullet->pos = boss->pos + Vector2(boss->size.x / 2, boss->size.y / 2);
+						bullet->direction = (*at);
+
+						bulletVector.push_back(bullet);
+						addchild(bullet);
+
+						at++;
+					}
+				}
 			}
-
-			bullet->playerBullet = false;
-			bullet->pos = (*it)->pos;
-			bullet->pos.y = (*it)->pos.y + (*it)->size.y / 2 + 30;
-			bullet->pos.x = (*it)->pos.x + (*it)->size.y / 2 - 5;
-
-			bullet->direction = Vector2(0, player->getBulletSpeed());
-
-			bulletVector.push_back(bullet);
-			addchild(bullet);
 		}
 		it++;
 	}

@@ -14,5 +14,13 @@ public:
 	//shoot overloader
 	virtual void shoot();
 
+	std::vector<Vector2> getBulletDirection(int bulletamount);
+
 private:
+
+	float circleSpeed = 0;
+	float circleAngle = 0;
+
+	double RPM;
+	double RPMTimer;
 };
