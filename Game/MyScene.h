@@ -78,7 +78,6 @@ private:
 	std::vector<Upgrade_Base*>upgradeVector;
 	std::vector<Bullet*>bulletVector;
 	std::vector<IEnemy*>enemyVector;
-	std::vector<Bullet*>enemyBulletVector;
 	std::vector<Explosion*>explosionVector;
 	
 	Grid* background;

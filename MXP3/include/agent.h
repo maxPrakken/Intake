@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity.h"
+#include "renderer.h"
 
 class __declspec(dllexport) Agent : public Entity {
 public:

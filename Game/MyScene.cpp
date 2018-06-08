@@ -94,15 +94,6 @@ MyScene::~MyScene()
 	}
 	enemyVector.clear();
 
-	//clears enemyBulletVector
-	std::vector<Bullet*>::iterator those3 = enemyBulletVector.begin();
-	while (those3 != enemyBulletVector.end()) {
-		Bullet* u = (*those3);
-		those3 = enemyBulletVector.erase(those3);
-		this->removechild(u);
-	}
-	enemyBulletVector.clear();
-
 	if (background != NULL) {
 		delete background;
 		background = NULL;
@@ -373,26 +364,13 @@ void MyScene::deleteBullets() {
 	//delete player bullets
 	std::vector<Bullet*>::iterator it = bulletVector.begin();
 	while (it != bulletVector.end()) {
-		if ((*it)->pos.y < -50) {
+		if ((*it)->isOutOfCanvas()) {
 			Bullet* u = (*it);
 			it = bulletVector.erase(it);
 			this->removechild(u);
 		}
 		else {
 			it++;
-		}
-	}
-	
-	//delete enemy bullets
-	std::vector<Bullet*>::iterator Eit = enemyBulletVector.begin();
-	while (Eit != enemyBulletVector.end()) {
-		if ((*Eit)->pos.y > Renderer::getInstance()->getResolution().y + 10) {
-			Bullet* u = (*Eit);
-			Eit = enemyBulletVector.erase(Eit);
-			this->removechild(u);
-		}
-		else {
-			Eit++;
 		}
 	}
 }
@@ -509,14 +487,14 @@ void MyScene::enemyShoot() {
 				EnemyBoss* boss = dynamic_cast<EnemyBoss*> (*it);
 
 				if (boss != NULL) {
-					std::vector<Vector2> dirV = boss->getBulletDirection(8);
+					std::vector<Vector2> dirV = boss->getBulletDirection(12);
 					std::vector<Vector2>::iterator at = dirV.begin();
 					while (at != dirV.end()) {
 
 						Bullet* bullet = new Bullet("assets/bullet_concept2.png", (boss));
-						bullet->size = Vector2(25, 25);
-						bullet->setSpeed(25);
 						bullet->pos = boss->pos + Vector2(boss->size.x / 2, boss->size.y / 2);
+						bullet->size = Vector2(25, 25);
+						bullet->setSpeed(70);
 						bullet->direction = (*at);
 
 						bulletVector.push_back(bullet);
@@ -551,7 +529,7 @@ void MyScene::deadEnemyCleanup()
 {
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
-		if ((*it)->getIsDead()) {
+		if ((*it)->getIsDead() || (*it)->health <= 0) {
 			score += (*it)->pointsWorth;
 
 			Explosion* expl = new Explosion((*it)->pos - (*it)->size, (*it)->size * 3.0f);

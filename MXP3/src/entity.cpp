@@ -132,3 +132,12 @@ bool Entity::isColliding(Vector2 other)
 	return false;
 }
 
+bool Entity::isOutOfCanvas()
+{
+	Vector2 canvas = Renderer::getInstance()->getResolution();
+
+	if (pos.y + size.y < 0 || pos.x + size.x < 0 || pos.y > canvas.y || pos.x > canvas.x) {
+		return true;
+	}
+	return false;
+}

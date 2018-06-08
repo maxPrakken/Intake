@@ -5,6 +5,7 @@
 #include "animator.h"
 #include <vector>
 #include "audio.h"
+#include "renderer.h"
 
 class Renderer;
 
@@ -50,6 +51,9 @@ public:
 
 	//checks if the entity is colliding with a vector2 point
 	bool isColliding(Vector2 other);
+
+	//checks if entity is outside of the canvas
+	bool isOutOfCanvas();
 
 	//gets parent of the entity
 	Entity getParent() { return (*_parent); }
