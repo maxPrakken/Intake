@@ -46,9 +46,7 @@ std::vector<Vector2> EnemyBoss::getBulletDirection(int bulletamount)
 	std::vector<Vector2> vVector;  
 
 	for (int i = 0; i < bulletamount; i++) {
-		//float posX = (cos(SAngle * i) * r) + this->pos.x;
 		float posX = this->pos.x + cos(i * SAngle * r);
-		//float posY = (sin(SAngle * i) * r) + this->pos.y;
 		float posY = this->pos.y + sin(i * SAngle * r);
 
 		Vector2 target = Vector2(posX, posY);

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <entity.h>
+#include <typeinfo>
+
 #include "IEnemy.h"
 #include "Player.h"
 

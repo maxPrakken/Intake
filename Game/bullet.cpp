@@ -61,12 +61,20 @@ void Bullet::hit()
 		while (at != (*it).end()) {
 			Agent* agent = dynamic_cast<Agent*> (*at);
 
-			if (agent != NULL) {
-				if (agent->isColliding(this->pos) && agent != origin) {
-					agent->health -= damage;
-					damage = 0;
-					isDead = true;
-					return;
+			IEnemy* IE = dynamic_cast<IEnemy*> (*at);
+			IEnemy* IEO = dynamic_cast<IEnemy*> (origin);
+
+			if (IE == NULL || IEO == NULL) {
+				if (agent != NULL) {
+					if (agent->isColliding(this->pos) && agent != origin) {
+						agent->health -= damage;
+						damage = 0;
+						isDead = true;
+						return;
+					}
+					else {
+						at++;
+					}
 				}
 				else {
 					at++;
