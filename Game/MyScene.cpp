@@ -112,8 +112,6 @@ void MyScene::update(double deltatime)
 	if (Input::getInstance()->getKeyDown(SDLK_y)) {
 		addUpgrade(Upgrades::HEALTH, Vector2(300, 500));
 	}
-	
-	std::cout << level << std::endl;
 
 	if (!paused) {
 		Scene::update(deltatime);
@@ -176,6 +174,15 @@ void MyScene::resetWorld()
 		this->removechild(u);
 	}
 	upgradeVector.clear();
+
+	//clears bulletvector
+	std::vector<Bullet*>::iterator it2 = bulletVector.begin();
+	while (it2 != bulletVector.end()) {
+		Bullet* u = (*it2);
+		it2 = bulletVector.erase(it2);
+		this->removechild(u);
+	}
+	bulletVector.clear();
 
 	if (player->health <= 0) {
 		player = new Player();
@@ -325,11 +332,18 @@ void MyScene::addRandomUpgrades(double deltatime)
 {
 	upgradeTimer += deltatime;
 	if (upgradeTimer > randomUpgradeTime) {
-		int randomType = rand() % 3;
-		Vector2 randomPos = Vector2(rand() % 550, rand() % 550 + 200);
+		int randomType = rand() % 4;
+		std::cout << randomType << std::endl;
+		if (randomType == 3) {
+			randomType = 0;
+			std::cout << randomType << std::endl;
+
+		}
+
+		Vector2 randomPos = Vector2(rand() % 550, rand() % 260 + 400);
 		addUpgrade(Upgrades(randomType), randomPos);
 
-		randomUpgradeTime = rand() % 20 + 10;
+		randomUpgradeTime = rand() % 5 + 4;
 	
 		upgradeTimer = 0;
 	}
@@ -528,6 +542,19 @@ void MyScene::deadEnemyCleanup()
 	std::vector<IEnemy*>::iterator it = enemyVector.begin();
 	while (it != enemyVector.end()) {
 		if ((*it)->getIsDead() || (*it)->health <= 0) {
+
+			//cleans the bullets up from the boss after he dies.
+			EnemyBoss* boss = dynamic_cast<EnemyBoss*>(*it);
+			if (boss != NULL) {
+				std::vector<Bullet*>::iterator those = bulletVector.begin();
+				while (those != bulletVector.end()) {
+					Bullet* u = (*those);
+					those = bulletVector.erase(those);
+					this->removechild(u);
+				}
+				bulletVector.clear();
+			}
+
 			score += (*it)->pointsWorth;
 
 			Explosion* expl = new Explosion((*it)->pos - (*it)->size, (*it)->size * 3.0f);

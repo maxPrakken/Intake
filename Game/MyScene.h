@@ -76,7 +76,7 @@ private:
 	int score = 0;
 
 	float upgradeTimer = 0;
-	float randomUpgradeTime = rand() % 20 + 10;
+	float randomUpgradeTime = rand() % 5 + 4;
 
 	std::vector<Entity*>pauseMenuVector;
 	std::vector<Upgrade_Base*>upgradeVector;
