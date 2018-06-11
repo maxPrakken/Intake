@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL2\SDL.h>
 #include <SDL2\SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <map>
 #include "entity.h"
 #include "texture.h"
@@ -23,6 +24,8 @@ public:
 	void renderEntity(Entity * entity);
 	//renders scene in window
 	void renderScene(Entity* entity);
+	void RenderText(std::string str, SDL_Color c, SDL_Rect * r);
+	void ShowText();
 	//renders texture in window
 	void renderTexture(Texture* texture, SDL_Rect* rect);
 	void renderTexture(Texture * texture, SDL_Rect * rect, SDL_RendererFlip flip, Entity* entity);
@@ -65,6 +68,11 @@ private:
 	//Map holding all the images
 	std::map<std::string, Texture*> imageBlob;
 
+	//Font
+	TTF_Font* font;
+
+
+	std::map<SDL_Texture*, SDL_Rect*> textMap;
 	//sdl window and renderer instances
 	SDL_Window* window;
 	SDL_Renderer* renderer;

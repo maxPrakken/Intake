@@ -75,6 +75,9 @@ private:
 	int level = 1;
 	int score = 0;
 
+	SDL_Rect Message_rect;
+	SDL_Color c = { 255,0,0 };
+
 	float upgradeTimer = 0;
 	float randomUpgradeTime = rand() % 5 + 4;
 

@@ -38,6 +38,11 @@ MyScene::MyScene(int ZLayer_amount)
 
 	wave = 0;
 	score = 0;
+
+	Message_rect.x = 0;
+	Message_rect.y = 0;
+	Message_rect.w = 100;
+	Message_rect.h = 100;
 }
 
 MyScene::~MyScene()
@@ -100,18 +105,7 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	if (Input::getInstance()->getKeyDown(SDLK_e)) {
-		levelBuilder();
-	}
-	if (Input::getInstance()->getKeyDown(SDLK_r)) {
-		addUpgrade(Upgrades::RPM, Vector2(300, 500));
-	}
-	if (Input::getInstance()->getKeyDown(SDLK_t)) {
-		addUpgrade(Upgrades::DOUBLESHOT, Vector2(300, 500));
-	}
-	if (Input::getInstance()->getKeyDown(SDLK_y)) {
-		addUpgrade(Upgrades::HEALTH, Vector2(300, 500));
-	}
+	Renderer::getInstance()->RenderText("test", c, &Message_rect);
 
 	if (!paused) {
 		Scene::update(deltatime);
@@ -190,6 +184,8 @@ void MyScene::resetWorld()
 		player->health = player->getMaxHealth();
 	}
 	
+	player->pos = Vector2(225, 500);
+
 	paused = false;
 	pausedMenuUp = true;
 
