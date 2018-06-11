@@ -27,6 +27,7 @@ void IEnemy::setGoCircles(bool yesno, int radiusSize, float speed)
 	startPos = this->pos;
 }
 
+
 void IEnemy::goTo(double deltatime)
 {
 	direction = point - this->pos;

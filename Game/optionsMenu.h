@@ -25,12 +25,14 @@ public:
 	virtual void update(double deltatime);
 
 	void buttonClickCheck();
-	Slider* getAudioSlider() { return audioSlider; }
+	Slider* getAudioSlider() { return generalAudioSlider; }
 
 private:
 	Button* backButton;
 	Button* muteButton;
-	Slider* audioSlider;
+	Slider* generalAudioSlider;
+	Slider* playerAudioSlider;
+	Slider* enemyAudioSlider;
 
 	bool muteClicked = false;
 

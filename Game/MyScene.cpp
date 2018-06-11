@@ -516,6 +516,7 @@ void MyScene::enemyShoot() {
 					}
 				}
 			}
+			Audio::getInstance()->playAudio("pewSound.wav", 0, 2);
 		}
 		it++;
 	}

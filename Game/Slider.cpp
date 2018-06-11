@@ -16,8 +16,10 @@ Slider::Slider()
 	this->addchild(selectButton);
 }
 
-Slider::Slider(Vector2 position) {
+Slider::Slider(Vector2 position, int channel) {
 	this->pos = Vector2(0, 0);
+
+	this->channel = channel;
 
 	sliderBody = new Entity();
 	sliderBody->texturePath = "assets/slider/slider_body.png";
@@ -74,5 +76,5 @@ void Slider::calcPrecentageFilled()
 
 void Slider::setAudio()
 {
-	Audio::getInstance()->volumeAudio(128 * (precentageFilled / 100));
+	Audio::getInstance()->volumeAudio(channel, 128 * (precentageFilled / 100));
 }

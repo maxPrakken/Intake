@@ -16,8 +16,14 @@ optionsMenu::optionsMenu()
 	buttonVector.push_back(muteButton);
 	addchild(muteButton);
 
-	audioSlider = new Slider(Vector2(125, 200));
-	addchild(audioSlider);
+	generalAudioSlider = new Slider(Vector2(125, 200), -1);
+	addchild(generalAudioSlider);
+
+	playerAudioSlider = new Slider(Vector2(125, 350), 1);
+	addchild(playerAudioSlider);
+
+	enemyAudioSlider = new Slider(Vector2(125, 500), 2);
+	addchild(enemyAudioSlider);
 }
 
 optionsMenu::~optionsMenu()
@@ -30,14 +36,19 @@ optionsMenu::~optionsMenu()
 	}
 	buttonVector.clear();
 
-	delete audioSlider;
-	audioSlider = NULL;
+	delete generalAudioSlider;
+	generalAudioSlider = NULL;
+
+	delete playerAudioSlider;
+	playerAudioSlider = NULL;
+
+	delete enemyAudioSlider;
+	enemyAudioSlider = NULL;
 }
 
 void optionsMenu::update(double deltatime)
 {
 	Scene::update(deltatime);
-	std::cout << Audio::getInstance()->volume << " " << audioSlider->audioMuted << std::endl;
 
 	buttonClickCheck();
 }
@@ -50,12 +61,17 @@ void optionsMenu::buttonClickCheck()
 
 	if (muteButton->isClicked()) {
 		if (muteClicked) {
-			audioSlider->audioMuted = false;
+			generalAudioSlider->audioMuted = false;
+			playerAudioSlider->audioMuted = false;
+			enemyAudioSlider->audioMuted = false;
+
 			Audio::getInstance()->volumeAudio(128);
 			muteClicked = false;
 			return;
 		}
-		audioSlider->audioMuted = true;
+		generalAudioSlider->audioMuted = true;
+		playerAudioSlider->audioMuted = true;
+		enemyAudioSlider->audioMuted = true;
 		Audio::getInstance()->volumeAudio(0);
 		muteClicked = true;
 	}
