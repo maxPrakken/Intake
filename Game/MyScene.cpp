@@ -178,6 +178,7 @@ void MyScene::resetWorld()
 	}
 	bulletVector.clear();
 
+	//sets player
 	if (player->health <= 0) {
 		player = new Player();
 		this->addchild(player);
