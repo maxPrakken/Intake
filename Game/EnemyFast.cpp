@@ -61,6 +61,6 @@ void EnemyFast::shoot()
 	if (shootTimer > randomMaxTimer) {
 		canShoot = true;
 		shootTimer = 0;
-		randomMaxTimer = rand() % 3;
+		randomMaxTimer = rand() % 3 + 1;
 	}
 }
