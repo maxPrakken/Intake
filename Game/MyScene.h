@@ -71,9 +71,9 @@ private:
 	bool pausedMenuBuild = false;
 	bool paused;
 
-	int wave;
-	int level = 3;
-	int score;
+	int wave = 1;
+	int level = 1;
+	int score = 0;
 
 	float upgradeTimer = 0;
 	float randomUpgradeTime = rand() % 20 + 10;

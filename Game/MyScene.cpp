@@ -10,18 +10,11 @@ MyScene::MyScene() : Scene()
 	addchild(player);
 
 	healthHearts = new HealthHearts(player);
-	//healthHearts->setZLayer(1);
+	healthHearts->setZLayer(1);
 	addchild(healthHearts);
 
 	paused = false;
 	pausedMenuUp = false;
-
-	wave = 0;
-	score = 0;
-
-	boss = new EnemyBoss();
-	addchild(boss);
-	enemyVector.push_back(boss);
 }
 
 MyScene::MyScene(int ZLayer_amount)
@@ -120,6 +113,8 @@ void MyScene::update(double deltatime)
 		addUpgrade(Upgrades::HEALTH, Vector2(300, 500));
 	}
 	
+	std::cout << level << std::endl;
+
 	if (!paused) {
 		Scene::update(deltatime);
 
@@ -160,6 +155,7 @@ void MyScene::update(double deltatime)
 	deadEnemyCleanup();
 	playerDie();
 	deleteExplosions();
+	levelManager();
 }
 
 void MyScene::resetWorld()
@@ -190,7 +186,9 @@ void MyScene::resetWorld()
 	paused = false;
 	pausedMenuUp = true;
 
-	wave = 0;
+	levelBuilder();
+
+	wave = 1;
 	score = 0;
 }
 
@@ -603,5 +601,18 @@ void MyScene::levelBuilder()
 
 void MyScene::levelManager()
 {
-
+	if (enemyVector.empty()) {
+		level++;
+		levelBuilder();
+		std::vector<IEnemy*>::iterator it = enemyVector.begin();
+		while (it != enemyVector.end()) {
+			(*it)->health++;
+			it++;
+		}
+	}
+	if (level > 3) {
+		level = 1;
+		wave++;
+		levelBuilder();
+	}
 }
