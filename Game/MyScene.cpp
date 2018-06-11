@@ -108,7 +108,7 @@ MyScene::~MyScene()
 void MyScene::update(double deltatime)
 {
 	if (Input::getInstance()->getKeyDown(SDLK_e)) {
-		addStartEnemies();
+		levelBuilder();
 	}
 	if (Input::getInstance()->getKeyDown(SDLK_r)) {
 		addUpgrade(Upgrades::RPM, Vector2(300, 500));
@@ -487,7 +487,7 @@ void MyScene::enemyShoot() {
 				EnemyBoss* boss = dynamic_cast<EnemyBoss*> (*it);
 
 				if (boss != NULL) {
-					std::vector<Vector2> dirV = boss->getBulletDirection(12);
+					std::vector<Vector2> dirV = boss->getBulletDirection(18);
 					std::vector<Vector2>::iterator at = dirV.begin();
 					while (at != dirV.end()) {
 
@@ -566,4 +566,42 @@ void MyScene::addZLayers(int zlayerAmount)
 		std::vector<Entity*>zlayer;
 		ZLayers.push_back(zlayer);
 	}
+}
+
+void MyScene::levelBuilder()
+{
+	switch (level)
+	{
+	case 1:
+		for (int i = 0; i < 6; i++) {
+			addEnemy(IEnemy::BASIC, Vector2(100 * (i + 1), 50));
+		}
+		for (int i = 0; i < 5; i++) {
+			addEnemy(IEnemy::BASIC, Vector2(100 * (i + 1) + 50, 150));
+		}
+		break;
+		
+	case 2:
+		for (int i = 0; i < 5; i++) {
+			addEnemy(IEnemy::BASIC, Vector2(100 * (i + 1) + 50, 50));
+		}
+		for (int i = 0; i < 4; i++) {
+			addEnemy(IEnemy::BASIC, Vector2(100 * (i + 1) + 100, 150));
+		}
+		addEnemy(IEnemy::FAST, Vector2(660, 300));
+		addEnemy(IEnemy::FAST, Vector2(750, 200));
+		break;
+
+	case 3:
+		addEnemy(IEnemy::BOSS, Vector2(0,0));
+		break;
+
+	default:
+		break;
+	}
+}
+
+void MyScene::levelManager()
+{
+
 }

@@ -64,11 +64,15 @@ private:
 	void playerDie();
 	void addZLayers(int zlayerAmount);
 
+	void levelBuilder();
+	void levelManager();
+
 	bool pausedMenuUp;
 	bool pausedMenuBuild = false;
 	bool paused;
 
 	int wave;
+	int level = 3;
 	int score;
 
 	float upgradeTimer = 0;

@@ -14,6 +14,7 @@ EnemyFast::EnemyFast(Vector2 position)
 	pos = position;
 	startPosition = pos;
 	type = IEnemy::FAST;
+	setGoCircles(true, 360, 0.02);
 
 	texturePath = "assets/enemy_2_Concept.png";	animator.rows = Vector2(4, 1);
 
