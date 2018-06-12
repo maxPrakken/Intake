@@ -430,6 +430,8 @@ void MyScene::updatePauseMenu()
 			if (button->getType() == Button::buttonType::PLAY) {
 				paused = false;
 				pausedMenuUp = true;
+
+				resetWorld();
 			}
 
 			if (button->getType() == Button::buttonType::OPTIONS) {
@@ -463,6 +465,7 @@ void MyScene::enemyShoot() {
 				}
 				else if ((*it)->type == IEnemy::BASIC) {
 					bullet = new Bullet();
+					bullet->setSpeed(20);
 					bullet->setOrigin((*it));
 				}
 

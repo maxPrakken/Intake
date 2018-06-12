@@ -29,8 +29,6 @@ void Player::update(double deltatime)
 	Entity::update(deltatime); 
 
 	RPMTimer += deltatime; 
-
-	health = 5;
 	
 	movement(deltatime);
 
