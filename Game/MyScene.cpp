@@ -38,11 +38,6 @@ MyScene::MyScene(int ZLayer_amount)
 
 	wave = 0;
 	score = 0;
-
-	Message_rect.x = 0;
-	Message_rect.y = 0;
-	Message_rect.w = 100;
-	Message_rect.h = 100;
 }
 
 MyScene::~MyScene()
@@ -105,8 +100,6 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
-	Renderer::getInstance()->RenderText("test", c, &Message_rect);
-
 	if (!paused) {
 		Scene::update(deltatime);
 
@@ -148,6 +141,7 @@ void MyScene::update(double deltatime)
 	playerDie();
 	deleteExplosions();
 	levelManager();
+	displayHighScore();
 }
 
 void MyScene::resetWorld()
@@ -315,14 +309,6 @@ void MyScene::addEnemy(IEnemy::enemyTypes type, Vector2 position)
 			break;
 		}
 	}
-}
-
-void MyScene::addStartEnemies()
-{
-	addEnemy(IEnemy::BASIC, Vector2(200, 150));
-	addEnemy(IEnemy::BOSS, Vector2(0, 0));
-	//addEnemy(IEnemy::BASIC, Vector2(360, 50));
-	//addEnemy(IEnemy::FAST, Vector2(440, 50));
 }
 
 void MyScene::addRandomUpgrades(double deltatime)
@@ -589,6 +575,16 @@ void MyScene::addZLayers(int zlayerAmount)
 		std::vector<Entity*>zlayer;
 		ZLayers.push_back(zlayer);
 	}
+}
+
+void MyScene::displayHighScore()
+{
+	SDL_Color c = { 255,0,0 };
+
+	Message_rect.w = (20 * (MathM::getInstance()->getDigits(score) + 1));
+	Message_rect.x = (Renderer::getInstance()->getResolution().x - (20 * (MathM::getInstance()->getDigits(score) + 1)));
+
+	Renderer::getInstance()->RenderText(std::to_string(score), c, &Message_rect);
 }
 
 void MyScene::levelBuilder()

@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\mathM.cpp" />
     <ClCompile Include="src\animator.cpp" />
     <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\entity.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="include\audio.h" />
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\input.h" />
+    <ClInclude Include="include\mathM.h" />
     <ClInclude Include="include\renderer.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\sceneManager.h" />

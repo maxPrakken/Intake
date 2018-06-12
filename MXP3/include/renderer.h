@@ -64,13 +64,11 @@ private:
 	//calculate deltatime function.
 	void calculateDeltatime();
 
-
 	//Map holding all the images
 	std::map<std::string, Texture*> imageBlob;
 
 	//Font
 	TTF_Font* font;
-
 
 	std::map<SDL_Texture*, SDL_Rect*> textMap;
 	//sdl window and renderer instances

@@ -3,6 +3,7 @@
 #include "../MXP3/include/scene.h"
 
 #include <sceneManager.h>
+#include <mathM.h>
 
 #include "Button.h"
 #include "Grid.h"
@@ -50,7 +51,6 @@ private:
 
 	void addUpgrade(Upgrades upgrade, Vector2 position);
 	void addEnemy(IEnemy::enemyTypes type, Vector2 position);
-	void addStartEnemies();
 	void addRandomUpgrades(double deltatime);
 	void grabUpgrade();
 	void deleteBullets();
@@ -63,6 +63,7 @@ private:
 	void deadEnemyCleanup();
 	void playerDie();
 	void addZLayers(int zlayerAmount);
+	void displayHighScore();
 
 	void levelBuilder();
 	void levelManager();
@@ -73,10 +74,7 @@ private:
 
 	int wave = 1;
 	int level = 1;
-	int score = 0;
-
-	SDL_Rect Message_rect;
-	SDL_Color c = { 255,0,0 };
+	int score = 0;	
 
 	float upgradeTimer = 0;
 	float randomUpgradeTime = rand() % 5 + 4;
@@ -90,6 +88,12 @@ private:
 	Grid* background;
 	Player* player;
 	
+	SDL_Rect Message_rect{
+		Message_rect.x = 450,
+		Message_rect.y = 0,
+		Message_rect.w = 100,
+		Message_rect.h = 100
+	};
 
 	Button* button;
 
