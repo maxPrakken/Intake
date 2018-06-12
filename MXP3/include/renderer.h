@@ -7,6 +7,7 @@
 #include <map>
 #include "entity.h"
 #include "texture.h"
+#include "../configs/config.h"
 
 // singleton renderer
 class __declspec(dllexport) Renderer

@@ -7,8 +7,8 @@ Renderer::Renderer()
 	LAST = 0;
 	deltatime = 0;
 
-	resX = 600;
-	resY = 720;
+	resX = RESOLUTION_X;
+	resY = RESOLUTION_Y;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
@@ -37,7 +37,7 @@ Renderer::Renderer()
 	}
 
 	//creates renderer and enables VSYNC
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, VSYNC);
 
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
@@ -49,7 +49,7 @@ Renderer::Renderer()
 	std::cout << "Renderer Created" << std::endl;
 
 	//open font
-	font = TTF_OpenFont("assets/SFPixelate.ttf", 24);
+	font = TTF_OpenFont(FONT, FONT_SIZE);
 
 }
 
