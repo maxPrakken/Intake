@@ -173,11 +173,18 @@ void MyScene::resetWorld()
 	bulletVector.clear();
 
 	//sets player
-	if (player->health <= 0) {
-		player = new Player();
-		this->addchild(player);
-		player->health = player->getMaxHealth();
-	}
+	removechild(player);
+	player = NULL;
+	player = new Player();
+	this->addchild(player);
+	player->health = player->getMaxHealth();
+
+	//resets the hearts
+	removechild(healthHearts);
+	healthHearts = NULL;
+	healthHearts = new HealthHearts(player);
+	healthHearts->setZLayer(2);
+	addchild(healthHearts);
 	
 	player->pos = Vector2(225, 500);
 
@@ -582,7 +589,7 @@ void MyScene::addZLayers(int zlayerAmount)
 
 void MyScene::displayHighScore()
 {
-	SDL_Color c = { 255,0,0 };
+	SDL_Color c = { 255,255,255 };
 
 	Message_rect.w = (20 * (MathM::getInstance()->getDigits(score) + 1));
 	Message_rect.x = (Renderer::getInstance()->getResolution().x - (20 * (MathM::getInstance()->getDigits(score) + 1)));
