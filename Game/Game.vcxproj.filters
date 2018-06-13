@@ -110,5 +110,8 @@
     <ClInclude Include="EnemyBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HighScoreMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

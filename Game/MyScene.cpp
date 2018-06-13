@@ -191,6 +191,8 @@ void MyScene::resetWorld()
 	paused = false;
 	pausedMenuUp = true;
 
+	checkHighScoreOnce = false;
+
 	levelBuilder();
 
 	wave = 1;
@@ -568,6 +570,11 @@ void MyScene::deadEnemyCleanup()
 void MyScene::playerDie()
 {
 	if (player->health <= 0) {
+		if (!checkHighScoreOnce) {
+			checkHighScoreOnce = true;
+			checkHighScore();
+		}
+
 		removechild(player);
 		paused = true;
 
@@ -595,6 +602,71 @@ void MyScene::displayHighScore()
 	Message_rect.x = (Renderer::getInstance()->getResolution().x - (20 * (MathM::getInstance()->getDigits(score) + 1)));
 
 	Renderer::getInstance()->RenderText(std::to_string(score), c, &Message_rect);
+}
+
+void MyScene::saveHighScore(std::vector<int> strs)
+{
+	std::string line;
+	std::ifstream myfile;
+	myfile.open("save_files/highscores.txt", std::ios::app);
+
+	if (myfile.is_open()) {
+
+		strs.push_back(score);
+
+		if (myfile.peek() != std::ifstream::traits_type::eof()) { //checks if file is empty
+			while (std::getline(myfile, line)) {
+				int i = std::atoi(line.c_str());
+				strs.push_back(i);
+			}
+		}
+		
+		myfile.close();
+	}
+	else {
+		std::cout << "ERROR: Unable to open file" << std::endl;
+	}
+
+	if (strs.size() > 5) {
+		std::vector<int>::iterator minValue = std::min_element(strs.begin(), strs.end());
+		int u = (*minValue);
+		minValue = strs.erase(minValue);
+	}
+
+	std::ofstream file;
+	file.open("save_files/highscores.txt", std::ofstream::out | std::ofstream::trunc);
+	file.close();
+	file.open("save_files/highscores.txt", std::ios::app);
+
+	for (int i = 0; i < strs.size(); i++) {
+		file << std::to_string(strs[i]) + "\n";
+	}
+
+	file.close();
+	
+}
+
+void MyScene::checkHighScore()
+{
+	std::vector<int> strs;
+
+	std::string line;
+	std::ifstream myfile;
+	myfile.open("save_files/highscores.txt", std::ios::app);
+	if (myfile.is_open()) {
+		if (myfile.peek() != std::ifstream::traits_type::eof()) { //checks if file is empty
+				int i = std::atoi(line.c_str());
+				saveHighScore(strs);
+			
+		}
+		else {
+			saveHighScore(strs); // makes one even if its empty
+		}
+		myfile.close();
+	}
+	else {
+		saveHighScore(strs); //makes one if it doesnt exsist yet
+	}
 }
 
 void MyScene::levelBuilder()

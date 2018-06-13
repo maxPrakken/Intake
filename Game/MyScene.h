@@ -4,6 +4,9 @@
 
 #include <sceneManager.h>
 #include <mathM.h>
+#include <fstream>
+#include <algorithm>
+#include <iostream>
 
 #include "Button.h"
 #include "Grid.h"
@@ -65,6 +68,9 @@ private:
 	void addZLayers(int zlayerAmount);
 	void displayHighScore();
 
+	void saveHighScore(std::vector<int> strs);
+	void checkHighScore();
+
 	void levelBuilder();
 	void levelManager();
 
@@ -75,6 +81,8 @@ private:
 	int wave = 1;
 	int level = 1;
 	int score = 0;	
+
+	bool checkHighScoreOnce = false;
 
 	float upgradeTimer = 0;
 	float randomUpgradeTime = rand() % 5 + 4;
