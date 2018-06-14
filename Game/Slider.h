@@ -5,6 +5,7 @@
 #include <entity.h>
 #include <sceneManager.h>
 #include <renderer.h>
+#include <mathM.h>
 
 class Slider : public Entity {
 public:
@@ -23,9 +24,18 @@ private:
 	void moveSlider();
 	void calcPrecentageFilled();
 	void setAudio();
+	void showPrecentageFilled();
 
 	Button * selectButton;
 	Entity* sliderBody;
+
+	SDL_Color c = { 255, 255, 255 };
+	SDL_Rect rect{
+		rect.x = 0,
+		rect.y = 0,
+		rect.w = 50,
+		rect.h = 50
+	};
 
 	Vector2 range;
 

@@ -50,6 +50,7 @@ void Slider::update(double deltatime)
 	
 	moveSlider();
 	calcPrecentageFilled();
+	showPrecentageFilled();
 	if(!audioMuted)
 	setAudio();
 }
@@ -77,4 +78,12 @@ void Slider::calcPrecentageFilled()
 void Slider::setAudio()
 {
 	Audio::getInstance()->volumeAudio(channel, 128 * (precentageFilled / 100));
+}
+
+void Slider::showPrecentageFilled()
+{
+	rect.x = selectButton->pos.x;
+	rect.y = selectButton->pos.y;
+	int precentatage = floor(precentageFilled);
+	Renderer::getInstance()->RenderText(std::to_string(precentatage) + "%", c, &rect);
 }
