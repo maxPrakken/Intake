@@ -20,6 +20,8 @@ public:
 
 	bool audioMuted = false;
 
+	Vector2 getSliderBodyPosition() { return sliderBody->pos; }
+
 private:
 	void moveSlider();
 	void calcPrecentageFilled();

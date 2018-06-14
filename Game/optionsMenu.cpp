@@ -24,6 +24,8 @@ optionsMenu::optionsMenu()
 
 	enemyAudioSlider = new Slider(Vector2(125, 500), 2);
 	addchild(enemyAudioSlider);
+
+	calcTextPosition();
 }
 
 optionsMenu::~optionsMenu()
@@ -51,6 +53,7 @@ void optionsMenu::update(double deltatime)
 	Scene::update(deltatime);
 
 	buttonClickCheck();
+	displayText();
 }
 
 void optionsMenu::buttonClickCheck()
@@ -75,4 +78,26 @@ void optionsMenu::buttonClickCheck()
 		Audio::getInstance()->volumeAudio(0);
 		muteClicked = true;
 	}
+}
+
+void optionsMenu::displayText()
+{
+	Renderer::getInstance()->RenderText(generalText, c, &generalRect);
+	Renderer::getInstance()->RenderText(playerText, c, &playerRect);
+	Renderer::getInstance()->RenderText(enemyText, c, &enemyRect);
+}
+
+void optionsMenu::calcTextPosition()
+{
+	generalRect.w = (100 * (MathM::getInstance()->getDigits(generalText.length())));
+	generalRect.x = ((Renderer::getInstance()->getResolution().x / 2) - (generalRect.w / 2));
+	generalRect.y = generalAudioSlider->getSliderBodyPosition().y - 50;
+
+	playerRect.w = (100 * (MathM::getInstance()->getDigits(playerText.length())));
+	playerRect.x = ((Renderer::getInstance()->getResolution().x / 2) - (playerRect.w / 2));
+	playerRect.y = playerAudioSlider->getSliderBodyPosition().y - 50;
+
+	enemyRect.w = (100 * (MathM::getInstance()->getDigits(enemyText.length())));
+	enemyRect.x = ((Renderer::getInstance()->getResolution().x / 2) - (enemyRect.w / 2));
+	enemyRect.y = enemyAudioSlider->getSliderBodyPosition().y - 50;
 }
