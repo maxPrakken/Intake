@@ -9,6 +9,7 @@
 #include "bullet.h"
 #include "Button.h"
 #include "MyScene.h"
+#include "HighScoreMenu.h"
 
 #include <typeinfo>
 #include <iostream>

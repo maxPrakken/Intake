@@ -634,7 +634,7 @@ void MyScene::saveHighScore(std::vector<int> strs)
 	}
 
 	std::ofstream file;
-	file.open("save_files/highscores.txt", std::ofstream::out | std::ofstream::trunc);
+	file.open("save_files/highscores.txt", std::ofstream::out | std::ofstream::trunc); //empty the whole file
 	file.close();
 	file.open("save_files/highscores.txt", std::ios::app);
 

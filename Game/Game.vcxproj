@@ -164,6 +164,7 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="HealthHearts.cpp" />
+    <ClCompile Include="HighScoreMenu.cpp" />
     <ClCompile Include="IEnemy.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />

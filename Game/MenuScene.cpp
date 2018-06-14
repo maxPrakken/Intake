@@ -70,6 +70,15 @@ void MenuScene::buttonClickCheck()
 		SceneManager::getInstance()->sceneVector["OptionsScene"]->lastScene = "MenuScene";
 	}
 
+	if (highscoresButton->isClicked()) {
+		SceneManager::getInstance()->setCurrentScene("HighScoreScene");
+		SceneManager::getInstance()->sceneVector["HighScoreScene"]->lastScene = "MenuScene";
+		HighScoreMenu* scene = dynamic_cast<HighScoreMenu*> (SceneManager::getInstance()->sceneVector["HighScoreScene"]);
+		if (scene != NULL) {
+			scene->refresh();
+		}
+	}
+
 	if (quitButton->isClicked()) {
 		Input::getInstance()->setMustQuit(true);
 	}

@@ -5,6 +5,7 @@
 #include "MyScene.h"
 #include "MenuScene.h"
 #include "optionsMenu.h"
+#include "HighScoreMenu.h"
 
 #include "../MXP3/include/entity.h"
 #include <sceneManager.h>
@@ -23,6 +24,9 @@ int main(int argc, char *argv[])
 
 	//options menu scene initiation
 	SceneManager::getInstance()->addScene("OptionsScene", new optionsMenu());
+
+	//highscore menu scene initiation
+	SceneManager::getInstance()->addScene("HighScoreScene", new HighScoreMenu());
 
 	//game scene
 	SceneManager::getInstance()->addScene("MyScene", new MyScene(2));
