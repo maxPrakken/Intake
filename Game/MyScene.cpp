@@ -449,6 +449,10 @@ void MyScene::updatePauseMenu()
 			}
 
 			if (button->getType() == Button::buttonType::QUIT) {
+				if (!checkHighScoreOnce) {
+					checkHighScoreOnce = true;
+					checkHighScore();
+				}
 				SceneManager::getInstance()->setCurrentScene("MenuScene");
 			}
 			break;
