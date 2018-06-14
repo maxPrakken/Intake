@@ -440,6 +440,7 @@ void MyScene::updatePauseMenu()
 				paused = false;
 				pausedMenuUp = true;
 
+				if(player->health <= 0)
 				resetWorld();
 			}
 
