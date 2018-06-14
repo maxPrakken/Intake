@@ -64,15 +64,15 @@ void HighScoreMenu::manageScoresRect()
 	for(int i = 0; i < highscoreVector.size(); i++) {
 		rectVector[i].w = (50 * (MathM::getInstance()->getDigits(highscoreVector[i])));
 		rectVector[i].x = ((Renderer::getInstance()->getResolution().x / 2 ) - (rectVector[i].w / 2));
-		rectVector[i].y = (50 + (100 * i));
+		rectVector[i].y = (450 - (100 * i));
 	}
 }
 
 void HighScoreMenu::displayHighScores()
 {
-	Renderer::getInstance()->RenderText("1: " + std::to_string(highscoreVector[4]), c, &rectVector[0]);
-	Renderer::getInstance()->RenderText("2: " + std::to_string(highscoreVector[3]), c, &rectVector[1]);
+	Renderer::getInstance()->RenderText("1: " + std::to_string(highscoreVector[4]), c, &rectVector[4]);
+	Renderer::getInstance()->RenderText("2: " + std::to_string(highscoreVector[3]), c, &rectVector[3]);
 	Renderer::getInstance()->RenderText("3: " + std::to_string(highscoreVector[2]), c, &rectVector[2]);
-	Renderer::getInstance()->RenderText("4: " + std::to_string(highscoreVector[1]), c, &rectVector[3]);
-	Renderer::getInstance()->RenderText("5: " + std::to_string(highscoreVector[0]), c, &rectVector[4]);
+	Renderer::getInstance()->RenderText("4: " + std::to_string(highscoreVector[1]), c, &rectVector[1]);
+	Renderer::getInstance()->RenderText("5: " + std::to_string(highscoreVector[0]), c, &rectVector[0]);
 }
