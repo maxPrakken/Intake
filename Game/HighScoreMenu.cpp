@@ -13,10 +13,6 @@ HighScoreMenu::HighScoreMenu()
 	rectVector.push_back(score3);
 	rectVector.push_back(score2);
 	rectVector.push_back(score1);
-	
-	getHighScores();
-	orderHighScores();
-	manageScoresRect();
 }
 
 HighScoreMenu::~HighScoreMenu()
@@ -49,10 +45,8 @@ void HighScoreMenu::getHighScores()
 				highscoreVector.push_back(i);
 			}
 		}
-		else {
-			for (int i = 0; i < 5; i++) {
-				highscoreVector.push_back(0);
-			}
+		while (highscoreVector.size() != 5) {
+			highscoreVector.push_back(42);
 		}
 		myfile.close();
 	}
