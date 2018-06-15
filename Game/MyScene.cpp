@@ -712,11 +712,6 @@ void MyScene::levelManager()
 	if (enemyVector.empty()) {
 		level++;
 		levelBuilder();
-		std::vector<IEnemy*>::iterator it = enemyVector.begin();
-		while (it != enemyVector.end()) {
-			(*it)->health += 1 * wave;
-			it++;
-		}
 	}
 	if (level > 3) {
 		level = 1;
