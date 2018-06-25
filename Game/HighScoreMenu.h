@@ -66,6 +66,8 @@ private:
 		score1.h = 100
 	};
 
+	Grid* background;
+
 	void getHighScores();
 	void orderHighScores();
 	void manageScoresRect();

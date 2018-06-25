@@ -38,6 +38,10 @@ MenuScene::MenuScene(int ZLayer_amount)
 {
 	addZLayers(ZLayer_amount);
 
+	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v7.png", Vector2(100, 100), true, Vector2(10, 1));
+	background->pos = Vector2(-100, 0);
+	addchild(background);
+
 	playButton = new Button();
 	playButton->pos = Vector2(200, 50);
 	playButton->size = Vector2(200, 50);

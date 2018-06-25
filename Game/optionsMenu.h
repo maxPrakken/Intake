@@ -60,6 +60,8 @@ private:
 	std::string playerText = "Player audio slider";
 	std::string enemyText = "Enemy audio slider";
 
+	Grid* background;
+
 	bool muteClicked = false;
 
 	std::vector<Button*>buttonVector;

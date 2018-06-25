@@ -40,6 +40,7 @@ private:
 	Button* highscoresButton;
 	Button* quitButton;
 
+	Grid* background;
 	Player* player;
 
 	std::vector<Bullet*>bulletVector;

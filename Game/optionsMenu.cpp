@@ -2,6 +2,10 @@
 
 optionsMenu::optionsMenu()
 {
+	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v7.png", Vector2(100, 100), true, Vector2(10, 1));
+	background->pos = Vector2(-100, 0);
+	addchild(background);
+
 	backButton = new Button();
 	backButton->pos = Vector2(200, 50);
 	backButton->size = Vector2(200, 50);
