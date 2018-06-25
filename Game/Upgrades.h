@@ -70,12 +70,16 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//use function
 	virtual void use(void* pointer);
 
 private:
+	//timer variables
 	bool timerStart;
 	double timer = 0;
 	double timeToWork = 5;
+	//==============
 
+	//player instance
 	Player* player;
 };

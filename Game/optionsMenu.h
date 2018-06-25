@@ -24,20 +24,28 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//checks if buttons are being pressed
 	void buttonClickCheck();
+	//gets the private audio slider
 	Slider* getAudioSlider() { return generalAudioSlider; }
 
 private:
+	//displays text
 	void displayText();
+	//makes sure texts stays in right place
 	void calcTextPosition();
 
+	//HUD buttons
 	Button* backButton;
 	Button* muteButton;
 	Slider* generalAudioSlider;
 	Slider* playerAudioSlider;
 	Slider* enemyAudioSlider;
+	//=================
 
+	//default letter colour
 	SDL_Color c = { 255, 255, 255 };
+	//text rects
 	SDL_Rect generalRect{
 		generalRect.x = 0,
 		generalRect.y = 0,
@@ -56,13 +64,19 @@ private:
 		enemyRect.w = 0,
 		enemyRect.h = 50
 	};
+	//==================
+	//default texts for sliders
 	std::string generalText = "General audio slider";
 	std::string playerText = "Player audio slider";
 	std::string enemyText = "Enemy audio slider";
+	//==================
 
+	//background 
 	Grid* background;
 
+	//checks if mute button has been clicked
 	bool muteClicked = false;
 
+	//holds all the buttons in a vector.
 	std::vector<Button*>buttonVector;
 };

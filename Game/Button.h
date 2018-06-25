@@ -28,9 +28,12 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//boolean isclicked that checks if the button is clicked
 	bool isClicked();
+	//boolean ishold that checks if the button is being held.
 	bool isHold();
 
+	//gets the enum type of the button
 	int getType() { return type; }
 
 private:
@@ -40,5 +43,6 @@ private:
 	//function in MyScene.cpp for more information
 	int type = -1;
 
+	//boolean for isHold() function
 	bool isHolding = false;
 };

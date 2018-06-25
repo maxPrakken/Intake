@@ -28,21 +28,30 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//checks if button is being checked
 	void buttonClickCheck();
 
+	//player fires a bullet
 	void playerShoot();
 
 private:
+	//adds zlayers to scene
 	void addZLayers(int zlayerAmount);
 
+	//HUD buttons
 	Button* playButton;
 	Button* optionsButton;
 	Button* highscoresButton;
 	Button* quitButton;
+	//===============
 
+	//background
 	Grid* background;
+	//player instance
 	Player* player;
 
+	//bullet vector
 	std::vector<Bullet*>bulletVector;
+	//button vector
 	std::vector<Button*>buttonVector;
 };
