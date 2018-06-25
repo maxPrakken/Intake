@@ -16,7 +16,7 @@ optionsMenu::optionsMenu()
 	muteButton = new Button();
 	muteButton->pos = Vector2(500, 500);
 	muteButton->size = Vector2(100, 100);
-	muteButton->texturePath = "assets/buttons/muteButton.png";
+	muteButton->texturePath = "assets/buttons/Sound.png";
 	buttonVector.push_back(muteButton);
 	addchild(muteButton);
 
@@ -74,6 +74,7 @@ void optionsMenu::buttonClickCheck()
 
 			Audio::getInstance()->volumeAudio(128);
 			muteClicked = false;
+			muteButton->texturePath = "assets/buttons/Sound.png";
 			return;
 		}
 		generalAudioSlider->audioMuted = true;
@@ -81,6 +82,7 @@ void optionsMenu::buttonClickCheck()
 		enemyAudioSlider->audioMuted = true;
 		Audio::getInstance()->volumeAudio(0);
 		muteClicked = true;
+		muteButton->texturePath = "assets/buttons/Mute.png";
 	}
 }
 
