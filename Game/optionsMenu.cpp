@@ -23,10 +23,10 @@ optionsMenu::optionsMenu()
 	generalAudioSlider = new Slider(Vector2(125, 200), -1);
 	addchild(generalAudioSlider);
 
-	playerAudioSlider = new Slider(Vector2(125, 350), 1);
+	playerAudioSlider = new Slider(Vector2(125, 350), 1, generalAudioSlider);
 	addchild(playerAudioSlider);
 
-	enemyAudioSlider = new Slider(Vector2(125, 500), 2);
+	enemyAudioSlider = new Slider(Vector2(125, 500), 2, generalAudioSlider);
 	addchild(enemyAudioSlider);
 
 	calcTextPosition();

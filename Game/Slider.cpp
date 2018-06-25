@@ -35,6 +35,28 @@ Slider::Slider(Vector2 position, int channel) {
 	this->addchild(selectButton);
 }
 
+Slider::Slider(Vector2 position, int channel, Slider * general)
+{
+	generalSlider = general;
+
+	this->pos = Vector2(0, 0);
+
+	this->channel = channel;
+
+	sliderBody = new Entity();
+	sliderBody->texturePath = "assets/slider/slider_body.png";
+	sliderBody->size = Vector2(350, 50);
+	sliderBody->pos = position;
+
+	selectButton = new Button();
+	selectButton->texturePath = "assets/slider/slider_Button.png";
+	selectButton->size = Vector2(50, 50);
+	selectButton->pos = position + Vector2(sliderBody->size.x / 2 - selectButton->size.x / 2, 0);
+
+	this->addchild(sliderBody);
+	this->addchild(selectButton);
+}
+
 Slider::~Slider()
 {
 	delete sliderBody;
@@ -77,7 +99,12 @@ void Slider::calcPrecentageFilled()
 
 void Slider::setAudio()
 {
-	Audio::getInstance()->volumeAudio(channel, 128 * (precentageFilled / 100));
+	if (generalSlider != NULL) {
+		Audio::getInstance()->volumeAudio(channel, 128 * ((precentageFilled / 100)) * (generalSlider->getProcentage() / 100));
+	}
+	else {
+		Audio::getInstance()->volumeAudio(channel, 128 * (precentageFilled / 100));
+	}
 }
 
 void Slider::showPrecentageFilled()
