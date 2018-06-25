@@ -193,10 +193,11 @@ void MyScene::resetWorld()
 
 	checkHighScoreOnce = false;
 
-	levelBuilder();
-
 	wave = 1;
+	level = 1;
 	score = 0;
+
+	levelBuilder();
 }
 
 void MyScene::playerShoot()
