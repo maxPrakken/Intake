@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	Audio::getInstance();
 
 	//the first scene that gets added is the startup scene.
-	SceneManager::getInstance()->addScene("MenuScene", new MenuScene());
+	SceneManager::getInstance()->addScene("MenuScene", new MenuScene(2));
 
 	//options menu scene initiation
 	SceneManager::getInstance()->addScene("OptionsScene", new optionsMenu());

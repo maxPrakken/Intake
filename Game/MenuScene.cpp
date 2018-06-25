@@ -34,6 +34,46 @@ MenuScene::MenuScene()
 	addchild(player);
 }
 
+MenuScene::MenuScene(int ZLayer_amount)
+{
+	addZLayers(ZLayer_amount);
+
+	playButton = new Button();
+	playButton->pos = Vector2(200, 50);
+	playButton->size = Vector2(200, 50);
+	playButton->texturePath = "assets/buttons/playButton.png";
+	playButton->setZLayer(2);
+	buttonVector.push_back(playButton);
+	addchild(playButton);
+
+	optionsButton = new Button();
+	optionsButton->pos = Vector2(200, 150);
+	optionsButton->size = Vector2(200, 50);
+	optionsButton->texturePath = "assets/buttons/optionsButton.png";
+	optionsButton->setZLayer(2);
+	buttonVector.push_back(optionsButton);
+	addchild(optionsButton);
+
+	highscoresButton = new Button();
+	highscoresButton->pos = Vector2(200, 250);
+	highscoresButton->size = Vector2(200, 50);
+	highscoresButton->texturePath = "assets/buttons/highscoresButton.png";
+	highscoresButton->setZLayer(2);
+	buttonVector.push_back(highscoresButton);
+	addchild(highscoresButton);
+
+	quitButton = new Button();
+	quitButton->pos = Vector2(200, 350);
+	quitButton->size = Vector2(200, 50);
+	quitButton->texturePath = "assets/buttons/quitButton.png";
+	quitButton->setZLayer(2);
+	buttonVector.push_back(quitButton);
+	addchild(quitButton);
+
+	player = new Player();
+	addchild(player);
+}
+
 MenuScene::~MenuScene()
 {
 	for (unsigned int i = 0; i < buttonVector.size(); i++) {
@@ -87,19 +127,19 @@ void MenuScene::buttonClickCheck()
 void MenuScene::playerShoot()
 {
 	Bullet* bullet = new Bullet();
+	bullet->setOrigin(player);
 	bullet->pos = player->pos;
 	bullet->pos.y = player->pos.y - player->size.y / 2 + 30;
 
 	Bullet* bullet2 = new Bullet();
+	bullet2->setOrigin(player);
 	bullet2->pos = player->pos;
-	bullet2->pos.y = player->pos.y - player->size.y / 2 + 30;
+	bullet2->pos.y = player->pos.y - player->size.y / 2 + 40;
 	bullet2->pos.x = player->pos.x + player->size.x - 12;
 
 	bullet->direction = Vector2(0, player->getBulletSpeed());
-	bullet->rot = 90;
 
-	bullet2->direction = Vector2(0, -10);
-	bullet2->rot = 90;
+	bullet2->direction = Vector2(0, player->getBulletSpeed());
 
 	bulletVector.push_back(bullet);
 	bulletVector.push_back(bullet2);
@@ -109,20 +149,20 @@ void MenuScene::playerShoot()
 
 	if (player->doubleShot) {
 		Bullet* bullet3 = new Bullet();
+		bullet3->setOrigin(player);
 		bullet3->pos = player->pos;
 		bullet3->pos.x = player->pos.x + 10;
-		bullet3->pos.y = player->pos.y - player->size.y / 2 + 30;
+		bullet3->pos.y = player->pos.y - player->size.y / 2 + 31;
 
 		Bullet* bullet4 = new Bullet();
+		bullet4->setOrigin(player);
 		bullet4->pos = player->pos;
-		bullet4->pos.y = player->pos.y - player->size.y / 2 + 30;
+		bullet4->pos.y = player->pos.y - player->size.y / 2 + 34;
 		bullet4->pos.x = player->pos.x + player->size.x - 22;
 
 		bullet3->direction = Vector2(0, player->getBulletSpeed());
-		bullet3->rot = 90;
 
-		bullet4->direction = Vector2(0, -10);
-		bullet4->rot = 90;
+		bullet4->direction = Vector2(0, player->getBulletSpeed());
 
 		bulletVector.push_back(bullet3);
 		bulletVector.push_back(bullet4);
@@ -132,4 +172,14 @@ void MenuScene::playerShoot()
 	}
 
 	player->hasShot = false;
+}
+
+void MenuScene::addZLayers(int zlayerAmount)
+{
+	setZLayer(zlayerAmount);
+
+	for (int i = 0; i <= getZlayer() - 1; i++) {
+		std::vector<Entity*>zlayer;
+		ZLayers.push_back(zlayer);
+	}
 }

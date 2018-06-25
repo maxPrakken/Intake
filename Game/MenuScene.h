@@ -19,6 +19,9 @@ public:
 	//constructor
 	MenuScene();
 
+	//zlayer overloader
+	MenuScene(int ZLayer_amount);
+
 	//deconstructor
 	virtual ~MenuScene();
 
@@ -30,6 +33,8 @@ public:
 	void playerShoot();
 
 private:
+	void addZLayers(int zlayerAmount);
+
 	Button* playButton;
 	Button* optionsButton;
 	Button* highscoresButton;
