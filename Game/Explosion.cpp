@@ -3,7 +3,7 @@
 Explosion::Explosion()
 {
 	size = Vector2(100, 100);
-	spitesheetPath = "assets/spritesheets/explosion.png";
+	spitesheetPath = "assets/spritesheets/Explosion.png";
 	animator.rows = Vector2(4, 1);
 	animator.paused = true;
 	animator.cur = 0;
@@ -16,7 +16,7 @@ Explosion::Explosion(Vector2 position, Vector2 size)
 	pos = position;
 	this->size = size;
 
-	spitesheetPath = "assets/spritesheets/explosion.png";
+	spitesheetPath = "assets/spritesheets/Explosion.png";
 	animator.rows = Vector2(4, 1);
 	animator.cur = 0;
 	animator.animateFromTo = Vector2(1, 3);

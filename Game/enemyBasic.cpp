@@ -2,7 +2,7 @@
 
 EnemyBasic::EnemyBasic()
 {
-	texturePath = "assets/enemy_concept.png";
+	texturePath = "assets/enemy1.png";
 	size = Vector2(50, 50);
 	health = 2;
 	type = IEnemy::BASIC;
@@ -15,7 +15,7 @@ EnemyBasic::EnemyBasic(Vector2 position)
 	startPosition = pos;
 	type = IEnemy::BASIC;
 	
-	texturePath = "assets/enemy_concept.png";
+	texturePath = "assets/enemy1.png";
 
 	pointsWorth = 100;
 	health = 1;

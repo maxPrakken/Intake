@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	texturePath = "assets/player_concept2.png";
+	texturePath = "assets/Player.png";
 	size = Vector2(50, 50);
 
 	health = 5;

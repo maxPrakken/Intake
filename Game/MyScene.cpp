@@ -2,7 +2,7 @@
 
 MyScene::MyScene() : Scene()
 {
-	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v6.png", Vector2(100, 100), true, Vector2(10, 1));
+	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v7.png", Vector2(100, 100), true, Vector2(10, 1));
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
@@ -21,7 +21,7 @@ MyScene::MyScene(int ZLayer_amount)
 {
 	addZLayers(ZLayer_amount);	
 
-	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v6.png", Vector2(100, 100), true, Vector2(10, 1));
+	background = new Grid(Vector2(8, 8), "assets/background_space_tiles_v7.png", Vector2(100, 100), true, Vector2(10, 1));
 	background->pos = Vector2(-100, 0);
 	addchild(background);
 
