@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../MXP3/include/agent.h"
-#include "../MXP3/include/renderer.h"
 
 class IEnemy : public Agent {
 

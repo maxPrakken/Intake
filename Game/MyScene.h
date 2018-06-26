@@ -17,7 +17,6 @@
 #include "EnemyBasic.h"
 #include "EnemyFast.h"
 #include "EnemyBoss.h"
-#include "Slider.h"
 #include "Explosion.h"
 #include "HealthHearts.h"
 

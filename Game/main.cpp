@@ -7,7 +7,6 @@
 #include "optionsMenu.h"
 #include "HighScoreMenu.h"
 
-#include "../MXP3/include/entity.h"
 #include <sceneManager.h>
 
 Input* Input::instance = NULL;

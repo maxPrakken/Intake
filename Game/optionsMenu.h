@@ -5,8 +5,6 @@
 #include <sceneManager.h>
 
 #include "grid.h"
-#include "Player.h"
-#include "bullet.h"
 #include "Button.h"
 #include "Slider.h"
 
@@ -43,7 +41,7 @@ private:
 	Slider* enemyAudioSlider;
 	//=================
 
-	//default letter colour
+	//default text colour
 	SDL_Color c = { 255, 255, 255 };
 	//text rects
 	SDL_Rect generalRect{

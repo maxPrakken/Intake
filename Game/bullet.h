@@ -10,7 +10,6 @@
 
 class Bullet : public Entity {
 public:
-
 	//basic contstructor
 	Bullet();
 	//constructor with texturepath to set bullet sprite

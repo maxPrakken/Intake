@@ -2,9 +2,6 @@
 
 #include "../MXP3/include/agent.h"
 #include <input.h>
-#include "bullet.h"
-
-#include <renderer.h>
 
 class Player : public Agent {
 public:
