@@ -25,7 +25,21 @@ made by Max Prakken.
 ### GPU:	
 	DirectX 9-capable video card (1024 x 768 or higher resolution)
 
-## How to run
+## How to start the game
+
+### step 1:
+	download and or clone the entire solution from https://github.com/maxPrakken/mxp3.
+
+### step 2:
+	paste and or unzip the folder where you want the project to be.
+
+### step 3:
+	navigate to the build directory
+
+### step 4:
+	open the Game.exe
+
+## How to start working in the framework
 
 ### step 1:
 	download and or clone the entire solution from https://github.com/maxPrakken/mxp3.
