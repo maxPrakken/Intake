@@ -69,6 +69,8 @@ private:
 
 	void saveHighScore(std::vector<int> strs);
 	void checkHighScore();
+	void getScoreSB();
+	void saveSB(int x);
 
 	void levelBuilder();
 	void levelManager();

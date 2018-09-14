@@ -579,6 +579,7 @@ void MyScene::playerDie()
 		if (!checkHighScoreOnce) {
 			checkHighScoreOnce = true;
 			checkHighScore();
+			getScoreSB();
 		}
 
 		removechild(player);
@@ -663,7 +664,6 @@ void MyScene::checkHighScore()
 		if (myfile.peek() != std::ifstream::traits_type::eof()) { //checks if file is empty
 				int i = std::atoi(line.c_str());
 				saveHighScore(strs);
-			
 		}
 		else {
 			saveHighScore(strs); // makes one even if its empty
@@ -673,6 +673,36 @@ void MyScene::checkHighScore()
 	else {
 		saveHighScore(strs); //makes one if it doesnt exsist yet
 	}
+}
+
+void MyScene::getScoreSB() {
+	std::string line;
+	std::ifstream myfile;
+	myfile.open("save_files/SB.txt", std::ios::app);
+	if (myfile.is_open()) {
+		if (myfile.peek() != std::ifstream::traits_type::eof()) { //checks if file is empty
+			myfile >> line; //grabes the first and only line and puts in int i
+			saveSB(std::stoi(line) + score);
+		}
+		else {
+			saveSB(score);
+		}
+		myfile.close();
+	}
+	else {
+		saveSB(score);
+	}
+}
+
+void MyScene::saveSB(int x) {
+	std::ofstream file;
+	file.open("save_files/SB.txt", std::ofstream::out | std::ofstream::trunc); //empty the whole file
+	file.close();
+	file.open("save_files/SB.txt", std::ios::app);
+
+	file << std::to_string(x);
+
+	file.close();
 }
 
 void MyScene::levelBuilder()

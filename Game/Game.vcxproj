@@ -22,7 +22,7 @@
     <ProjectGuid>{48ADE645-11EA-449D-93CF-62EAB08557BD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -173,6 +173,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="MyScene.cpp" />
     <ClCompile Include="Slider.cpp" />
+    <ClCompile Include="storeScene.cpp" />
     <ClCompile Include="Upgrades.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,7 @@
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="Slider.h" />
+    <ClInclude Include="storeScene.h" />
     <ClInclude Include="Upgrades.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="MyScene.h" />
