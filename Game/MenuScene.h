@@ -40,6 +40,7 @@ private:
 
 	//HUD buttons
 	Button* playButton;
+	Button* shopButton;
 	Button* optionsButton;
 	Button* highscoresButton;
 	Button* quitButton;

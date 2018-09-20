@@ -5,7 +5,8 @@
 #include "MyScene.h"
 #include "MenuScene.h"
 #include "optionsMenu.h"
-#include "HighScoreMenu.h"
+#include "highscoreMenu.h"
+#include "storeScene.h"
 
 #include <sceneManager.h>
 
@@ -20,6 +21,9 @@ int main(int argc, char *argv[])
 
 	//the first scene that gets added is the startup scene.
 	SceneManager::getInstance()->addScene("MenuScene", new MenuScene(2));
+
+	//store scene initiation
+	SceneManager::getInstance()->addScene("StoreScene", new StoreScene(3));
 
 	//options menu scene initiation
 	SceneManager::getInstance()->addScene("OptionsScene", new optionsMenu());
@@ -39,25 +43,6 @@ int main(int argc, char *argv[])
 		SceneManager::getInstance()->currentScene->update(Renderer::getInstance()->getDeltatime());
 		Renderer::getInstance()->renderScene(SceneManager::getInstance()->currentScene);
 		
-		//a way to switch scenes. still need to do this better
-		/*
-		if (Input::getInstance()->getKeyDown(SDLK_RIGHTBRACKET))
-		{
-			curscene++;
-		}
-		else if (Input::getInstance()->getKeyDown(SDLK_LEFTBRACKET))
-		{
-			curscene--;
-		}
-
-		else if (curscene == 0 && SceneManager::getInstance()->currentScene != SceneManager::getInstance()->getScene("MenuScene")) {
-			SceneManager::getInstance()->setCurrentScene("MenuScene");
-		}
-
-		else if (curscene == 1 && SceneManager::getInstance()->currentScene != SceneManager::getInstance()->getScene("MyScene")) {
-			SceneManager::getInstance()->setCurrentScene("MyScene");
-		}
-		*/
 		Renderer::getInstance()->update();
 	}
 	return 0;

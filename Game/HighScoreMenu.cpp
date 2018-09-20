@@ -21,6 +21,9 @@ HighScoreMenu::HighScoreMenu()
 
 HighScoreMenu::~HighScoreMenu()
 {
+	delete background;
+	background = NULL;
+
 	delete backbutton;
 	backbutton = NULL;
 }

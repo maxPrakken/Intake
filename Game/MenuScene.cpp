@@ -9,22 +9,29 @@ MenuScene::MenuScene()
 	buttonVector.push_back(playButton);
 	addchild(playButton);
 
+	shopButton = new Button();
+	shopButton->pos = Vector2(200, 150);
+	shopButton->size = Vector2(200, 50);
+	shopButton->texturePath = "assets/buttons/shopButton.png";
+	buttonVector.push_back(shopButton);
+	addchild(shopButton);
+
 	optionsButton = new Button();
-	optionsButton->pos = Vector2(200, 150);
+	optionsButton->pos = Vector2(200, 250);
 	optionsButton->size = Vector2(200, 50);
 	optionsButton->texturePath = "assets/buttons/optionsButton.png";
 	buttonVector.push_back(optionsButton);
 	addchild(optionsButton);
 
 	highscoresButton = new Button();
-	highscoresButton->pos = Vector2(200, 250);
+	highscoresButton->pos = Vector2(200, 350);
 	highscoresButton->size = Vector2(200, 50);
 	highscoresButton->texturePath = "assets/buttons/highscoresButton.png";
 	buttonVector.push_back(highscoresButton);
 	addchild(highscoresButton);
 
 	quitButton = new Button();
-	quitButton->pos = Vector2(200, 350);
+	quitButton->pos = Vector2(200, 450);
 	quitButton->size = Vector2(200, 50);
 	quitButton->texturePath = "assets/buttons/quitButton.png";
 	buttonVector.push_back(quitButton);
@@ -46,31 +53,34 @@ MenuScene::MenuScene(int ZLayer_amount)
 	playButton->pos = Vector2(200, 50);
 	playButton->size = Vector2(200, 50);
 	playButton->texturePath = "assets/buttons/playButton.png";
-	playButton->setZLayer(2);
 	buttonVector.push_back(playButton);
 	addchild(playButton);
 
+	shopButton = new Button();
+	shopButton->pos = Vector2(200, 150);
+	shopButton->size = Vector2(200, 50);
+	shopButton->texturePath = "assets/buttons/shopButton.png";
+	buttonVector.push_back(shopButton);
+	addchild(shopButton);
+
 	optionsButton = new Button();
-	optionsButton->pos = Vector2(200, 150);
+	optionsButton->pos = Vector2(200, 250);
 	optionsButton->size = Vector2(200, 50);
 	optionsButton->texturePath = "assets/buttons/optionsButton.png";
-	optionsButton->setZLayer(2);
 	buttonVector.push_back(optionsButton);
 	addchild(optionsButton);
 
 	highscoresButton = new Button();
-	highscoresButton->pos = Vector2(200, 250);
+	highscoresButton->pos = Vector2(200, 350);
 	highscoresButton->size = Vector2(200, 50);
 	highscoresButton->texturePath = "assets/buttons/highscoresButton.png";
-	highscoresButton->setZLayer(2);
 	buttonVector.push_back(highscoresButton);
 	addchild(highscoresButton);
 
 	quitButton = new Button();
-	quitButton->pos = Vector2(200, 350);
+	quitButton->pos = Vector2(200, 450);
 	quitButton->size = Vector2(200, 50);
 	quitButton->texturePath = "assets/buttons/quitButton.png";
-	quitButton->setZLayer(2);
 	buttonVector.push_back(quitButton);
 	addchild(quitButton);
 
@@ -107,6 +117,12 @@ void MenuScene::buttonClickCheck()
 		SceneManager::getInstance()->setCurrentScene("MyScene");
 		MyScene* scene = (MyScene*)SceneManager::getInstance()->currentScene;
 		scene->resetWorld();
+	}
+
+	if (shopButton->isClicked()) {
+		SceneManager::getInstance()->setCurrentScene("StoreScene");
+		MyScene* scene = (MyScene*)SceneManager::getInstance()->currentScene;
+		SceneManager::getInstance()->sceneVector["StoreScene"]->lastScene = "MenuScene";
 	}
 
 	if (optionsButton->isClicked()) {
